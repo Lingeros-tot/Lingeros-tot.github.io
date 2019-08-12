@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/safari_pinned_tab.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="密码学,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="One-way funtion is a funtion which is easy to compute but hard to invert. Here “easy” and “hard” means the lower bound of its computational complexity. The existence of one-way function is the necessa">
+<meta name="keywords" content="密码学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="One-Way Function">
+<meta property="og:url" content="http://yoursite.com/2019/03/25/One-Way-Function/index.html">
+<meta property="og:site_name" content="Lingeros">
+<meta property="og:description" content="One-way funtion is a funtion which is easy to compute but hard to invert. Here “easy” and “hard” means the lower bound of its computational complexity. The existence of one-way function is the necessa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-21T01:47:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="One-Way Function">
+<meta name="twitter:description" content="One-way funtion is a funtion which is easy to compute but hard to invert. Here “easy” and “hard” means the lower bound of its computational complexity. The existence of one-way function is the necessa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/25/One-Way-Function/">
+
+
+
+
+
+  <title>One-Way Function | Lingeros</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lingeros</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">the Theory Of Things</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-introduction">
+          <a href="/introduction/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info-circle"></i> <br>
+            
+            介绍
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-update">
+          <a href="/update/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br>
+            
+            更新
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br>
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/One-Way-Function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lingeros">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lingeros">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">One-Way Function</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T22:40:56+08:00">
+                2019-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机科学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/现代密码学/" itemprop="url" rel="index">
+                    <span itemprop="name">现代密码学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/现代密码学/密码学基础/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>One-way funtion is a funtion which is easy to compute but hard to invert. Here “easy” and “hard” means the lower bound of its computational complexity. The existence of one-way function is the necessary condition of the existence of modern cryptography schemes.</p>
+<a id="more"></a>
+<p><strong>Some Information about the Course</strong></p>
+<p>In this course, we mainly talk about the foundation of Cryptography. The whole course includes the conditions of the existence of cryptography, the provable security of cryptosystems, the general construction method of cryptosystems. Basic knowledge of probability theory, computational complexity is necessary for this course.</p>
+<p>This serie of notes mainly follows Goldreich’s book <em>Foundations of Cryptograph</em>, which usually being regarded sealed. Actually with some basic knowledge about computational complexity and being familiar with those “arguments”, this book is not quite hard to read. </p>
+<p>Furthermore, since Goldreich’s book has been finished for several years, newly researching results are not included in that book, the results being found in resent years has been added by me. Infact, this is not the note of a single course. It is a set of notes for several courses involving cryptography and textbooks. Some of the contents are beyond any of the courses the writer have taken.</p>
+<p>Thanks to Mr. Yu at SJTU for giving us a wonderful course.</p>
+<p><strong>Some Information about the Symbols</strong></p>
+<p>Never be confused with the symbol $\to$. Though in math we always use $\to$ between the definitional domain and range, $\to$ here in the series of article often means the output of a algorithm. Algorithms are different with functions if we consider the complexity of it. And algorithms can be probablistic, that is, the outputs can be different even if the inputs are the same. Because of this, $=$ is meaningless. So we took the assignment operator from pseudocode $\to$ and $\leftarrow$ to denote the output of an algorithm.</p>
+<p>We are not going to write too many conditions in a probabilistic formula. We sometimes write conditions by distributions under the simbol $\Pr$.</p>
+<p>As for make of a probabilistic distribution like $U_n$, it has two means. Firstly, it denotes a distribution as it is. E.g. Random variable $X$ sampled by $U_n$ is denoted by $X\leftarrow U_n$, then we for each string $x\in U_n$ we have<br>$$<br>\Pr[x\in U_n]=\frac 1 {2^n}<br>$$<br>In other situations, these kind of mark can represent an anonymous random variable sampled from the distribution it denotes. We must make it clear that in the same math block, same mark of distribution $D$ always represents the same anonymous random variable sampled from $D$. For different anonymous random variable sampled from the same distribution $D$, we can use superscript to distinguish them. E.g. $D^{(1)}, D^{(2)},\cdots,D^{(m)}$.</p>
+<p><strong>Some information about Abbreviations and Terms</strong></p>
+<p>We presume that “neglible” is well-known. A function $p: \mathbb N\to [0,1]$  is called overwhelming if $1-p$ is negligible.</p>
+<p>“PPT” stands for probalistic polynonial time, it means the function runs on a probalistic turing machine for polynomial time. The error probability is not included in “PPT”, it usually will be state later.</p>
+<h1 id="One-Way-Function"><a href="#One-Way-Function" class="headerlink" title="One-Way Function"></a>One-Way Function</h1><h2 id="Strong-One-way-Function"><a href="#Strong-One-way-Function" class="headerlink" title="Strong One-way Function"></a>Strong One-way Function</h2><p>The existence of cryptography is based on $\mathbf P\neq \mathbf{NP}$. But $\mathbf P\neq \mathbf{NP}$ is not enough, cryptography asks for stronger precondition, that is the existence of (Strong) <strong>One-way Function</strong>.</p>
+<blockquote>
+<p><strong>Strong One-way Function</strong> (OWF)</p>
+<p>A function $f:\{0,1\}^\ast\to \{0,1\}^\ast$ is a strong one-way function if it is</p>
+<ol>
+<li><strong>Easy to compute</strong>: There is a deterministic polynomial-time algorithm $\mathsf{EvalF}$ such that for all $n$ and all $x\in\{0,1\}^n$ we have $\mathsf{EvalF(x)} = f(x)$.</li>
+<li><strong>Hard to invert</strong>: There is no probabilitistic polynomial-time algorithm could invert the function with probability better than $\mathsf{negl(n)}$.</li>
+</ol>
+</blockquote>
+<p>The second property can be restate more formally as</p>
+<blockquote>
+<p>There is no PPT algorithm $\mathcal {A}$ satisfy<br>$$<br>\Pr[\mathcal A(1^n,f(U_n))\in f^{-1}(f(U_n))]&gt;\frac{1}{n^c}<br>$$<br>for any $c&gt;0$.</p>
+</blockquote>
+<p>When you see a distribution been used as a random variable in a probabilitistic formula, it means you first sample once from that distribution and use the result as a random variable. It’s easy to understant this since we do this just because we don’t want to give the random variable a explicit name. </p>
+<p><kbd>!</kbd> Another thing to pay attention to is that $f$ is defined for all $n$. Or wey say, $f$ is <strong>uniform</strong>.</p>
+<p>As it is shown in the definition, a strong one-way function cannot be revert efficiently in average-case. That is, the function might somehow be inverted by a algorithm once, but hard on average.</p>
+<blockquote>
+<p><strong>Theorem</strong></p>
+<p>If strong one-way function exists, then $\mathbf{P}\neq \mathbf{NP}$.</p>
+</blockquote>
+<p><strong>Proof</strong>: Suppose $\mathbf{P}=\mathbf{NP}$ and there exists an one-way function $f:\{0,1\}^\ast\to \{0,1\}^\ast$. Then decide<br>$$<br>L=\{\langle x^\ast,y\rangle| \exists x:x^\ast\sqsubset x \text{and} f(x)=y\}<br>$$<br>$L$ is the collection of tuples like $\langle x^\ast, y\rangle$ that $x^\ast$ is the prefix of some $x$ that $f(x)=y$. Clearly $x$ itself is a certificate, so $L\in \mathbf{NP}$. But we have $\mathbf{P}=\mathbf{NP}$, so for every $y$, we can recover $x$ one bit by one bit. This can be done by call the oracle of $\mathcal O_L$. To invert $y$, we firstly ask $\langle 0, y\rangle$. If it returns $0$ then we ask $\langle 10, y\rangle$, otherwise we ask $\langle 00, y\rangle$.</p>
+<p>However, there’s another kind of one-way function, which sounds weaker that the previous defined one.</p>
+<h2 id="Weak-One-Way-Function"><a href="#Weak-One-Way-Function" class="headerlink" title="Weak One-Way Function"></a>Weak One-Way Function</h2><blockquote>
+<p><strong>Weak One-Way Function</strong></p>
+<p>A function $f:\{0,1\}^\ast\to \{0,1\}^\ast$ is a one-way function if it is</p>
+<ol>
+<li><p><strong>Easy to compute</strong>: There is a deterministic polynomial-time algorithm $\mathsf{EvalF}$ such that for all $n$ and all $x\in\{0,1\}^n$ we have $\mathsf{EvalF(x)} = f(x)$.</p>
+</li>
+<li><p><strong>Slightly Hard to invert</strong>: There exists a polynomial $p(\cdot)$ such that for every PPT algorithm $\mathcal A$ and all sufficiently large n’s,<br>$$<br>\Pr[\mathcal A(f(U_n,1^n)\notin f^{-1}(f(U_n))]&lt;1-\frac 1{p(n)}<br>$$</p>
+</li>
+</ol>
+</blockquote>
+<p>See, it’s not “very hard” to invert weak one-way function. But pay attention that every algorithm shares the same $p(\cdot)$ in the definition. It means that every algorithms could only invert the function correctly with a upper bound probability. We can regard it as a “gap”.</p>
+<p>If you are familiar with PCP theorem, you might think you there should be someway to amplify the gap. Then we can construct a strong one-way function by the given weak one-way function.</p>
+<h2 id="One-Way-Function-Defined-for-Some-Lengths"><a href="#One-Way-Function-Defined-for-Some-Lengths" class="headerlink" title="One-Way Function Defined for Some Lengths."></a>One-Way Function Defined for Some Lengths.</h2><p>We could define one-way function for some lengths. Let $I\in \mathbb N$, then $I$ contains some natural numbers. We define the successor of $n$ in $I$ the minimal number in $I$ that is larger than $I$, denoted by $s_I(n)$.</p>
+<p>E.g. Let $I= \{2,3,7,9,10,12,14,\cdots\}$, then $s_I(8)=9$.</p>
+<p>$I$ is called polynomial-time-enumerable if there exists a $poly$-time turing machine that on input $n$ output $1^{S_I(n)}$. </p>
+<p>To modify the definition of strong/weak one way function, change “every $n$” to “every $n\in I$ we get the definiton of strong/weak one-way functions for some lengths.</p>
+<p><strong>Fact</strong> One-Way function for polynomial-time-enumerable $I$ can be easily transformed to the original one-way function.</p>
+<blockquote>
+<p><strong>Theorem</strong></p>
+<p>Let $f(\cdot)$ be a one way function defined for lengths of polynomial-time-enumerable set $I$. Let $x=x^\prime x^”$, where $x^\prime$ is the longest prefix of $x$ with length in $I$. Define<br>$$<br>g(x)=f(x^\prime)x^”<br>$$<br>Then $g(x)$ is a one-way function.</p>
+</blockquote>
+<p><strong>Proof</strong>: The proof is simple, which is omitted here. But we review the basic thought of the proof. The technique used here is reduction. Suppose there is a algorithm $\mathcal A$ that invert $g(\cdot)$ efficiently, then we call construct a efficient algorithm $\mathcal A^\prime$ which could invoke $\mathcal A$ polynomial times and invert $f(\cdot)$ efficiently.</p>
+<p><kbd>!</kbd> This is the basic ideal for strong ont-way function. As for weak one-way function, the basic idea is similar.</p>
+<h2 id="Length-Regular-amp-Length-Preserving-One-Way-Function"><a href="#Length-Regular-amp-Length-Preserving-One-Way-Function" class="headerlink" title="Length-Regular &amp; Length-Preserving One-Way Function"></a>Length-Regular &amp; Length-Preserving One-Way Function</h2><p>The following two definitions can be used to both strong &amp; weak one-way functions. </p>
+<blockquote>
+<p><strong>Length-Regular One-Way function</strong></p>
+<p>A one-way function is length-regular if for every $|x_1|=|x_2|$, it holds that $|f(x_1)|=|f(x_2)|$.</p>
+</blockquote>
+<blockquote>
+<p><strong>Length-Preserving One-Way function</strong></p>
+<p>A one-way function is length-preserving if for every $x$, it holds that $|x|=|f(x)|$.</p>
+</blockquote>
+<p>Given a one-way function, we can construct a length-preserving one-way function by the following 2 steps. First given onw-way function $f(\cdot)$, we first construct a length-preserving function $g$ by adding the pad $10^\ast$<br>$$<br>g(x)\doteq f(x)10^{p(|x|)-|f(x)|}<br>$$<br>Where $p(\cdot)$ is the indicator of how many 0’s we are going to add. Then we transform $g$ to a length-preserving one-way function $g^\prime$.<br>$$<br>g^\prime(x^\prime x^”)\doteq g(x^\prime), \quad\text{where } |x^\prime x^”|=p(|x^\prime|)+1<br>$$<br>We’ve done. The one-wayness of $g^\prime$ can be also proved by reduction.</p>
+<p>But the previous technique might not preserving the 1-1 of a one-way function, as for 1-1 one-way fucntion $f$, the first step do construct a 1-1 length-regular one-way function. But the second step break the 1-1 attribute.</p>
+<h2 id="Non-uniformly-One-Way-Function"><a href="#Non-uniformly-One-Way-Function" class="headerlink" title="Non-uniformly One-Way Function"></a>Non-uniformly One-Way Function</h2><p>$\mathbf{BPP}\subseteq \mathbf{P}_{/\text{poly}}$ as we known, a one-way function might still be invert efficiently by an non-uniform algorithm. If we design cryptosystem based on one-way function, it might still be analysis by using non-uniform algorithms. How strong are you going to define cryptosystem? It’s up to you. You might still define security means can’t be efficiently analized by quantum computers…</p>
+<p>Non-uniformly one-way function is a stronger version of one-way function, it is those one-way functions has non-uniform one-wayness, which means it can’t be revert efficiently by a non-uniform algorithm. Notice that non-uniform algorithms are deterministic if they are represented by circuit families.</p>
+<blockquote>
+<p><strong>Non-uniformly One-Way Function</strong></p>
+<p>A function $f:\{0,1\}^\ast\to \{0,1\}^\ast$ is a strong one-way function if it is</p>
+<ol>
+<li><p><strong>Easy to compute</strong>: There is a deterministic polynomial-time algorithm $\mathsf{EvalF}$ such that for all $n$ and all $x\in\{0,1\}^n$ we have $\mathsf{EvalF(x)} = f(x)$.</p>
+</li>
+<li><p><strong>Hard to invert</strong>: For all $poly$-size circuit family $\{C_n\}$  , polynomial $p(\cdot)$ and efficient large $n$, it holds that<br>$$<br>\Pr[C_n(f(x))\in f^{-1}(f(x))]&lt;\frac 1 {p(n)}<br>$$</p>
+</li>
+</ol>
+</blockquote>
+<p>Look, to compute the function, a $\mathbf {BPP}$ algorithm is enough, but even a non-uniform circuit familiy of $poly$-size cold invert it.</p>
+<h1 id="Weak-One-Way-Functions-Imply-Strong-Ones"><a href="#Weak-One-Way-Functions-Imply-Strong-Ones" class="headerlink" title="Weak One-Way Functions Imply Strong Ones"></a>Weak One-Way Functions Imply Strong Ones</h1><blockquote>
+<p><strong>Theorem</strong></p>
+<p>Weak one-way function exists if and only if strong one-way function exitst.</p>
+</blockquote>
+<p>Not all weak one-way functions are strong one-way functions, refer to Goldreich’s textbook for a counterexample. And $\Leftarrow$ direction is trivial, so we focus on prove the $\Rightarrow$ direction.</p>
+<p>Let $f$ be a weak one-way function with $p(\cdot)$ to be guaranteed by definition. Then we might construct<br>$$<br>g(x_1,\cdots,x_{t(n)})\doteq (f(x_1),\cdots,f(x_{t(n)}))<br>$$</p>
+<p>where $t(n)=n\cdot p(n)$ .</p>
+<h2 id="Naive-Proof"><a href="#Naive-Proof" class="headerlink" title="Naive Proof"></a>Naive Proof</h2><p>It is obvious that $g$ is easy to compute. As for invertion, one might think the success probability is less than $(1-\frac{1}{p(n)})^{n\cdot p(n)}$. This is not right since it is based on the assumption that the algorithm invert $g$ works by invert every $f(x_i)$ independently, which cannot be justified.</p>
+<h2 id="Right-Proof"><a href="#Right-Proof" class="headerlink" title="Right Proof"></a>Right Proof</h2><p>The fact is the construction is right but the proof is wrong. A detailed right proof is given in the following. Suppose we have the algorithm $\mathcal B$ to invert $g$ efficiently, that is<br>$$<br>\Pr[\mathcal B(g(U_m))\in g^{-1}(g(U_m))]&gt;\frac 1{q(m)}<br>$$<br>then as for $m=n^2p(n)$ there is<br>$$<br>\Pr[\mathcal B(g(U_{n^2p(n)}))\in g^{-1}(g(U_{n^2p(n)}))]&gt;\frac{1}{q(n^2p(n))}<br>$$</p>
+<h3 id="Construct-Independent-Inversion-Procedure"><a href="#Construct-Independent-Inversion-Procedure" class="headerlink" title="Construct Independent Inversion Procedure"></a>Construct Independent Inversion Procedure</h3><p>The basic idea is to using the invert algorithm severala times to change the non-independently inversion to independently inversion by a procedure $I$. $I$ works as follows:</p>
+<blockquote>
+<p><strong>Procedure $I$</strong></p>
+<p><em>Input</em>: $y$</p>
+<ol>
+<li>$n\leftarrow |y|$</li>
+<li><strong>for</strong> $i=1$ to $t(n)$ <strong>do</strong><ol>
+<li>$x_1\leftarrow U_n, x_2\leftarrow U_n,\cdots,x_{t(n)}\leftarrow U_n$</li>
+<li>$z_1,z_2,\cdots,z_{t(n)}\leftarrow \mathcal B(f(x_1), \cdots, f(x_{i-1}), y,f(x_{i+1}),\cdots,f(x_{t(n)}))$</li>
+<li><strong>if</strong> $f(z_i)=y$ <strong>then return</strong> $z_i$</li>
+</ol>
+</li>
+<li><strong>end for</strong></li>
+</ol>
+</blockquote>
+<p>Some comments:</p>
+<p>“<strong>return</strong> $x$” means write $x$ on the output tape and halt for a turing machine (since algorithms &amp; procedures can be regard as turing machines).</p>
+<p>The basic idea here is: If we try to invert some $f(x_i)$ in the output of $g$, $y_i$ must be tangled with other $f(x_j)$’s, so here we try to put $y=f(x_i)$ to all the places to get the “best chance”. And by using procedure $I$ for each $f(x)$, we are going to invert them of independently.</p>
+<h3 id="Averaging-Arguments-for-Successful-Inversions"><a href="#Averaging-Arguments-for-Successful-Inversions" class="headerlink" title="Averaging Arguments for Successful Inversions"></a>Averaging Arguments for Successful Inversions</h3><p>We define another polynomial $a(n)\doteq 2n^2\cdot p(n)\cdot q(n^2p(n))$, and we are going to invoke $I$ for $a(n)$ times. It is easy to findout why $a(n)$ times by rewriting $a(n)$ as $a(n)=2\cdot t(n)\cdot q(m)$. According the previous argument, mes we can construct an invert algorithm $\mathcal A$ for $f(\cdot)$ BY  invoking procedure $I$ for $a(n)$ times. For an input $y=f(x)$, </p>
+<p>$\mathcal A(y)$ halts whenever $I(y)$ halts with an output. If every invoking of $I(y)$ halts without any output, $\mathcal A$ just simply guess an invert of $y$.  </p>
+<p>The first question we are going to ask is with how much confidence you are going to believe $I$ inverts its input $y=f(x)$ correctly? Well, since $\mathcal B$ is a good algorithm for inverting $g$, it will invert $g$ correctly with probability at least $\frac 1 {q(m)}$. Recall that iterating for $i=1$ to $t(n)$ just helps to get the best chance for invert $y=f(x)$, so the probability to invert $y$ by $I$ will success with probability better than $\frac 1 {q(m) t(n)}$ where $m=n^2p(n)$. This can be done by basic averaging argument. Then it is quite clear we must try $I$ for about $q(m)t(n)=n\cdot p(n)\cdot q(n^2p(n))$ times to get some good enougth probability, this is where $a$ comes from.</p>
+<p>As it is shown in the article <em>Averaging Argument</em>, we are going to devide $x\in\{0,1\}^n$ into “good ones” and “bad ones”,  we mark the collect of goodones as $S_n$, which defines as<br>$$<br>S_n\doteq\left\{(f(x))\in f^{-1}(f(x))]&gt;\frac{n}{a(n)}\right\}<br>$$<br>And the rest of strings are “bad ones”. To understand why strings in $S_n$ are “good ones”,  the reduction for $\mathbf{RP}$ might be help and the detailed explanation will be shown in next part.</p>
+<p>Now we are going to focus on the size of $S_n$. Since $S_n$ collects all the good ones, why might guess if the input $f(x_1),\cdots,f(x_{t(n)})$ of $g$ satisfy that all $x_1$ come from $S_n$, then this will be easy to invert. Otherwise it would be hard to invert. According to this basic ideal, we define<br>$$<br>s(n)\doteq \Pr[g(U_{n\cdot t(n)}))\in g^{-1}(g(U_{n\cdot t(n)}))]&gt;\frac{1}{q(n\cdot t(n))}<br>$$<br>And seperate it into two parts, that is<br>$$<br>s_1(n)\doteq \Pr [g(U_{n\cdot t(n)}))\in g^{-1}(g(U_{n\cdot t(n)}))\wedge(\exists i: U^{i}_n\notin S_n)]<br>$$<br>and<br>$$<br>s_2(n)\doteq \Pr[g(U_{n\cdot t(n)}))\in g^{-1}(g(U_{n\cdot t(n)}))\wedge(\forall i: U^{i}_n\in S_n)]<br>$$<br>It is clear that $s(n)=s_1(n)+s_2(n)$.</p>
+<p><strong>Probability Bound for $s_1(n)$</strong></p>
+<p>Though deducing process is quite long, it is really simple by recalling that “try to put $y=f(x_i)$ to all the places to get the ‘best chance’”. We even could immediatly guess that<br>$$<br>s_1(n)=\sum^{n\cdot p(n)}_{i=1}\max\{\Pr[I(f(x))\in f^{-1}(f(x))]\}<br>$$<br>The detailed procedure are shown in the following:<br>$$<br>\begin{align}<br>s_1(n)<br>&amp;=\Pr[\exists i:\mathcal B(g(U_{n\cdot t(n)})\in g^{-1}(g(U_{n\cdot t(n)}))\wedge(U^{(i)}_n\notin S_n)] \\<br>&amp; \leq \sum^{n\cdot p(n)}_{i=1}\Pr[\mathcal B(g(U_{n\cdot t(n)}))\in g^{-1}(g(U_{n\cdot t(n)}))\wedge(U^{(i)}_n\notin S_n)] \\<br>&amp;\leq \sum^{n\cdot p(n)}_{i=1}\sum_{x\notin S_n}\Pr[\mathcal B(g(U_{n\cdot t(n)}))\in g^{-1}(g(U_{n\cdot t(n)}))\wedge(U^{(i)}_n\neq x)] \\<br>&amp;\leq \sum^{n\cdot p(n)}_{i=1}\sum_{x\notin S_n}\Pr[U^{(i)}_n=x]\cdot\Pr[\mathcal B(g(U_{n\cdot t(n)}))\in g^{-1}(g(U_{n\cdot t(n)}))|U^{(i)}_n=x] \\<br>&amp;\leq \sum^{n\cdot p(n)}_{i=1} \max_{x\notin S_n}\{\Pr[\mathcal B(g(U_{n\cdot t(n)}))\in g^{-1}(g(U_{n\cdot t(n)}))|U^{(i)}_n=x]\} \\<br>&amp;\leq \sum^{n\cdot p(n)}_{i=1} \max_{x\notin s_n}{\Pr[I(f(x))\notin f^{-1}(f(x))]} \\<br>&amp;\leq n\cdot p(n)\cdot \frac{n}{a(n)} \\<br>&amp;= \frac{n^2\cdot p(n)}{a(n)}<br>\end{align}<br>$$</p>
+<p>While the last equality comes from our assumption.</p>
+<p>Next, we are going to prove that $|S_n|&gt;(1-\frac{1}{2p(n)})\cdot 2^n$</p>
+<p>Notice that<br>$$<br>\frac 1{q(n^2 p(n))}&lt;s(n)=s_1(n)+s_2(n)\leq \frac{1}{2q(n^2p(n))}+s_2(n)<br>$$<br>If we assume $|S_n|\leq (1-\frac 1 {2p(n)})\cdot 2^n$, then<br>$$<br>\begin{align}<br>s_2(n) &amp;\leq \Pr[\forall i:U^{(i)}_n\in S_n]\\<br>&amp;\leq (1-\frac{1}{2p(n)})^{n\cdot p(n)}\\<br>&amp;&lt; \frac 1 {2^{n/2}} &lt; \frac{n^2\cdot p(n)}{a(n)}<br>\end{align}<br>$$<br>holds for efficient large $n$.</p>
+<p>By contradiction<br>$$<br>\frac 1{n^2\cdot q(n)}&lt;s(n)&lt;s_1(n)+s_2(n)&lt;\frac 1{n^2\cdot q(n)}<br>$$<br>we have<br>$$<br>|S_n|&gt;(1-\frac 1 {2p(n)})\cdot 2^n<br>$$</p>
+<h3 id="Bound-the-lower-probability-of-mathcal-A"><a href="#Bound-the-lower-probability-of-mathcal-A" class="headerlink" title="Bound the lower probability of $\mathcal A$"></a>Bound the lower probability of $\mathcal A$</h3><p>We now bound the success invert probability of $\mathcal A$. For $x\in S_n$, the failure probability can be bounded by<br>$$<br>\Pr\limits_{x\leftarrow U(S_n)}[\mathcal{A}(f(x))\notin f^{-1}(f(x))]&lt;(1-\frac{n}{a(n)})^{a(n)}&lt;\frac 1{2^n}<br>$$<br>Now its easy to bold the success probability of $\mathcal A$.<br>$$<br>\begin{align}<br>&amp;\quad\,\Pr[\mathcal A(f(x))\in f^{-1}(f(x))] \\<br>&amp;\geq \Pr[\mathcal A(f(x))\in f^{-1}(f(x)) \wedge(U_n\in S_n)] \\<br>&amp;= \Pr[\mathcal A(f(x))\in f^{-1}(f(x))|U_n\in S_n]\cdot\Pr[U_n\in S_n] \\<br>&amp;\geq (1-\frac 1 {2p(n)})\cdot(1-2^{-n}) &gt; 1-\frac 1{p(n)}<br>\end{align}<br>$$<br>Which is contradicted with the fact that $f$ is promised to be failed to invert with probability of $p(n)$. We’ve done the proof.</p>
+<h2 id="Summary-for-One-Way-Function"><a href="#Summary-for-One-Way-Function" class="headerlink" title="Summary for One-Way Function"></a>Summary for One-Way Function</h2><p>As we have learned, there is a universal construction method for strong one-way function by weak one-way function. We are going to use the word “one-way function” in future discussing.</p>
+<p>Futhermore, since we’ve known that one-way functions for polynomial-time-enumerable sets exists imply one-way function for all lengths exists. And the existence of the later implies the existence of length-regular or length-preserving functions. We might use these attributes without declaration.</p>
+<h2 id="Universal-One-Way-Function"><a href="#Universal-One-Way-Function" class="headerlink" title="Universal One-Way Function"></a>Universal One-Way Function</h2><p>We can define a function<br>$$<br>f_{\text{uni}}(\llcorner\boldsymbol M\lrcorner,x)<br>\doteq(\llcorner\boldsymbol M\lrcorner,\boldsymbol M(x))<br>$$<br>where $\boldsymbol M$ is a turing machine as $\llcorner\boldsymbol M\lrcorner$ is its description. This is called a universal one-way function, which is obviously computable on a universal TM with a step counter. It is interesting that if there is any one-way function $g$, so is $f_{\text{uni}}$. </p>
+<p>Furthermore, we can use $f_{\text{uni}} $ to construct the polynomial-time computable strong one-way function.</p>
+<h2 id="One-Way-Function-Family"><a href="#One-Way-Function-Family" class="headerlink" title="One-Way Function Family"></a>One-Way Function Family</h2><p>Well if we put some of one-way functions together, we get a collection of one-way funtions. This is meaningless unless we have a good way to compute them by a single evaluation function which halts in $poly$-time. If such a function do exists, with some extra attributes, the collection would be quite useful. Based on this main idea, we define one-way function family.</p>
+<blockquote>
+<p><strong>One-Way Function Family</strong></p>
+<p>A collection of functions $\{f_i:D_i\to\{0,1\}^\ast | i\in I\}$ is called strongly (resp., weakly) one-way if there exists three PPT algorithms $\mathcal G,\mathcal S,\mathcal E$ satisfy</p>
+<ol>
+<li>The generation algorithm $\mathcal G $: given the input $1^n$, output a random variable $i$ from $I_n=I\cap \{0,1\}^n$.</li>
+<li>The sample algorithm  $\mathcal S$: given the input $1^n$ and $I_n$, output a random value $x$ from $D_i$.</li>
+<li>Then evaluation algorithm $\mathcal E$: given the input $1^n, I_n, x$, output $f_i(x)$ correctly all the time.</li>
+</ol>
+<p>and one-wayness:</p>
+<ol>
+<li>For every PPT algorithm $\mathcal A$, every polynomial $p(\cdot)$ and all sufficient large $n$’s, it holds that </li>
+</ol>
+<p>$$<br>\Pr\limits_{i\leftarrow \mathcal S(1^n)\ x\leftarrow\mathcal G(1^n,i)}[\mathcal A(i,f_{i}(x))\in f^{-1}_{i}(f_{i}(x))]&lt;\frac 1 {p(n)}<br>$$</p>
+</blockquote>
+<p>The definition is straight forward, but there are still somewhere to pay attention to.</p>
+<p>As for the index set I, in order to efficiently sample from $I\cap \{0,1\}^n$ for all efficient large $n$, the size of $I$ has to be noticable, which means $|I\cap \{0,1\}^n|\geq 2^n/\text{poly}(n)$. The generation algorithm $\mathcal G$ don’t have to sample $I_n$ uniformly at random on $I\cap \{0,1\}^n$. Likewise, the output of sample algorithm $\mathcal S$ on input $i$ do not necessarily distributed uniformly over $D_i$.</p>
+<p>Did you find something wrong? The defintion of “One-way function family” doesn’t mentioned that all the functions in it has to be one-way function! Furthermore, the inversion is hard with respect $\mathcal G$ and $\mathcal S$!</p>
+<p>Here we recall the reduction of $\mathbf{RP}$ again. We can always construct a generation or sample algorithm that outputs <strong>YES</strong> with overwhelming probability by repeat $\mathcal G$ or $\mathcal S$ polynomial times. We are going to use this in the definition of trapdoor permutation family.</p>
+<p><em><u>A Problem</u></em></p>
+<p>Goldreich says “without lost of generosity, $\mathcal E$ can be deterministic”, but how comes that $\mathcal E$ evaluates right with just overwhelming probabilty in the definition of trapdoor one-way family? Why are they different?</p>
+<h1 id="Trapdoor-One-Way-Permutations"><a href="#Trapdoor-One-Way-Permutations" class="headerlink" title="Trapdoor One-Way Permutations"></a>Trapdoor One-Way Permutations</h1><p>Goldreich didn’t mentioned about non-permutation trapdoor one-way functions, so we’are going to skip that (since its quite simple as well).</p>
+<p>The idea of trapdoor, I think, comes from the certificate of an $\mathbf{NP}$ problem. With its trapdoor, the one-way function is easy to invert. This sounds like at least one inversion (since every image might have mutiple preimages) of such one-way function is a $\mathbf{NP}$ language. The trapdoor might sounds more like an advice since its same for all the inputs. But for one-way function family, I feel nature about regarding trapdoors as certificates.</p>
+<p>For OWP family (One-Way Permutation family) with trapdoors, we are going to use the most convenient definition for cryptography.</p>
+<blockquote>
+<p><strong>Trapdoor Permutation Family</strong></p>
+<p>Let $I\subseteq \{0,1\}^n$ and define $I_n=I\cap\{0,1\}^n$. A trapdoor permutation famility with indices in $I$ is a set of functions $\left\{f_i:D_i\to D_i|i\in I\right\}$ such that each $f_i$ is a permutation on the corresponding $D_i$. Such a collection is called a <strong>trapdoor permutation</strong> if there exist four PPT algorithms $\mathcal G, \mathcal S, \mathcal E, \mathcal E^{-1}$ such that the following five conditions hold:</p>
+<ol>
+<li><p>Index and trapdoor generation $\mathcal G$:<br>$$<br>\Pr[\mathcal G(1^n)\in I_n\times \{0,1\}^\ast]&gt;1-2^{-n}<br>$$</p>
+</li>
+<li><p>Random variable in domain sampling $\mathcal S$, for every $n\in\mathbb N$ and $i\in I_n$</p>
+<ol>
+<li><p>$\Pr[\mathcal S(i)\in D_i]&gt;1-2^{-n}$</p>
+</li>
+<li><p>If the output of $\mathcal S$ is in $D_i$, then its distributed uniformly at random on $D_i$, that is<br>$$<br>\Pr[\mathcal S(i)=x|\mathcal{S}(i)\in D_i]=\frac1{|D_i|}<br>$$</p>
+</li>
+</ol>
+</li>
+<li><p>Efficient evaluation $\mathcal E$, for every $n\in\mathbb N,i\in I_n$, and $x\in D_i$<br>$$<br>\Pr[\mathcal E(i,x)=f_i(x)]&gt;1-2^{-n}<br>$$</p>
+</li>
+<li><p>Hard to invert: </p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Hard-Core-Predicates"><a href="#Hard-Core-Predicates" class="headerlink" title="Hard-Core Predicates"></a>Hard-Core Predicates</h1><p>As we know, to invert a trapdoor one-way function is hard without giving the trapdoor. However, “<strong>hard</strong>“ here means it is hard to get the exact inverse of an value. Though it’s hard to invert one-way function, we may still get some information about it, which leads to unsecrity of constructing PKEs directly by using one-way permutations. </p>
+<p>Luckily we have found that some bit of one-way are truly hard to predicate, we call those bits “hard-core”. By using the difficulty of predicate the hard-core of one-way permutation, we can construct PKEs which are secure enough.</p>
+<blockquote>
+<p><strong>Hard-Core Predicate</strong></p>
+<p>A PPT computable predicate $b:\{0,1\}^\ast\to\{0,1\}$ is called a <strong>hard-core</strong> of a function $f$ if for every PPT algorithm $\mathcal A$, every polynomial $p(\cdot)$ and all sufficient large $n$, it holds that<br>$$<br>\Pr[\mathcal A(f(U_n))=b(U_n)]&lt;\frac{1}{2}+\frac 1 {p(n)}<br>$$</p>
+</blockquote>
+<p>Don’t be confused with the word “predicate”; it just means a function with range $\{0,1\}$. As we can induce from the difinition, only one-way functions have hard-cores. Otherwise since $b$ is PPT computable, we could compute it by invert the functions first.</p>
+<p>We can also define hard-core for a one-way function family. </p>
+<blockquote>
+<p><strong>Hard-Core Predicate for One-Way Function Family</strong></p>
+<p>For one-way function family $(\mathcal G,\mathcal S ,\mathcal E)$, a $poly$-time alogrithm $\mathcal B:\{0,1\}^\ast\times \{0,1\}^\ast\to \{0,1\}$ is called a hard-core of the family if for every PPT algorithm $\mathcal A$, every polynomial $p(\cdot)$, and all sufficiently large n’s,<br>$$<br>\Pr\limits_{i\leftarrow \mathcal G(1^n)\ x\leftarrow \mathcal S(1^n,i)}[\mathcal A(i,f_i(x))=\mathcal B(i,x)]&lt;\frac 12+\frac 1{p(n)}<br>$$</p>
+</blockquote>
+<h2 id="Hard-Core-for-Any-One-Way-Function"><a href="#Hard-Core-for-Any-One-Way-Function" class="headerlink" title="Hard-Core for Any One-Way Function"></a>Hard-Core for Any One-Way Function</h2><p>In this section, we are going to prove “where there is a one-way function, there is a hard-core”. The construction of the hard-core is based on a very simple idea of generalize the XOR lemma of statistical indistinguishable to computational indistinguishable.</p>
+<blockquote>
+<p><strong>Goldreich-Levin Theorem</strong></p>
+<p>Let $f$ be an arbitrary strong one-way function, and let $g$ be defined as $g(x,r)=(f(x),r)$, where $|x|=|r|$. Then predicate $b=\bigoplus_{i=1}^{|x|}x\cdot r$ is a hard-core of function $g$.</p>
+</blockquote>
+<p>Well the proof of this theorem is quite long, but seems not difficult since the basic idea easy. Assume that there is some alogrithm $\mathcal A$ that predict $a$ with non-negligible probability, we are going to construct a algorithm $\mathcal B$ whom invokes $\mathcal A$ polynomial times and recover $x\in f^{-1}(y)$ bit by bit. We are going to prove a weaker theorem first in order to build up the intuition of this theorem.</p>
+<h3 id="Weaker-Version-The-constant-successful-prdiction-probability-gt-0-76"><a href="#Weaker-Version-The-constant-successful-prdiction-probability-gt-0-76" class="headerlink" title="Weaker Version: The constant successful prdiction probability $&gt; 0.76$"></a><strong>Weaker Version: The constant successful prdiction probability $&gt; 0.76$</strong></h3><p>We are going to show how to recover 1 bit by invoking the algorithm hard-core predicting algorithm $\mathcal A$ that satisfy<br>$$<br>\Pr[\mathcal A(f(x),r)=b(x,r)]&gt;0.75+\frac{1}{2p(n)}<br>$$<br>where $p(n)$ is a polynomial.</p>
+<p>Since $r$ is uniformly random, $r\oplus e_i$ is uniformly random, where $e_i$ is an $n$-dimensional binary vector with $1$ in the $i$th component and $0$ in the others. We can use to $\mathcal A(f(x),r \oplus e_i)$ to predict $b(x,r\oplus e_i)$, and get the right result with probability $&gt; 0.75+\frac 1{2p(n)}$. </p>
+<p>Since<br>$$<br>\begin{align}<br> \mathcal A(f(x),r)\oplus \mathcal A(f(x),r\oplus e_i) &amp;= b(x,r)\oplus b(x,r\oplus e_i) \\<br> &amp;= b(x,e_i) \\<br> &amp; = x_i<br>\end{align}<br>$$<br>Then we can constuct an algorithm $\mathcal B(f(x),r)=\mathcal A(f(x),r)\oplus \mathcal A(f(x),r\oplus e_i)$ and by simply using basic probabilistic theory or Chernoff bound, it holds that<br>$$<br>\Pr[\mathcal B(f(x),r)=x_i]&gt;\frac 1 2 +\frac 1 {p(n)}<br>$$<br>We can recover 1 bit of $x$ with noticable probability. By repeatly invoking $\mathcal B$ for polynomial times, we could recover all bits of $x$ with high enough probability.</p>
+<h3 id="Proof-of-Goldreich-Levin-Theorem"><a href="#Proof-of-Goldreich-Levin-Theorem" class="headerlink" title="Proof of Goldreich-Levin Theorem"></a>Proof of <strong>Goldreich-Levin Theorem</strong></h3><p>Since we are going to work with the tool $\mathcal A$ that has higher probability, the previous introduced method cannot work. </p>
+<p>I think Goldreich has introduced his intuition finely, so I’m going to quote the contents in his book here, with some slightly modify to the symbols.</p>
+<blockquote>
+<p>What is required is <strong>an alternative way</strong> of suing the algorithm $\mathcal B$, a way that does not double the orighinal error probability of $\mathcal B$. They key idea is to generate the $r$’s in a way that requires applying algorithm $\mathcal B$ only once per each $r$ (and $i$), instead of twice. Specifically, we shall use algorithm $\mathcal B$ to obtain a “guess” for $b(x,r\oplus e_i)$ and obtain $b(x,r)$ in a different way. The good news is that the error probability is no longer doubled, since we use $\mathcal B$ get a “quess” of $b(x,r\oplus e_i)$. The bad news is that we still need to know $b(x,r)$ for only one $r$ (or logarithmacally in |x| many r’s), but the problem is that we nned to know (and hence guess) the values of $b(x,r)$ for polynomially many r’s. An obvious way of guessing these $b(x,r)$’s yields an exponentially vanishing success probability. Instead we generate these polynomially many r’s such that, on one hand, they are “sufficiently random,” whereas, on the other hand, we can guess all the $b(x,r)$’s with noticable success probability. Specifically, generating the r’s in a particular <strong>pairwise-independent</strong> manner will satisfy both (seemingly contradictory) reqirements.</p>
+</blockquote>
+<p><strong>Back to the proof with some explaination</strong></p>
+<p>Suppose there is an algorithm $\mathcal A$ holds that<br>$$<br>\Pr\limits_{x\leftarrow U_n\\r\leftarrow U_n}[\mathcal A(f(x),r)=b(x,r)]&gt;\frac12+\frac1{p(n)}<br>$$<br>where $p(\cdot)$ is a polynomial and $|x|=n$.</p>
+<p>We define a “good” subset of $\{0,1\}^n$. $S_n$ defines as<br>$$<br>S_n=\left\{S_n|\Pr\limits_{r\leftarrow U_n}[\mathcal A(f(x),r)=b(x,r)]&gt;\frac 12+\frac1{2p(n)},x\in S_n \text{ is a constant}\right\}<br>$$<br>We have proved that $|S_n|&gt;\frac1{2p(n)}\cdot 2^n$.</p>
+<p>We set $l\doteq \lceil \log_2(2n\cdot p(n)^2+1)\rfloor$. We construct a algorithm $\mathcal B$ proceeds as follows:</p>
+<ol>
+<li><p>Sample $s^1,\cdots, s^l\in\{0,1\}^\ast $and $\sigma^1,\cdots, \sigma^l\in\{0,1\}$ uniformly at random.</p>
+</li>
+<li><p>For every one-empty set $J\subseteq [l]$, computes $r^J=\bigoplus_{j\in J} s_j$ and a bit $\rho^J=\bigoplus_{j\in J}\sigma_j$.</p>
+</li>
+<li><p>For every $i\in [n]$ and every non-empty $J \subseteq [l]$, computes<br>$$<br>z^J_i\leftarrow \rho^J\oplus G(y,r^J\oplus e_i)<br>$$</p>
+</li>
+<li><p>For evry $i\in[n]$, it sets $z_i$ to be the majority of the $z^J_i$ values.</p>
+</li>
+<li><p>Output $z=z_1\cdots z_n$.</p>
+</li>
+</ol>
+<p>We have some comments. $\sigma_j$ is regard as the approximation of $b(x, s_j)$. It might sound wired since $\sigma_j$ is sampled uniformly at random. It sounds more like a “guess” and the probability of guessing right all can be computed:<br>$$<br>\Pr[\forall i\in[l]:\sigma_i=b(x,s_i)]= 2^{-l}&gt;\frac 1 {4n\cdot p(n)^2}<br>$$<br>Whereas, the tricky technique here is we are not going use reductions to get the correct guess. Actually, we are going to use “democrative voting”. </p>
+<p>The basic idea is that since we can guess the hard-core rightly, we are going to guess one-bit of $x_i$ from $f(x)$ with rightly with probability better than $1/2$ by using $\mathcal A(x,r^J)\oplus \mathcal(x,r^J\oplus e_i)$. Using Chernoff bound is an bad idea since it force us to double the error probability. Luckily, at last we have sampled pairwise-independent $s^J$’s and Chebyshev’s indequality should be helpful.</p>
+<p>We define a new variable $\zeta^J_i$. $\zeta^J_i = 1$ if and only if we use $r^J$ guesses $x_i$ correctly, which means $b(x,r^J)\oplus \mathcal B(f(x),r^J\oplus e_i)=x_i$. Since $b(x,r^J)\oplus b(x,r^J\oplus e_i)$, if follows that $\zeta^J =1 $ if and only if $G(f(x),r^J\oplus e_i)=b(x,r^J\oplus e_i)$. For $x\in S_n$, We have<br>$$<br>\begin{align}<br>\Pr\left[\sum_{J\subseteq[l]} \zeta^J\leq \frac m 2\right] &amp;\leq \Pr\left[\left|\sum_{J\subseteq[l]}\zeta^J-\left(\frac12+\frac1{2p(n)}\right)\cdot m\right|\geq ]\frac1{2p(n)m}\right] \\<br>&amp;\leq \frac{m\cdot \text{Var}[\zeta]}{\left(\frac1{2p(n)}\cdot m\right)^2} \\<br>&amp;\leq \frac{m\cdot \text{Var}[\zeta]}{\left(\frac1{2p(n)}\right)^2 \cdot (2n\cdot p(n)^2)} \\<br>&amp;= \frac 1{2n}<br>\end{align}<br>$$<br>And now its time to evaluate the probability of $z_1\cdots z_n=x_1\cdots x_n$,<br>$$<br>\begin{align}<br>\Pr[z_1\cdots z_n=x_1\cdots x_n|x\in S_n]&amp;\geq 1- \sum^n_{j=1}x\in \Pr<a href="\Pr[x_j\neq z_j] \\
+&amp; =\frac {(1-\frac n{2n}">x\in S_n</a>}{4n\cdot p(n)^2}=\frac 1{8n\cdot p(n)^2}<br>\end{align}<br>$$<br>Every time we get the output, we just test. If the output is wrong, we try algorithm $\mathcal B$ again. Within polynomial times of invoking, the success probability will get to $2/3$.</p>
+<h2 id="More"><a href="#More" class="headerlink" title="More"></a>More</h2><h1 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h1><p>Please don’t ask me for solutions, because I’m solving them, too. I would like to give some hints for difficult problems after I’ve done them.</p>
+<ol>
+<li>Prove that if one-way function exists, then $\mathbf{NP}\backslash\mathbf{BPP}\neq \emptyset$.</li>
+<li>Prove that in the proof of <strong>Goldreich-Levin Theorem</strong>, for any $I,J\subseteq [l]$, $r^I$ and $r^J$ are independent.</li>
+</ol>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/密码学/" rel="tag"># 密码学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/21/Averaging-Argument/" rel="next" title="Averaging Argument">
+                <i class="fa fa-chevron-left"></i> Averaging Argument
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/15/初等数论-介绍/" rel="prev" title="初等数论(0) 介绍">
+                初等数论(0) 介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Lingeros">
+            
+              <p class="site-author-name" itemprop="name">Lingeros</p>
+              <p class="site-description motion-element" itemprop="description">Everyone's the same, our single tape to our states.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#One-Way-Function"><span class="nav-number">1.</span> <span class="nav-text">One-Way Function</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Strong-One-way-Function"><span class="nav-number">1.1.</span> <span class="nav-text">Strong One-way Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-One-Way-Function"><span class="nav-number">1.2.</span> <span class="nav-text">Weak One-Way Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-Way-Function-Defined-for-Some-Lengths"><span class="nav-number">1.3.</span> <span class="nav-text">One-Way Function Defined for Some Lengths.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Length-Regular-amp-Length-Preserving-One-Way-Function"><span class="nav-number">1.4.</span> <span class="nav-text">Length-Regular &amp; Length-Preserving One-Way Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Non-uniformly-One-Way-Function"><span class="nav-number">1.5.</span> <span class="nav-text">Non-uniformly One-Way Function</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Weak-One-Way-Functions-Imply-Strong-Ones"><span class="nav-number">2.</span> <span class="nav-text">Weak One-Way Functions Imply Strong Ones</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Naive-Proof"><span class="nav-number">2.1.</span> <span class="nav-text">Naive Proof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Right-Proof"><span class="nav-number">2.2.</span> <span class="nav-text">Right Proof</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Construct-Independent-Inversion-Procedure"><span class="nav-number">2.2.1.</span> <span class="nav-text">Construct Independent Inversion Procedure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Averaging-Arguments-for-Successful-Inversions"><span class="nav-number">2.2.2.</span> <span class="nav-text">Averaging Arguments for Successful Inversions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bound-the-lower-probability-of-mathcal-A"><span class="nav-number">2.2.3.</span> <span class="nav-text">Bound the lower probability of $\mathcal A$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary-for-One-Way-Function"><span class="nav-number">2.3.</span> <span class="nav-text">Summary for One-Way Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Universal-One-Way-Function"><span class="nav-number">2.4.</span> <span class="nav-text">Universal One-Way Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-Way-Function-Family"><span class="nav-number">2.5.</span> <span class="nav-text">One-Way Function Family</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Trapdoor-One-Way-Permutations"><span class="nav-number">3.</span> <span class="nav-text">Trapdoor One-Way Permutations</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hard-Core-Predicates"><span class="nav-number">4.</span> <span class="nav-text">Hard-Core Predicates</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hard-Core-for-Any-One-Way-Function"><span class="nav-number">4.1.</span> <span class="nav-text">Hard-Core for Any One-Way Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Weaker-Version-The-constant-successful-prdiction-probability-gt-0-76"><span class="nav-number">4.1.1.</span> <span class="nav-text">Weaker Version: The constant successful prdiction probability $&gt; 0.76$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proof-of-Goldreich-Levin-Theorem"><span class="nav-number">4.1.2.</span> <span class="nav-text">Proof of Goldreich-Levin Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More"><span class="nav-number">4.2.</span> <span class="nav-text">More</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exercise"><span class="nav-number">5.</span> <span class="nav-text">Exercise</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lingeros</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'c0e4d9df1587fcd5308e',
+          clientSecret: '4fa6c6de54c7f12a2de39bb2ca545d8c4ec0866b',
+          repo: 'lingeros-tot-gitalk',
+          owner: 'lingeros-tot',
+          admin: ['lingeros-tot'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

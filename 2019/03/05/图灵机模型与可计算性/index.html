@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/safari_pinned_tab.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算复杂性,计算理论,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善1而被广泛采用, 贯穿整个计算复杂性研究的始终.">
+<meta name="keywords" content="计算复杂性,计算理论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图灵机计算模型">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/index.html">
+<meta property="og:site_name" content="Lingeros">
+<meta property="og:description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善1而被广泛采用, 贯穿整个计算复杂性研究的始终.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/1552199043657.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/turingFull560.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/1551847596370.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/diagram-20190306.svg">
+<meta property="og:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/assets/1557898545881.png">
+<meta property="og:updated_time" content="2019-06-04T08:30:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图灵机计算模型">
+<meta name="twitter:description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善1而被广泛采用, 贯穿整个计算复杂性研究的始终.">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/1552199043657.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/图灵机模型与可计算性/">
+
+
+
+
+
+  <title>图灵机计算模型 | Lingeros</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lingeros</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">the Theory Of Things</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-introduction">
+          <a href="/introduction/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info-circle"></i> <br>
+            
+            介绍
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-update">
+          <a href="/update/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br>
+            
+            更新
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br>
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/图灵机模型与可计算性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lingeros">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lingeros">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图灵机计算模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T12:45:52+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机科学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/计算科学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算科学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/计算科学/计算复杂性/" itemprop="url" rel="index">
+                    <span itemprop="name">计算复杂性</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/计算科学/可计算理论/" itemprop="url" rel="index">
+                    <span itemprop="name">可计算理论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解.</p>
+<p>图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且<strong>功能完善</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>而被广泛采用, 贯穿整个计算复杂性研究的始终.</p>
+<a id="more"></a>
+<blockquote>
+<p>这将是非常长的一个章节. 本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解.</p>
+</blockquote>
+<h1 id="符号约定"><a href="#符号约定" class="headerlink" title="符号约定"></a>符号约定</h1><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\mid x\mid$</td>
+<td>串$x$的长度</td>
+</tr>
+<tr>
+<td>$ \llcorner  M\lrcorner$</td>
+<td>图灵机$M$的编码</td>
+</tr>
+<tr>
+<td>$\mathbb M$</td>
+<td>所有图灵机的集合</td>
+</tr>
+</tbody>
+</table>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="渐进记号"><a href="#渐进记号" class="headerlink" title="渐进记号"></a>渐进记号</h2><p>渐进记号能够表示一个函数的增长速度, 能够表示一个函数随着自变量增长趋于无穷大时的变化速度. 渐进记号的定义可以转换为极限的定义, 但是, 写作渐进记号会更加方便. 由于我们考虑的问题, 输入可以是任何长度, 因此, 我们会更加关注的是输入较长时的求解问题所占用的计算资源(如CPU时间, 内存空间, 数字电路中门的个数等); 为此我们将引入渐进记号来表示问题的困难程度, 这样做可以方便地比较不同函数的增长速度, 使得研究更加方便.</p>
+<p>我们仅对我们最常用的渐进记号$O(\cdot)$做出详细解释, 并给出其他渐进记号的定义. 同时, 我们将要讨论的函数限制为定义域和值域都限制在$\mathbb R^\ast$上.</p>
+<blockquote>
+<p>$O$ (读作”大 Oh”)</p>
+<p>设$f,g$是定义在$\mathbb R$上的实值函数, 其定义域和值域都限制在$\mathbb  R^\ast$上, 记$f(n)=O(g(n))$, 如果存在正实数$c$和$N$, 使得对于任意$n&gt;N$有$0\leq f(n)\leq cg(n)$.</p>
+</blockquote>
+<p>其中, $f(n)=O(g(n))$的可以简记为$f=O(g)$. 如果你对高等数学或者数学分析熟悉, $f(n)=O(g(n))$的定义可以转换为$\lim_\limits{n\to\infty}\frac{f(n)}{g(n)}= D$, 其中$D$是一个常数.  那么通俗的讲, 就是说, 在某一个常数$N$过后, $f$的增长速度就没有$g$快了, 即$f$的增长速度可能比$g$慢, 也可能和$g$一样. 而且从转换后的定义我们可以看出, 即使在$f$前面加上任意一个常数, 都有该极限为0, 即<br>$$<br>f=O(g)\Rightarrow \forall C\in \R^\ast: C\cdot f=O(g)<br>$$<br>则表明, 如果在函数前面添加常数, 并不能改变它和其他函数的有关$O$渐进关系, 实际上我们接下来要陈列的渐进记号都满足这个特点. 如果你对这些符号不熟悉, 那么你应该复习数理逻辑, 因为我们后面真的会非常多地用到他们. 也可以用下面的图示来表示: </p>
+<img src="/2019/03/05/图灵机模型与可计算性/1552199043657.png" title="记号$O$的图像表示">
+<p>和$O$相反的记号, 是$\Omega$: </p>
+<blockquote>
+<p> $\Omega$ (读作”大 Omega”)</p>
+<p>设$f,g$是定义在$\mathbb R$上的实值函数, 其定义域和值域都限制在$\mathbb R^\ast$上, 记$f(n)=\Omega(g(n))$, 如果存在正实数$c$和$N$, 使得对于任意$n&gt;N$有$0\leq g(n)\leq cf(n)$.</p>
+</blockquote>
+<p>此外, 还有表明两个渐进函数的增长相同的$\Theta$记号.</p>
+<blockquote>
+<p>$\Theta$ (读作”Theta”, 因为没有$\theta$记号)</p>
+<p>设$f,g$是定义在$\mathbb R$上的实值函数, 其定义域和值域都限制在$\mathbb R^\ast$上, 记$f(n)=\Omega(g(n))$, 如果存在正实数$c_1,c_2$和$N$, 使得对于任意$n&gt;N$有$0\leq c_1g(n)\leq f(n)\leq c_2g(n)$.</p>
+</blockquote>
+<p>对于$O$和$\Omega$, 还有两种类似的记号, 他们是定义增长速度严格大于和严格小于的关系的.</p>
+<blockquote>
+<p>$o$ (读作”小 Oh”)</p>
+<p>设$f,g$是定义在$\mathbb R$上的实值函数, 其定义域和值域都限制在$\mathbb R^\ast$上, 记$f(n)=o(g(n))$, 如果存在正实数$c$和$N$, 使得对于任意$n&gt;N$有$0\leq f(n) &lt; cg(n)$.</p>
+</blockquote>
+<p>如果需要转换为极限的定义, 只需要将等号右边的常数改为$0$即可, 即<br>$$<br>f(n)=O(g(n))\iff \lim_\limits{n\to\infty}\frac{f(n)}{g(n)}= 0<br>$$<br>请结合这一点自行理解.</p>
+<blockquote>
+<p>$\omega$ (读作”小 Omega”)</p>
+<p>设$f,g$是定义在$\mathbb R$上的实值函数, 其定义域和值域都限制在$\mathbb R^\ast$上, 记$f(n)=\omega(g(n))$, 如果存在正实数$c$和$N$, 使得对于任意$n&gt;N$有$0\leq g(n)&lt; cf(n)$.</p>
+</blockquote>
+<p>应该注意到, 我们在更关注的函数之间的比较, 而常数常常被我们忽略, 因为我们分析的是”渐进”, 如果相比较的两个函数添加了一个常数, 我们仍然可以通过选择另一个$N$来保持相同的渐进关系.</p>
+<h1 id="图灵机计算模型"><a href="#图灵机计算模型" class="headerlink" title="图灵机计算模型"></a>图灵机计算模型</h1><p>图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且<strong>功能完善</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>而被广泛采用, 贯穿整个计算复杂性研究的始终.</p>
+<h2 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h2><p>我们前面已经看到, 自动机确实能解决一些判定问题, 即正则语言的判定问题. 那么, 正则语言到底有多少? 实际上我们会发现, 正则语言真的非常少. 判定一个语言是不是正则语言, 可以根据著名的泵引理(pumping lemma)来完成, 我们这里不对其进行正式介绍, 但是我们直接说明, 通过泵引理, 下面这一的简单的语言都不是正则语言:<br>$$<br>L=\{x|x中的0和1个数相同 \}<br>$$<br>如果要直观地理解, 我们的自动机中并没有结构来记录串中的$0$和$1$到底有多少个, 也就无法完成判定工作, 因为我们可以猜测这个语言不是正则语言. 为了加强自动机的计算能力, 我们引入一种新的强大的计算模型, 并且出人意料的是, 它的结果相当简单. 为什么它很强大, 我们可以通过比较它和现代冯·诺伊曼机来初步认识.</p>
+<p>图灵机(turing machine)是在自动机的基础上, 和用于记录数据(即符号)的纸带(tape)组成. 图灵机的纸带是无限长的, 并且一般来说是有起点的. 另外, 纸带是离散的, 就像是有一个一个的小格子. 纸带通过读写头(head)来进行操作, 且自动机可以控制读写头的移动, 且一般来说, 我们只允许每一步计算中, 读写头位置保持不变或移动一格. 与自动机不同, 图灵机中的转移函数要根据读写头下纸带上的符号来决定, 同时, 转移的结果也应当包含纸带的移动方向.</p>
+<p>标准的图灵机只有一条纸带, 但是为了方便起见, 我们使用的是具有$k$条纸带的图灵机. 其中, 第一条纸带是输入带, 只记录问题的输入, 余下的$k-1$条纸带是工作带, 图灵机将在整个计算过程中对它进行读写. 图灵机如果完成计算(称为”停机”), 则最后一条纸带上的结果就是问题的答案. 我们约定, 以后说”<strong>标准图灵机</strong>“就是指单带且无额外功能的图灵机.</p>
+<img src="/2019/03/05/图灵机模型与可计算性/turingFull560.jpg" title="单带图灵机">
+<blockquote>
+<p><strong>定义</strong> $k$带图灵机</p>
+<p>一个图灵机$\mathbb M$是一个三元组$(\Gamma, Q, \delta)$.</p>
+<ul>
+<li>有限集$\Gamma$是字母表, 表示纸带可以记录的符号集.</li>
+<li>有限集$Q$是状态集, 表示状态机的状态, 其中一个特殊的状态$q_\text{start}$为起始状态, $q_\text{halt}$为停机状态.</li>
+<li>转移函数$\delta: Q\times \Gamma^k\to Q\times \Gamma^{k-1}\times \{\text L,\text S,\text R\}^k$</li>
+</ul>
+</blockquote>
+<p>我们依次来解释上述符号. 首先字母表和状态集很简单, 它类似于自动机的字母表和状态集. 图灵机在运行的时候, 首先需要向输入带上写入输入串, 然后再启动图灵机. 在启动图灵机时, 读写头处在纸带最左的位置, 而状态处于起始状态$q_\text{start}$. 当状态为$q_\text{halt}$时, 图灵机将会停止运算, 此时输入带上的串就是问题的答案. 对于求解判定问题的图灵机, 停机时输出带上的串只能是$0$或$1$(否则当作非法的图灵机处理即可). </p>
+<p>图灵机的计算方式, 是转移函数来规定的, 每执行一步转移函数, 称为一步计算. 仔细看转移函数中的每条映射的内容, 左边有$\Gamma^k$表示每个读写头下纸带的符号, 需要作为转移的条件. 而转移的结果, 则包括非输入带上要写入的内容$\Gamma^{k-1}$和读写头的运动方向$\{\text L,\text S,\text R\}^k$. 其中”L””S””R”分别表示”左移””不动””右移”. 我们约定, 每一次转移发生时, 图灵机的读写头都先执行移动再写入, 因此$\Gamma^{k-1}$总表示上一步计算结束后读写头的位置需要写入的内容.</p>
+<p><strong>注意</strong>: 图灵机的状态集是有限的, 纸带的条数也应该有限, 在你设计图灵机上运行的算法时, 你应该考虑该算法是否对于任意长度的输入都能被有限个状态集和有限条纸袋数目处理.</p>
+<p>由于即使是非常简单的问题, 图灵机的精确描述(即写出它的状态集\转移函数\字母表)都回非常麻烦, 所有我们很少去精确描述一台图灵机, 取而代之, 我们用自然语言大致地叙述其功能. 对于这样的功能具体应该如何实现, 在学习计算复杂性时可以逐步积累. 常简的合法描述包括有例如:</p>
+<ol>
+<li><p>将所有的读写头移动到最左的位置.</p>
+<p>我们可以通过存放一个特殊的符号$\triangleright$在每条纸带的开头, 然后让图灵机进入一些列特殊的状态, 这些状态会不断地控制图灵机读写头左移, 知道所有的读写头都在符号$\triangleright$处即可.</p>
+</li>
+<li><p>将某条纸带清空</p>
+<p>这里的原理类似于上一条, 只是将移动(实际上就是写和刚读入符号一样的符号)改为写空格即可.</p>
+</li>
+<li><p>读到某些符号组合时停机</p>
+<p>直接由一系列这样的转移函数控制: 处于任意状态并读到规定的符号转移到随机状态.</p>
+</li>
+</ol>
+<p>同时, 图灵机的描述不能过于抽象, 以免产生图灵机根本无法在规定条件下完成的指令:</p>
+<ol>
+<li>在第一条工作带写下$\mathbf P \overset{?}{=}\mathbf{NP}$的答案</li>
+<li>计算Ramsey数$R(|x|,|x|)$并写在第一条纸带上</li>
+</ol>
+<h2 id="图灵机和冯·诺伊曼计算机的关系"><a href="#图灵机和冯·诺伊曼计算机的关系" class="headerlink" title="图灵机和冯·诺伊曼计算机的关系"></a>图灵机和冯·诺伊曼计算机的关系</h2><p>图灵机的纸带的功能类似于就是现代计算机的内存的功能. 现代计算机的内存有个重要的特点就是随机访问, 但是图灵机的纸带不能随机访问, 需要访问某个位置的元素时, 纸带上读写头需要逐步移动过去. 但是这并不影响我们使用图灵机来分析算法的复杂度, 因为实际上我们可以证明, 一台可以随机访问纸带的图灵机和一台标准的图灵机的计算速度之差一个多项式, 而且是一个很小的多项式. 即如果一个问题$f$能被一台随机访问纸带内容的图灵机在$T(|x|)$时间(即步骤数)内求解, 那么也能被一台图灵机在$p(|x|)\cdot T(|x|)$内求解, 其中$p$是一个多项式函数. 因此如果我们只关注复杂度类时, 使用图灵机和使用现代计算机没有什么区别. 当你发现一个问题肯定不能被图灵机在多项式时间内解决的时候, 现代计算机同样也不能在多项式时间内解决它. 如果你要问为什么我们能接受这样的结果, 那么请你继续往下看, 你学到复杂度类<strong>P</strong>的时候自然会明白.</p>
+<p>图灵机的转移函数, 就相当于是CPU中的控制单元, 他们根据微指令(转移函数的前半段)来产生具体操作(包括内存的写入和寻址). 而图灵机的状态机, 就相当于是CPU的寄存器, 它表示CPU当且所处的计算状态. 现代计算机运算的最小单元是一个CPU周期, 而对于图灵机来说, 最小的计算步骤就是一步转移, 在这一点上二者也是很类似的.</p>
+<img src="/2019/03/05/图灵机模型与可计算性/1551847596370.png" title="理论上的图灵机结构">
+<p>这样看来, 似乎图灵机和标准的计算没有什么隔阂. 实际上, 丘奇-图灵论题将是一个比这个结论强很多的论题, 尽管尚未被证明, 但是目前为止它都未被证伪, 因此它成为了计算机科学的一条公理. 我们将在介绍可计算性的时候介绍这个结论.</p>
+<h2 id="Warming-Up-用图灵机计算二进制加法"><a href="#Warming-Up-用图灵机计算二进制加法" class="headerlink" title="Warming Up: 用图灵机计算二进制加法"></a>Warming Up: 用图灵机计算二进制加法</h2><p>现在我们来尝试构建一台用于计算两个数的加法的图灵机, 为了方便起见, 我们做如下限定:</p>
+<ul>
+<li><p>两个数的位数相同</p>
+</li>
+<li><p>我们用特殊符号”$+$”来分割两个加数, 用”$=$”来表示输入的结束.</p>
+</li>
+<li><p>输入和输出都是从低位开始</p>
+<p>如果你希望从高位开始, 你只需要多写几个翻转的程序即可. </p>
+</li>
+<li><p>每条纸带上的最左端的位置, 都有一个符号”$\triangleright$”</p>
+<p>这个符号我们永远不会改写, 它的唯一功能就是标注每条纸袋最左边的位置, 方面程序(转移函数)的构造.</p>
+</li>
+<li><p>有一个特殊符号”$\square$”表示空格.</p>
+</li>
+</ul>
+<p>我们将工作分为两步完成:</p>
+<ol>
+<li>拷贝第二个输入数到工作带</li>
+<li>计算两个加数的和, 写在输出带上</li>
+</ol>
+<p>在写好大致的工作步骤后, 我们需要写出更加详细的工作步骤, 来让我们更加详细地写出图灵机. </p>
+<ol>
+<li>让输入带上的读写头向右移动, 直到找到符号”$+$”</li>
+<li>拷贝第二个输入数到工作带, 并以”$+$”结束</li>
+<li>让工作带和输入带上的读写头向左移动, 直到均找到符号”$\triangleright$”</li>
+<li>计算步骤, 按位计算, 将结果写在输出带上, 并且将进位结果用状态机表示; 直到输入带和工作带都遇到”$+$”</li>
+<li>停机</li>
+</ol>
+<p>现在我们来设计图灵机的状态机和转移函数. 我们用”$(a,b)\to(x,y,\text{LLL})$”的格式来表示转移, 其中$a$和$b$分别是输入带和工作带上读取到的内容, $x$和$y$分别是工作带和输出带上要写入的内容, 而三个连续字母如$\text{LSR}$分别表示输入带, 工作带, 输出带上读写头的移动方向, 和前面一样, “L””S””R”分别表示”左移””不动””右移”. 并且记住, 图灵机始终是先根据当前映射的结果先移动再写入. 同时, 为了简便起见, 我们用希腊字母$\alpha,\beta,\cdots$表示$\{0,1\}$的通配符. 例如$(a,\beta)\to(\beta,y,\text{LLL})$表示:$(0,1)\to(1,y,\text{LLL})$和$(0,1)\to(1,y,\text{LLL})$ . 而$\bar{\alpha}$z则表示和$\alpha$相反的比特.</p>
+<img src="/2019/03/05/图灵机模型与可计算性/diagram-20190306.svg" title="计算加法的图灵机">
+<p>这个图相当复杂对吧? 我们做一些解释</p>
+<ol>
+<li>首先, 图灵机从$q_\text{start}$处开始运行, 通过一步操作让输入带和工作带跳出$\triangleright$. </li>
+<li>在$q_\text{right}$处, 输入带上的纸带会不断右移, 直到遇见$+$. </li>
+<li>在$q_\text{left}$处, 输入带和工作带上的纸带会不断左移, 分别直到遇到$\triangleright$ </li>
+<li>在$q_\text{left}$处, 如果输入带和工作带均抵达$\triangleright$, 则会右移动一步, 开始计算</li>
+<li>在计算过程中, 每一步计算会根据上一步的进位结果, 以及输入带和工作带上的数, 决定当前位的和以及进位. 同时根据进位来选择计算状态$q_\text{carry0}$或$q_\text{carry1}$</li>
+<li>在计算时, 如果遇到$+$, 标志计算结束, 进入$q_\text{halt}$</li>
+</ol>
+<p>此外, 在计算过程中, 遇到任何不符合上述步骤的情况, 均可断定输入是非法的, 此时图灵机直接停机即可.</p>
+<p>即使是这样简单的问题, 解决它的图灵机描述出来也是相当复杂, 因此我们真的会很少这样描述, 因此建立对图灵机能力的直观感受对于研究计算复杂性来说尤为重要.</p>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>在这之前, 我们先说一下, 对于图灵机来说, 计算时间意味着什么? 我们以后经常会讲到一个故事, 这个故事有一个完整的世界观, 里面的主角就是图灵机们. 而同我们的世界一样, 这个世界有它的时空规则, 图灵机们也有自己的信仰. 我们称这个世界为图灵世界(Turing Word). (这个故事和这种说法都是我虚构的, 学术界并没有这么叫, 只是我觉得图灵机很多地方真的可以和人类比, 因此我觉得讲出这个故事有助于读者理解, 如果你不喜欢这个故事, 你完全可以忽略这些内容而不影响阅读).</p>
+<p><strong>关于为什么要引入图灵世界</strong> 等了解了<strong>强丘奇-图灵论题</strong>后, 读者应该会觉得引入这个世界自然一些. 很多时候, 我们在讨论密码协议的时候, 我们都直接假设是Alice和Bob或者更多人之间的协议, 也就是人与人之间的协议. 实际上, 这些协议是图灵机与图灵机之间的, 之所以可以这么做, 是因为我们有强丘奇-图灵论题作为假设, 即人也可以看作图灵机, 也就是人, 图灵机, 电脑三者之间是”等同”的. 更多内容请参考对应章节.</p>
+<p>我们来说图灵世界的时空观. 图灵世界是的时间是离散的, 即量子化的. 所有的图灵机, 在每个时间单位内, 都执行一步计算—-无论这个图灵机是复杂还是简单. 对于图灵机来说, 计算的时间就是计算的步数. 而每一步计算, 就是执行一次转移函数. 因此, 请等同这两个概念: <strong>计算时间</strong>和<strong>计算步数</strong>.</p>
+<h3 id="时间函数"><a href="#时间函数" class="headerlink" title="时间函数"></a>时间函数</h3><blockquote>
+<p><strong>时间函数</strong></p>
+<p>设$T: \N \to \N$是一个函数, 且图灵机$M$计算函数$f$. 称图灵机$M$在$T$时间计算$f$, 如果对于任意输入$x$, $\M$在$T(|x|)$时间内停机.</p>
+</blockquote>
+<h3 id="时间可构造函数"><a href="#时间可构造函数" class="headerlink" title="时间可构造函数"></a>时间可构造函数</h3><p>图灵机要怎么才能知道自己花了多少时间? 一种办法是, 让图灵机一边计算, 一边维持一个时钟. 图灵机有些计算步骤得花在维护这个时钟上, 另一些步骤用于计算. 那么, 我们可以根据时钟来规定图灵机在指定的时间停机. 对于固定的停机时间, 这一点并不难, 但是对于规定的停机时间也是一个函数, 问题就要相对复杂一些. 如果时间是一个和输入长度有关的函数, $T(\cdot)$, 那么图灵机要在$T(n)$步时停机, 首先就是得将$T(n)$的值算出来. 这通常来讲也很容易, 但是一种极端的情况是, 图灵机根本没法在$T(n)$时间内将$T(n)$计算出来! 为了避免这种情况发生, 我们经常排除这种情况带来的困扰, 转而定义<strong>时间可构造函数</strong>来限排除极端情况而得到通常情况下更加普适的结论.</p>
+<blockquote>
+<p>时间可构造函数</p>
+<p>函数$T(n)$是时间可构造函数, 如果存在一台图灵机$M$满足${M}(1^n)=T(n)$且在$O(T(n))$时间内停机.</p>
+</blockquote>
+<p>注意输入串$1^n$是计算复杂性中常用的技巧, 该输入的内容没有任何意义, 但是其长度限定了问题计算所用的资源, 如时间.</p>
+<blockquote>
+<p>强时间可构造函数</p>
+<p>函数$T(n)$是强时间可构造函数, 如果存在一台图灵机$M$满足${M}(1^n)=T(n)$且正好在$T(n)$时间停机.</p>
+</blockquote>
+<p>显然, 一个函数是强时间可构造函数, 仅当它是时间可构造函数.</p>
+<h3 id="带计时器的图灵机"><a href="#带计时器的图灵机" class="headerlink" title="带计时器的图灵机"></a>带计时器的图灵机</h3><p>如果一个函数$T(n)$是强时间可构造函数, 那么我们可以控制图灵机在$T(n)$时间内停机: 只需要向图灵机$M$添加计算这个计时器的部件$T$, 然后交替得进行$M$和$T$的计算, 并且在$T$停机的时候停机.</p>
+<h2 id="其他型的图灵机"><a href="#其他型的图灵机" class="headerlink" title="其他型的图灵机"></a>其他型的图灵机</h2><p>图灵机相比自动机, 多了一些结构, 因此可以形成多种不同的变体. 但是, 如何界定图灵机是我们需要考虑的问题—-我们将多带图灵机视作了一种图灵机, 而标准的图灵机是单带的. 回忆&lt;自动机模型&gt;中的内容, 我们从来不认为”非确定自动机”是自动机, 但是为什么我们能容忍将多带图灵机划分到图灵机中? 为了回答这个问题, 我们首先介绍一些种类的图灵机, 再来考虑如何界定图灵机.</p>
+<h3 id="双向访问图灵机"><a href="#双向访问图灵机" class="headerlink" title="双向访问图灵机"></a>双向访问图灵机</h3><p>我们之前介绍的图灵机, 纸带一头是无限延伸的, 而另一头确是有起点的. 现在有这样一种图灵机, 它的纸带双向都是无限的, 那么这样一台图灵机和标准图灵机有什么不一样? 为了简便起见, 我们只考虑单带双向访问图灵机. 现在, 我们证明由一台单带双向访问图灵机在$T(n)$时间内解决的问题, 也能被普通图灵机在$(T(n))^2$时间内解决.</p>
+<p>实际上, 上述命题的证明采用了”折叠”的思想, 即将一条可以双向访问的纸带, 用一条”折叠”了的纸带来表示. 你可以通过扩大字母表, 来使得它的每个位置都能放下两个字符. 如将双向访问图灵机的字母表$\Gamma$扩大为$\Gamma\times\Gamma^\ast$, 原先在$-5$位置的$\alpha$和$+5$位置的$\beta$都被放置在折叠后的纸带中$+5$位置中, 并记作$(\alpha,\beta^\ast)$. 当然, 也可以通过正向位置和负向位置交替放置的方式来折叠.</p>
+<p><img src="assets/1557898545881.png" alt="1557898545881"></p>
+<h3 id="随机访问图灵机"><a href="#随机访问图灵机" class="headerlink" title="随机访问图灵机"></a>随机访问图灵机</h3><p>我们假设我们使用的是双带随机访问图灵机, 即数据输入\输出\工作均在一条纸带上(这条纸带称为工作带), 但配备一条特殊的地址带. 在地址带上写上相应的地址, 然后再进入一个特殊的<strong>访问</strong>状态, 就可以使得图灵机的工作带上的读写头立即跳转到地址带上内容所标注的地址的内容.</p>
+<h3 id="健忘-图灵机"><a href="#健忘-图灵机" class="headerlink" title="健忘[^*]图灵机"></a>健忘[^*]图灵机</h3><p>[^<em>]: <em>*健忘</em></em>是对oblivous的翻译, 一般有两层意思: 1. 无关, 如这里执行的操作与输入的数据无关 2. 不泄露信息, 如密码学中的Oblivious Transformation (abbr. OT). 实际上2.的解释是可以归约到1.的, 我们在讲解到OT时会作一些解释.</p>
+<p><strong>健忘</strong>图灵机是一类特殊的图灵机, 它们在结构上和普通的图灵机没有任何不同, 但是它们在针对具体输入数据时, 读写头运动的方式以及计算的总步数只与<strong>输入长度</strong>相关, 而与输入的具体内容无关. 换句话说, 也就是健忘图灵机在得到相同长的任意输入时, 读写头运动的方式, 以及从开始计算到停机所经过的总步骤数是相同的.</p>
+<p>试想解密服务者为你提供了解密服务, 你可以询问他任何密文所对应的明文, 假设服务者是用图灵机来为你解密, 如果他的图灵机是非健忘的, 你输入不同密文时, 他给你明文的时间也就不同, 这就泄露了一定的信息. 但是如果解密使用一台健忘图灵机来为你解密, 无论你输入任何数据, 你拿到明文所需要的时间都是相同的-—-你无法从解密时间中得到和密钥相关的任何信息.</p>
+<h2 id="通用图灵机"><a href="#通用图灵机" class="headerlink" title="通用图灵机"></a>通用图灵机</h2><h3 id="图灵机和算法的关系"><a href="#图灵机和算法的关系" class="headerlink" title="图灵机和算法的关系"></a>图灵机和算法的关系</h3><p>其实, 似乎每台图灵机只能解决一个问题, 并不像现代计算这样具有可编程性. 这样看来一台图灵机更像是电子计算机上执行的一个算法. 我们不妨换一个角度, 想一想你在计算机上求解一个具体问题时会怎么做呢? 首先是写一个程序, 然后再让计算机执行这个程序, 然后输入必要的数据并等待输出对吧? 试想一下, 如果将程序和数据一起交给计算机会怎样呢? 即我们将数据hard code到程序里面, 会怎样呢? 这个时候就可以将程序和数据一起看作是输入! 而计算机就是解决这个输入(程序+数据)集映射到的结果的函数计算器. 即计算机就是解决函数$f:(P,x)\to \{0,1\}^\ast$的机器.</p>
+<p>试想, 我们是否也可以通过这样的方式来构造一台图灵机$\mathcal U$, 输入其他一台图灵机$M$的描述$ \llcorner M\lrcorner$, 以及需要结计算的数据$x$, 让$\mathcal U$来计算$M(x)$? 即是否可以构造一台图灵机$\mathcal U$, 使得对于任意的图灵机$M$和数据$x$, 满足$\mathcal U(\llcornerM\lrcorner,x)=M(x)$? 如果可行, 那么我们就可以得到一台真正的像现代计算机一样的图灵机.</p>
+<h2 id="图灵机的编码"><a href="#图灵机的编码" class="headerlink" title="图灵机的编码"></a>图灵机的编码</h2><p>在介绍通用图灵机之前, 我们首先要介绍如何来描述图灵机, 即我们确实有办法将一台图灵机$M$编码为$\llcorner M\lrcorner $. 如果我们将同一个自然数的不同编码, 视作是等同的, 那么这种对图灵机的该编码就是函数$f: \mathbb M\to \mathbb N$, 我们要求它满足</p>
+<ol>
+<li>$f$是一个满射, 即任何一个自然数$\alpha\in\mathbb N$都能编码一台图灵机</li>
+<li>任何一台图灵机$M$, 都有无限多个不同的编码, 即$f(M)$是无限集</li>
+</ol>
+<p>我们记自然数$\alpha$确定的图灵机为$M_\alpha$.</p>
+<h2 id="通用图灵机-1"><a href="#通用图灵机-1" class="headerlink" title="通用图灵机"></a>通用图灵机</h2><blockquote>
+<p><strong>定理</strong></p>
+<p>存在一台通用图灵机$\mathcal U$ 满足</p>
+<ol>
+<li>$\mathcal{U}(x,\alpha)=M_\alpha(x)$</li>
+<li>如果对于任意$x\in\{0,1\}^\ast$, $M_\alpha$在$T(|x|)$ 时间内停机, 则$\mathcal U(x,\alpha)$在$cT(|x|)\log T(|x|)$时间内停机</li>
+</ol>
+</blockquote>
+<p>定理的证明将在专题中完成.</p>
+<h1 id="可计算性"><a href="#可计算性" class="headerlink" title="可计算性"></a>可计算性</h1><p>可计算性是一个相对复杂但是有很有趣的话题, 要是单独拿出来写的话可以写成整整一本书. 在这方面, 丘奇可以说是先驱, 之后还有图灵, 哥德尔等很多史诗级的科学家研究. 本节, 我们将介绍可计算性的概念, 评估图灵机的计算能力, 以及应用一个重要的技术来证明问题的不可解性.</p>
+<p>实际上, 这一部分并不是计算复杂性的核心内容, 因为我们很少关注不可计算的问题. 但是学习这一部分有助于理解图灵机的工作原理, 以及熟悉我们经常在计算复杂性\密码学\数学中使用的一个重要技巧: <strong>归约</strong>(reduction).</p>
+<h2 id="对角化方法"><a href="#对角化方法" class="headerlink" title="对角化方法"></a>对角化方法</h2><p>现在介绍一个不可计算的问题, 然后我们将证明它不可计算.</p>
+<p>定义函数$\mathsf{UC}:\{0,1\}^\ast\to\{0,1\}$为<br>$$<br>\mathsf{UC}(\alpha)=\left\{\begin{align}&amp;0,\quad M_\alpha(\alpha)=1\\&amp;1, \quad\text{otherwise}\end{align}\right.<br>$$<br>这个问题用语言描述出来也不算复杂, 即对于输入$\alpha$, 如果它表示的图灵机$M_\alpha$接收到这个输入时, 在有限步骤内停机并输出$1$时, 则$\mathsf{UC}(\alpha)=0$. 否则, 即$M_\alpha(\alpha)=0$或者甚至不停机的时候, $\mathsf{UC}(\alpha)=1$. 现在我们来证明他的不可计算性.</p>
+<p>假设存在一台图灵机$M_\beta$能够计算$\mathsf{UC}$, 那么根据$\mathsf{UC}$的定义有<br>$$<br>\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1<br>$$<br>而根据$M_\beta$能够计算$\mathsf{UC}$, 有$M_\beta(\beta)=\mathsf{UC}(\beta)$, 这显然是矛盾的. 因此我们的假设不成立, 也就没有图灵机能够计算$\mathsf{UC}$. 这个证明的方法叫做对角线方法, 如果想知道为什么这个方法叫对角线方法, 可以参考原教材.</p>
+<h2 id="图灵停机问题"><a href="#图灵停机问题" class="headerlink" title="图灵停机问题"></a>图灵停机问题</h2><p>图灵停机问题是一个经典的不能被图灵机解决的问题, 通过这个问题, 你会发现图灵停机并不是可以解决所有的为你, 即并不是所有问题都有解决的算法.</p>
+<p>图灵停机问题$\mathsf{HALT}$就是要我们判定一个图灵在给定输入下是否能在有限步骤内停机. 其形式化描述如下<br>$$<br>\mathsf{HALT}(x,\alpha)=1\iff M_\alpha(x) \text{ halts in finite steps }<br>$$<br>我们将通过归约的方法来证明这个问题不能被一台图灵机解决. 我们的思路是用一台图灵机$\mathsf{UC}$问题转换为$\mathsf{HALT}$问题, 那么如果$\mathsf{HALT}$问题可以被一台图灵机解决, 则$\mathsf{UC}$问题也可以被一台图灵机先转化为$\mathsf{HALT}$问题再解决, 这就违背了$\mathsf{UC}$问题不可解的前提, 也就是说我们的假设不成立, $\mathsf{HALT}$问题不能被一台图灵机解决.</p>
+<p>假设有一台图灵机$M_\mathsf{HALT}$能够解决$\mathsf{HALT}$,  那么我们尝试就用他来结局$\mathsf{UC}$. 构造图灵机$M_\mathsf{UC}$用于计算$\mathsf{UC}$.</p>
+<blockquote>
+<p>$M_\mathsf{UC}(\alpha)$的计算如下:</p>
+<p>$M_\mathsf{UC}$首先调用$M_\mathsf{HALT}(\alpha, \alpha)$, 如果他输出0, 则$M_\mathsf{UC}(\alpha)=1$. 否则, $M_\mathsf{UC}$使用通用图灵机$\mathcal U$来模拟计算$b=M_\alpha(\alpha)$并输出$\bar b$.</p>
+</blockquote>
+<p>这里需要稍微说一下为什么要这么归约. 其实之所以我们不能计算$\mathsf{UC}$就是因为我们处理不了不停机的情况, 那么现在已经给出了能够处理不停机的情况的$M_\mathsf{HALT}$, 我们直接调用它就可以了, 至于其他的情况, 我们可以使用通用图灵机来模拟计算即可.</p>
+<p>显然, 上述构造的$M_\mathsf{UC}$能够在有限步骤内计算$\mathsf{UC}$. 根据我们之前的解释, 能够在有限步骤内求解$\mathsf{UC}$的图灵机不存在.</p>
+<h2 id="丘奇-图灵论题"><a href="#丘奇-图灵论题" class="headerlink" title="丘奇-图灵论题"></a>丘奇-图灵论题</h2><p>图灵机不能计算的问题, 人能够计算吗? 也许你会觉得你可以穷举所有的答案. 并不是这这样的, 我们已知丢番图方程问题是图灵不可计算的, 那么如果给你一组丢番图方程, 你能判定他是解还是没有解的吗? 也许这个方程组的解会会非常大, 大到你穷尽一生也无法找到他的解, 也或许他根本就没有解——我们根本不能通过穷举来判定方程是否有解. 一些特殊的丢番图方程, 我们确实能找到求解或判定是否有解的办法, 但是对于所有的丢番图方程, 寻找通用的算法来判定它是否有解, 我们真的无能为力.</p>
+<p>图灵停机问题也是一样, 也许你面前的图灵机陷入了一个非常大的循环, 比如需要$10^{99}$步骤才能完成一个循环, 这个时候你根本无法判定. 即使你的寿命足够长, 判定了这个结果, 那么对于一个长达$10^{999999999999}$步的循环呢? 其实我们也没有办法解决这样的问题.</p>
+<p>根据大量合理的计算模型构造, 最后都被证明计算能力和图灵机的计算能力等价, 我们有如下结论</p>
+<blockquote>
+<p><strong>丘奇-图灵论题</strong></p>
+<p>任何物理上可以实现的计算设施, 其计算都可以被一台图灵机模拟.</p>
+</blockquote>
+<p>也即是说, 我们造不出来比图灵机更强的计算机. 这个论题虽然没有被证明, 但是也没有被证伪, 是计算理论的一条基本公理(或基本假设).</p>
+<h2 id="mathbf-R-和-mathbf-RE"><a href="#mathbf-R-和-mathbf-RE" class="headerlink" title="$\mathbf{R}$和$\mathbf{RE}$"></a>$\mathbf{R}$和$\mathbf{RE}$</h2><p>为了避免读者没有接触过可计算性的知识, 我们首先解释两个术语: <strong>判定</strong>和<strong>识别</strong>. 我们说判定和识别的时候, 都是针对某个语言而言, 正如我们在之前的文章中提到, 语言和判定问题可以视作是等价的概念. </p>
+<p>“语言$L$被图灵机$M$判定”, 就是说这台图灵机在接受到任何串$x$的输入时都能在有限步骤内停机, 且$M(x)=1\iff x\in L$. 换句话说, 图灵机$M$总是能在有限时间内给我们一个明确的答案$x\in L$是否成立. 实际上这个一个非常准确的术语, 因为”判定”就是”判断”, 那么必须真($x\in L$)假($x\notin L$)命题都能判断.</p>
+<p> 而”语言$L$被图灵机$M$识别”则是说, 图灵机$M$在接受到任意$x\in L\iff$M在有限步骤内停机且$M(x)=1$. 对于那些$x\notin L$的串, $M$要么拒绝它(即在有限步骤内输出$0$), 要么不会停机. 同样, “识别”这个术语也是非常精确的, 即说任何$x\in L$的串都能被$M$接受.</p>
+<p>这是我们最先接触到的一类问题, 虽然我们不去过多研究他们.</p>
+<blockquote>
+<p> 复杂度类$\mathbf{R}$<br>$$<br>\mathbf{R}=\{L|L \text{ is turing computable}\}<br>$$</p>
+</blockquote>
+<p>它表示那些能被一台图灵机判定的语言的集合. 类似地,</p>
+<blockquote>
+<p>复杂度类$\mathbf{RE}$<br>$$<br>\mathbf{RE}=\{L|\exists M\in\mathbb M, \forall x\in L: M(x) \text{ halts in finite steps}\}<br>$$</p>
+</blockquote>
+<p>表示能被一台图灵机识别的语言的集合.</p>
+<p>由于一个语言$L$能被某台图灵机$M$判定蕴含$L$能被$M$识别, 因此我们有$\mathbf{R}\subseteq \mathbf {RE}$. 有关$\mathbf R$更多的研究, 请参阅可算理论有关的书籍和论文.</p>
+<h2 id="可数和不可数"><a href="#可数和不可数" class="headerlink" title="可数和不可数"></a>可数和不可数</h2><p>如果我们只证明存在一些语言不能被一台图灵机判定, 而不需要找出一个具体这样的语言, 一个简单的技术可以很快地解决这个问题. 这个办法需要用到数学上可数的概念, 我们仅做简要说明. 显然, 根据图灵机的编码方式, 我们知道, 图灵机是可数的. 由于语言(即二进制串的集合)是不可数的, 我们建立一个图灵机集合$\mathbb M$到语言集合$\mathbb L$的映射, 那么根据有可数集到不可数集的映射不可能是满射, 肯定存在语言$L\in\mathbb L$不能被任何$M\in\mathbb M$映射到. 且任何一个$\mathbb M$到$\mathbb L$的映射都满足这样的性质, 那么”被解决”(即如果$M\mapsto L\iff M$判定$L$)这个映射也满足这个性质(它显然是一个映射, 因为一台图灵机至多能判定一个语言, 此外, 我们将所有不用于判定语言的图灵机映射到$\emptyset$即可), 那么肯定有语言不能被图灵机判定.</p>
+<h1 id="计算复杂性"><a href="#计算复杂性" class="headerlink" title="计算复杂性"></a>计算复杂性</h1><p>在计算复杂性理论中, 我们要做的事情的为问题根据其难度分类(或者称分层), 但在这之前我们需要回答的问题时, <strong>问题是否真的有难度之分?</strong></p>
+<p>也许你曾经没有注意到, 有些问题真的很难, 因为试卷上让你求解问题真的都很简单—––我们这样说绝对没有针对你的意思, 因为我们所说困难, 不是你一个人做不出来, 而是也许所有人都做不出来. 现在, 让我们思考一下下面的问题.</p>
+<blockquote>
+<p><strong>命题</strong></p>
+<p>在任意6个人中, 至少有3个人相互之间认识, 或者相互之间不认识.</p>
+</blockquote>
+<p>上述命题是可以被证明的, 只是他的证明还是相对比较麻烦, 如果你没有学过这个命题, 但是有良好的数学基础, 应该能够在半个小时内证明他. 但是, 5个人可以吗? 7个人可以吗? 或者我们换一种问法: 至少需要多少个人, 才能保证其中至少3个人相互之间认识或者3个人相互之间不认识. 这个问题可以被推广, 就是判定给定$\langle t,x,y\rangle$个人, 判定, 是否$t$是满足命题”任意$t$个人中, 至少$x$个人相互之间认识, 或者$y$相互之间不认识”的最小正整数. 如果我们将人看作点, 将认识看作红边, 将不认识看作蓝边, 我们可以将问题叙述如下</p>
+<blockquote>
+<p><strong>问题</strong></p>
+<p>求问$t$是否是满足如下命题的最小正整数: 在任意$t$个点且边被染成红色或蓝色的完全图$K_t$中, 至少存在一个红色的$x$个点的完全图$K_x$或蓝色的有$y$个点的完全图$K_y$.</p>
+</blockquote>
+<p>你可以试试当$x,y$很大时解决这个问题有多难. 如果我们将满足命题的三元组$\langle t,x,y\rangle$看作是一个语言, 那么我们记$t=R(x,y)$. 这个问题难到, 人们到目前为止还不知道$R(5,5)$是多少.</p>
+<p>我们以上介绍的问题中, 这些满足条件且$x=y$的数就是Ramsey数(可翻译为拉姆齐数). 这个问题可以扩展为染成$n$个颜色的版本, 使得问题更加困难. 实际上你可以发现, 当输入的规模很小的时候, 解决这个问题已经足够困难, 因此我们对问题的复杂度做划分是有意义的. </p>
+<p>当然, 没人能说这个问题一定需要多少的步骤才能被解决, 也许有一个非常精巧的办法来解决他——这意味着这是一个相当简单的问题——这种可能是存在的. 但是, 好在我们对问题复杂度进行划分的时候, 考虑的是上界, 也就是说解决一个问题的更优算法可能被发现, 但是他不影响我们已有的对他的复杂度的断定. 例如, 复杂度类$A$是包含在复杂度类$B$中的, 我们已知有个算法使得问题$L$一定在$B$中, 但是我们某一天发现了一个算法, 使得$L$在$A$中, 那么”$L$在$B<br>$中”仍然是正确的.</p>
+<h2 id="复杂性与复杂度类"><a href="#复杂性与复杂度类" class="headerlink" title="复杂性与复杂度类"></a>复杂性与复杂度类</h2><p>我们不需要对”复杂度类”这个概念做过多的介绍, 因为定义他们的模型很不相同. 但是, 我们会对每个复杂度类做精确的定义, 在这之前, 我们先介绍重要的符号$\mathbf{DTIME}(\cdot)$.</p>
+<blockquote>
+<p>$\mathbf{DTIME}(\cdot)$<br>$$<br>\mathbf{DTIME}(t(|x|))=\{L|\exists c\in \mathbb N,\exists M\in \mathbb M, \forall x\in\{0,1\}^\ast: x\in L\iff M(x) =1 \text{ and } M \text{ halts in } t(|x|) \text{ steps.}\}<br>$$</p>
+</blockquote>
+<p>也许符号看起来有些复杂, 但是你要适应并学会翻译这种语言, 在这里, 我们用自然语言将它陈述一次. “$\forall x\in\{0,1\}^\ast: x\in L\iff M(x) =1$”很容易理解, 我们已经见过很多次了, 其实它就是说, $M$能够判定语言$L$. 前面加上”$\exists M\in \mathbb M$”, 就是说存在一台图灵机能够判定$L$. 而”$\exists c\in \mathbb N\cdots\text{ and } M \text{ halts in } t(|x|) \text{ steps.}$”则是对$M$的运行时间做了限定, 要求它必须在$t(|x|)$的某个常数倍内完成, 而”$\exists c\in \mathbb N$”写在最前边则是要求我们最先确定$c$, 一旦$c$被确定, 就不能随着$x$变化而变化, 对于任何长度的$x$, $c$都必须是同一个值.</p>
+<h2 id="mathbf-P"><a href="#mathbf-P" class="headerlink" title="$\mathbf P$"></a>$\mathbf P$</h2><p>$\mathbf P$是最基础的复杂度类, 其定义相当简洁.</p>
+<blockquote>
+<p>$\mathbf P$<br>$$<br>\mathbf P = \bigcup_{i\in \mathbb N}\mathbf{DTIME}(n^i)<br>$$<br>其中$n$是输入的长度</p>
+</blockquote>
+<p>用自然语言来说, $\mathbf P$问题就是那些能够在输入长度的多项式步骤内被一台图灵机解决的问题. 如果单从自然语言来理解, 我们会想, 我们可以构造任意大的多项式, 这样不就可以让所有在有限步骤内可解的问题都是在输入的多项式时间内可解了吗? 是的, 但是要注意的是量词出现的顺序. 我们将定义展开来解释</p>
+<blockquote>
+<p>$\mathbf P$<br>$$<br>\mathbf P =\{L| \exists M\in\mathbb M,\exists C,c\in \mathbb N,\forall x\in L: M(x)=1\iff x\in L\wedge (M \text{ halts in } Cn^c \text{ steps})\}<br>$$</p>
+</blockquote>
+<p>这个多项式的系数次数是出现在$x$之前的, 因此我们的要求是对于所有的$x$, 要有同样一个多项式来约束图灵机执行的步骤数. 实际上这就相当于是如果你宣称一个问题是$\mathbf{P}$问题, 那么你就要经得起如下考验: 首先由你给出一个多项式和一台图灵机, 然后你的对手会给出一个输入规模, 在这个输入规模下的任何输入都能使得该图灵机在这个多项式时间内正确判定该问题. 在这个考验中, 你必须要总是胜利.</p>
+<h2 id="指数时间"><a href="#指数时间" class="headerlink" title="指数时间"></a>指数时间</h2><p>指数时间是另一个复杂度类, 记作$\mathbf{EXP}$, 表示那些能够在一个指数时间下被一台图灵机判定的问题的集合. 其定义如下</p>
+<blockquote>
+<p>$\mathbf{EXP}$<br>$$<br>\mathbf{EXP}=\bigcup_{i\in\mathbb N}\mathbf{DTIME}(2^{n^i})<br>$$</p>
+</blockquote>
+<p>类似地, 还可以定义双指数时间</p>
+<blockquote>
+<p>$\mathbf{2EXP}$<br>$$<br>\mathbf{2EXP}=\bigcup_{i\in \mathbb N}\mathbf{DTIME}(2^{2^{n^i}})<br>$$</p>
+</blockquote>
+<p>实际上还可以定义$\mathbf{3EXP},\mathbf{4EXP}\cdots$ 如果定义$E_0(i)=i, E_n(i)=2^{E_{n-1}(i)}$, 那么有<br>$$<br>\mathbf{nEXP}=\bigcup_{i\in\mathbb N}\mathbf{DTIME}(2^{E_n(i)})<br>$$<br>需要这多时间的问题人类能解吗? 耍滑的回答是能, 因为$\mathbf{P}$问题也是它的子集, 至少我们能解$\mathbf P$问题….但是目前为止, 我们知道肯定有一些问题, 在$\mathbf{EXP}/\mathbf P$内, 这个结论我们稍后再证明, 我们先介绍一个假设, 说明这些问题真的很难.</p>
+<h2 id="丘奇-图灵强论题"><a href="#丘奇-图灵强论题" class="headerlink" title="丘奇-图灵强论题"></a>丘奇-图灵强论题</h2><blockquote>
+<p><strong>丘奇-图灵强论题</strong></p>
+<p>任何物理上可以实现的计算机器都可以被一台多项式时间内停机的图灵机模拟.</p>
+</blockquote>
+<p>这句话是说, 物理上任何一台能够制造出来的计算机, 总能被一台图灵机模拟, 且存在一个多项式$p$使得这台图灵机在输入任何$x$时总能在$p(|x|)$时间内停机且输出和物理上实现的机器相同的输出.</p>
+<p>这个论题也仅仅是一个猜想, 但是目前为止也是尚未被证明. 该论题直接限制了我们的计算能力. 好消息是, 量子计算机的出现对这一论题发起了挑战, 也许我们真的能算出那些我们之前认为不可能算出的问题.</p>
+<h2 id="时间谱系定理"><a href="#时间谱系定理" class="headerlink" title="时间谱系定理"></a>时间谱系定理</h2><p>你有没有想过, 是不是所有的$\mathbf{P}$算法都能在线性时间内被求解, 只是我们没有找到相应的算法? 例如, 会不会有一种算法能够在线性时间内判定稀疏图的单源最短路径是否正确给出? 这个理想就要被我们下面介绍的定理打破.</p>
+<blockquote>
+<p><strong>时间谱系定理</strong> (Hartmains and Stearns, 1965)</p>
+<p>设$f$和$g$是时间可构造函数, 且$f(n)\log f(n)=o(g(n))$, 则$\mathbf{DTIME}(f(n))\subsetneq \mathbf{DTIME}(g(n))$.</p>
+</blockquote>
+<p>时间谱系定理的证明看起来很繁琐, 但是其还是利用我们之前介绍过的对角化方法. (可以理解为将模拟输出翻转后输出的方法).</p>
+<hr>
+<p><strong>证明</strong>: 定义语言$L$如下: </p>
+<p>设$L$被图灵机$D$判定, 输入$x$, $D$模拟$M_x(x)$的$g(|x|)$步计算. 如果模拟完成, 则输出$\overline{M_x(x)}$, 否则输出$0$.</p>
+<p>根据上述定义, $L\in\mathbf{DTIME}(g(n))$, 因为我们最多计算$g(|x|)$步就强制输出答案. 现在假设$L\in\mathbf{DTIME}(f(n))$, 且设$M_z$就是那台在$ f(n)$时间内判定$L$的图灵机且$f(|z|)\log f(|z|)&lt;g(|z|)$. 则:</p>
+<ul>
+<li>$D(z)=M_z(z)$, 根据$D$和$M_z$都是判定$L$的这一假设</li>
+<li>$D(z)=\overline{M_z(Z)}$, 根据$D$能够完整模拟$M_z(z)$的计算</li>
+</ul>
+<p>显然以上两个结论是矛盾的, 因此我们的假设”$L\in\mathbf{DTIME}(f(n))$”是错误的.</p>
+<hr>
+<p>由此也可以得出, $\mathbf P\subsetneq\mathbf{EXP}$</p>
+<h1 id="其他主题"><a href="#其他主题" class="headerlink" title="其他主题"></a>其他主题</h1><p>有关时间复杂性的重要定理, 如<strong>Gap定理</strong>和<strong>加速定理</strong>及其证明, 将在专题中完成. 这些结论是计算机科学中非常”怪”的结论, 因为我们日常根本见不到这样奇怪的问题, 但是它们确实存在.</p>
+<ul>
+<li>加速定理: (未完成)</li>
+<li>时间谱系定理: (未完成)</li>
+</ul>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><ol>
+<li>注释<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>中的功能完善是什么意思?</li>
+<li>尝试构造带计时器的通用图灵机</li>
+<li>证明以下两个命题:<ol>
+<li>任何一个能被一台双带随机访问图灵机在$T(n)$步骤求解的问题, 都属于$\mathbf{DTIME}(T(n)^2)$.</li>
+<li>任何一个能被一台健忘图灵机在$T(n)$步骤内求解的问题, 都属于$\mathbf{DTIME}(T(n)^2)$.</li>
+</ol>
+</li>
+<li>阅读关于通用图灵机的构造的专题后(尚未完成)后, 证明: 任何一个能被一台图灵机在$T(n)$时间内解决的问题, 都能被一台健忘图灵机在$T(n)^2$时间内解决.</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算复杂性/" rel="tag"># 计算复杂性</a>
+          
+            <a href="/tags/计算理论/" rel="tag"># 计算理论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/Warming-Up-自动机模型/" rel="next" title="Warming Up: 自动机模型">
+                <i class="fa fa-chevron-left"></i> Warming Up: 自动机模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/群论-一-群/" rel="prev" title="群论(1) 群">
+                群论(1) 群 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Lingeros">
+            
+              <p class="site-author-name" itemprop="name">Lingeros</p>
+              <p class="site-description motion-element" itemprop="description">Everyone's the same, our single tape to our states.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#符号约定"><span class="nav-number">1.</span> <span class="nav-text">符号约定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渐进记号"><span class="nav-number">2.1.</span> <span class="nav-text">渐进记号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图灵机计算模型"><span class="nav-number">3.</span> <span class="nav-text">图灵机计算模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图灵机"><span class="nav-number">3.1.</span> <span class="nav-text">图灵机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图灵机和冯·诺伊曼计算机的关系"><span class="nav-number">3.2.</span> <span class="nav-text">图灵机和冯·诺伊曼计算机的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Warming-Up-用图灵机计算二进制加法"><span class="nav-number">3.3.</span> <span class="nav-text">Warming Up: 用图灵机计算二进制加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">3.4.</span> <span class="nav-text">时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间函数"><span class="nav-number">3.4.1.</span> <span class="nav-text">时间函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间可构造函数"><span class="nav-number">3.4.2.</span> <span class="nav-text">时间可构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带计时器的图灵机"><span class="nav-number">3.4.3.</span> <span class="nav-text">带计时器的图灵机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他型的图灵机"><span class="nav-number">3.5.</span> <span class="nav-text">其他型的图灵机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双向访问图灵机"><span class="nav-number">3.5.1.</span> <span class="nav-text">双向访问图灵机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机访问图灵机"><span class="nav-number">3.5.2.</span> <span class="nav-text">随机访问图灵机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#健忘-图灵机"><span class="nav-number">3.5.3.</span> <span class="nav-text">健忘[^*]图灵机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用图灵机"><span class="nav-number">3.6.</span> <span class="nav-text">通用图灵机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图灵机和算法的关系"><span class="nav-number">3.6.1.</span> <span class="nav-text">图灵机和算法的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图灵机的编码"><span class="nav-number">3.7.</span> <span class="nav-text">图灵机的编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用图灵机-1"><span class="nav-number">3.8.</span> <span class="nav-text">通用图灵机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可计算性"><span class="nav-number">4.</span> <span class="nav-text">可计算性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对角化方法"><span class="nav-number">4.1.</span> <span class="nav-text">对角化方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图灵停机问题"><span class="nav-number">4.2.</span> <span class="nav-text">图灵停机问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#丘奇-图灵论题"><span class="nav-number">4.3.</span> <span class="nav-text">丘奇-图灵论题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mathbf-R-和-mathbf-RE"><span class="nav-number">4.4.</span> <span class="nav-text">$\mathbf{R}$和$\mathbf{RE}$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可数和不可数"><span class="nav-number">4.5.</span> <span class="nav-text">可数和不可数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算复杂性"><span class="nav-number">5.</span> <span class="nav-text">计算复杂性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂性与复杂度类"><span class="nav-number">5.1.</span> <span class="nav-text">复杂性与复杂度类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mathbf-P"><span class="nav-number">5.2.</span> <span class="nav-text">$\mathbf P$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指数时间"><span class="nav-number">5.3.</span> <span class="nav-text">指数时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#丘奇-图灵强论题"><span class="nav-number">5.4.</span> <span class="nav-text">丘奇-图灵强论题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间谱系定理"><span class="nav-number">5.5.</span> <span class="nav-text">时间谱系定理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他主题"><span class="nav-number">6.</span> <span class="nav-text">其他主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#习题"><span class="nav-number">7.</span> <span class="nav-text">习题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lingeros</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'c0e4d9df1587fcd5308e',
+          clientSecret: '4fa6c6de54c7f12a2de39bb2ca545d8c4ec0866b',
+          repo: 'lingeros-tot-gitalk',
+          owner: 'lingeros-tot',
+          admin: ['lingeros-tot'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

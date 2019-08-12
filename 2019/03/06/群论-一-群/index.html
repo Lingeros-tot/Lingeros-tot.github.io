@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/safari_pinned_tab.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数学,代数,群,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="群论最基本的知识, 和一个有趣的例子.">
+<meta name="keywords" content="数学,代数,群">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群论(1) 群">
+<meta property="og:url" content="http://yoursite.com/2019/03/06/群论-一-群/index.html">
+<meta property="og:site_name" content="Lingeros">
+<meta property="og:description" content="群论最基本的知识, 和一个有趣的例子.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/06/群论-一-群/1552377388060.png">
+<meta property="og:updated_time" content="2019-04-15T05:08:04.584Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="群论(1) 群">
+<meta name="twitter:description" content="群论最基本的知识, 和一个有趣的例子.">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/06/群论-一-群/1552377388060.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/06/群论-一-群/">
+
+
+
+
+
+  <title>群论(1) 群 | Lingeros</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lingeros</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">the Theory Of Things</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-introduction">
+          <a href="/introduction/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info-circle"></i> <br>
+            
+            介绍
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-update">
+          <a href="/update/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br>
+            
+            更新
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br>
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/群论-一-群/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lingeros">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lingeros">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">群论(1) 群</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T21:24:45+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/代数学/" itemprop="url" rel="index">
+                    <span itemprop="name">代数学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/代数学/代数结构/" itemprop="url" rel="index">
+                    <span itemprop="name">代数结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/代数学/代数结构/群论基础/" itemprop="url" rel="index">
+                    <span itemprop="name">群论基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>群论最基本的知识, 和一个有趣的例子.</p>
+<a id="more"></a>
+<blockquote>
+<p><strong>运算</strong></p>
+<p>集合$G$上的二元运算是指函数<br>$$<br>\ast:G\times G\to G<br>$$<br>如果$a\ast b=b\ast a$则$\ast$交换律成立.</p>
+</blockquote>
+<p>运算并不是什么特别的东西, 我们可以借助我们熟悉的函数的概念来理解它. 一个运算就是一个二元函数, 而且定义域和值域相同, 都是$G$, 即<br>$$<br>\ast: G\times G\to G<br>$$</p>
+<blockquote>
+<p><strong>群</strong></p>
+<p>带有运算$\ast$和特殊元$e$的集合称为群,如果满足:</p>
+<ol>
+<li>结合律成立,对于任意$a,b,c\in G$有<br>$$<br>a\ast(b\ast c)=(a\ast b)\ast c<br>$$</li>
+<li>对所有$a\in G$有$e\ast a=a$</li>
+<li>对于任意$a\in G$,存在$a^\prime\in G$有$a^\prime\ast a=e$</li>
+</ol>
+</blockquote>
+<p>群也是一种很自然的定义, 在函数$\ast$定义域和值域的基础上, 再加上存在单位元和每个元素存在逆元的情况下, 就是群.</p>
+<p>一种有意思的群就是魔方群. 对于一个魔方, 我们可以定义对魔方的多种操作. 将魔方按照任意一种顺序拧过后, 这些顺序组合就是一种操作. 所有的操作构成一个群. 现在我们一次来验证这些操作是否满足群的定义.</p>
+<p>在验证之前, 我们需要对符号做一些说名, 所有的单步操作如图所示</p>
+<img src="/2019/03/06/群论-一-群/1552377388060.png" title="魔方上的基本操作">
+<p>而操作可以是多步的, 我们用$P$来表示一个操作, 并可以将它表示为一系列基本(单步)操作的依次进行, 如$P=MFE^\prime$, 表示依次按照如图所示的$M$,$F$,$E^\prime​$对魔方进行操作. 这种一次进行操作, 就是<strong>魔方群</strong>的运算.</p>
+<p><strong>结合律</strong> 我们可以把多步操作和并看作一步操作, 也就是加括号的操作. 也可以将一步操作, 写为多步操作, 也就是去括号. 这个加和去括号的操作都是任意的, 不会概念最终结果, 因此魔方操作具有结合律.</p>
+<p><strong>封闭性</strong> 显然, 任何两个操作的运算仍然是一个操作.</p>
+<p><strong>单位元</strong> 现在我们将没有任何操作也视作一个操作, 记作$I$, 那么对于任何$P$都有$PI=IP=P$, 即$E$就是这个群的单位元. </p>
+<p><strong>逆元</strong> 我们用$E_i$表示一个基本操作, 那么对于任何一个操作$P$都可以被分解为基本操作, 即$P=E_1 E_2\cdots E_n$, 现在我们要找$P$的逆操作$P^\prime$, 即$PP^\prime=I$. 显然, $I=E_1E_2\cdots E_i E_i^\prime E_{i-1}^\prime \cdots E_1^\prime$, 因此按照基本操作逆着来做一次, 总可以恢复魔方最初的样子, 因此对于任意$P=E_1 E_2\cdots E_n$有$P^\prime=E_i^\prime E_{i-1}^\prime \cdots E_1^\prime$使得$PP^\prime=P^\prime P=I$.</p>
+<p>上述几个条件满足, 使得所有魔方操作构成一个群, 即魔方群. 上述描述不太严谨, 只是为了易于读者的理解而举的生活中常见的例子.</p>
+<blockquote>
+<p><strong>阿贝尔群</strong></p>
+<p>如果群$G$的运算满足交换律,即对于任意$a,b\in G$有$a\ast b = b\ast a$,则称$G$为阿贝尔群.</p>
+</blockquote>
+<p>实际上, 阿贝尔群和非阿贝尔群我们应该都见过, 非阿贝尔群最典型的例子就是, 行列式非零的所有$n\times n$的实矩阵构成的矩阵乘法群, 请自行验证.</p>
+<blockquote>
+<p><strong>元素的阶</strong></p>
+<p>群$G$中元素$a$若对于某个$k\geq 1$有$a^k=1$,则这样的最小这指数$k$称为$a$的阶,如果这样的幂不存在,则称$a$有无限阶.</p>
+</blockquote>
+<blockquote>
+<p><strong>子群</strong></p>
+<p>如果$H\subseteq G$,且$H$满足群的公理,则称$H$为$G$的子群,记作$H\leq G$.</p>
+</blockquote>
+<ul>
+<li>在不需要考虑$H\neq G​$是否成立的时候也可以直接记作$H&lt;G​$</li>
+</ul>
+<p>下面几个命题, 请根据群的定义自行证明:</p>
+<ul>
+<li>群$G$的子集$H$是一个子群当且仅当$H$非空,且对任意$x,y\in H$有$xy^{-1}\in H$</li>
+<li>群$G​$的子集$H​$是一个子群当且仅当$H​$非空且在群$G​$的运算下封闭,即对于任意$a,b\in H​$有$ab\in H​$.</li>
+<li>若$H_i\leq G$,则$\bigcap_\limits{i\in I}H_i\leq G$</li>
+</ul>
+<blockquote>
+<p><strong>陪集</strong></p>
+<p>若$H&lt;G$且$a\in H$,则<strong>左陪集</strong>定义为<br>$$<br>aH=\{ah|h\in H\}<br>$$</p>
+</blockquote>
+<ul>
+<li>对于非阿贝尔群,左陪集和<strong>右陪集</strong>应该分别定义.</li>
+</ul>
+<blockquote>
+<p><strong>定理</strong></p>
+<p>设$H&lt;G$且$a,b\in G$</p>
+<ol>
+<li>$aH=bH$当且仅当$b^{-1}a\in H$. 特别地,$aH=H$当且仅当$a\in H$.</li>
+<li>若$aH\cap bH\neq\O$,则$aH=bH$</li>
+<li>度所有$a\in G$有$|aH|=|bH|$</li>
+</ol>
+</blockquote>
+<p>对2的批注：</p>
+<ul>
+<li>这是由于同一子群的所有陪集构成了群的一个划分. 当然这是结论, 不是证明过程.</li>
+</ul>
+<p>对3的批注：</p>
+<ul>
+<li>即同一子群的所有陪集势相等.</li>
+<li>这是由于将子群映射为陪集的函数$f:H\to aH, h\mapsto ah​$为双射</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>诸如$aH$这样的记号还有$gHg^{-1},HK$等,它们的原理一样,我们可以放心使用</li>
+<li>陪集之间要么相等,要么不相交,如上述定理的2.</li>
+</ul>
+<blockquote>
+<p><strong>拉格朗日定理定理</strong></p>
+<p>若$H$为有限群$G$的一个子群,则$|H|$是$|G|$的一个因子.</p>
+</blockquote>
+<ul>
+<li>由陪集之间不相交且阶数相同显然可以得到这个结论</li>
+</ul>
+<blockquote>
+<p><strong>指标</strong> (<strong>Index</strong>)</p>
+<p>群$G$的子群$H$的陪集的个数称为$H$在$G$中的指数,记作$[G:H]$</p>
+</blockquote>
+<ul>
+<li>$推论$: $[G:H]=|G|/|H|$</li>
+<li>若有限群$G$的阶是$m$,则对所有$a\in G$有$a^m=1_G$</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数学/" rel="tag"># 数学</a>
+          
+            <a href="/tags/代数/" rel="tag"># 代数</a>
+          
+            <a href="/tags/群/" rel="tag"># 群</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/图灵机模型与可计算性/" rel="next" title="图灵机计算模型">
+                <i class="fa fa-chevron-left"></i> 图灵机计算模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/09/科学研究中的常用词汇/" rel="prev" title="科学研究中常用的词汇">
+                科学研究中常用的词汇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Lingeros">
+            
+              <p class="site-author-name" itemprop="name">Lingeros</p>
+              <p class="site-description motion-element" itemprop="description">Everyone's the same, our single tape to our states.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lingeros</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'c0e4d9df1587fcd5308e',
+          clientSecret: '4fa6c6de54c7f12a2de39bb2ca545d8c4ec0866b',
+          repo: 'lingeros-tot-gitalk',
+          owner: 'lingeros-tot',
+          admin: ['lingeros-tot'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

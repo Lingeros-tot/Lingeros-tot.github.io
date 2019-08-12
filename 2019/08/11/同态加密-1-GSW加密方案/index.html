@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/safari_pinned_tab.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="密码学,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="GSW同态加密方案确实如论文标题一样, 概念清晰明了, 其Intuition简单到一个刚学完线性代数的大一新生也能理解. GSW还支持基于属性的加密, 但本文中我们将不介绍这一部分内容. 当然, 完全理解GSW方案仍然需要用到一些比较进阶的知识, 如LWE问题的困难性等. 我们在本文中不会对这些知识做过多的介绍, 这些知识将在今后其他的博文中介绍. 关于同态加密的基础知识可以参阅博文同态加密(0)">
+<meta name="keywords" content="密码学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同态加密(1) GSW加密方案">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/同态加密-1-GSW加密方案/index.html">
+<meta property="og:site_name" content="Lingeros">
+<meta property="og:description" content="GSW同态加密方案确实如论文标题一样, 概念清晰明了, 其Intuition简单到一个刚学完线性代数的大一新生也能理解. GSW还支持基于属性的加密, 但本文中我们将不介绍这一部分内容. 当然, 完全理解GSW方案仍然需要用到一些比较进阶的知识, 如LWE问题的困难性等. 我们在本文中不会对这些知识做过多的介绍, 这些知识将在今后其他的博文中介绍. 关于同态加密的基础知识可以参阅博文同态加密(0)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-12T07:45:36.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="同态加密(1) GSW加密方案">
+<meta name="twitter:description" content="GSW同态加密方案确实如论文标题一样, 概念清晰明了, 其Intuition简单到一个刚学完线性代数的大一新生也能理解. GSW还支持基于属性的加密, 但本文中我们将不介绍这一部分内容. 当然, 完全理解GSW方案仍然需要用到一些比较进阶的知识, 如LWE问题的困难性等. 我们在本文中不会对这些知识做过多的介绍, 这些知识将在今后其他的博文中介绍. 关于同态加密的基础知识可以参阅博文同态加密(0)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/同态加密-1-GSW加密方案/">
+
+
+
+
+
+  <title>同态加密(1) GSW加密方案 | Lingeros</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lingeros</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">the Theory Of Things</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-introduction">
+          <a href="/introduction/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info-circle"></i> <br>
+            
+            介绍
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-update">
+          <a href="/update/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br>
+            
+            更新
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br>
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/同态加密-1-GSW加密方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lingeros">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lingeros">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">同态加密(1) GSW加密方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-11T21:58:27+08:00">
+                2019-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机科学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/现代密码学/" itemprop="url" rel="index">
+                    <span itemprop="name">现代密码学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/现代密码学/同态加密/" itemprop="url" rel="index">
+                    <span itemprop="name">同态加密</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>GSW同态加密方案确实如论文标题一样, 概念清晰明了, 其Intuition简单到一个刚学完线性代数的大一新生也能理解. GSW还支持基于属性的加密, 但本文中我们将不介绍这一部分内容.</p>
+<p>当然, 完全理解GSW方案仍然需要用到一些比较进阶的知识, 如LWE问题的困难性等. 我们在本文中不会对这些知识做过多的介绍, 这些知识将在今后其他的博文中介绍. 关于同态加密的基础知识可以参阅博文<em>同态加密(0) 基础概念</em>, 这篇博文完成后, 地址将被更新到这里.</p>
+<a id="more"></a>
+<p>GSW方案是由Craig Gentry[^Gentry], Amit Sahai与Brent Waters于2013年提出的方案, 发表于论文[GSW13] [^GSW13]中.</p>
+<h1 id="Basic-Intuition"><a href="#Basic-Intuition" class="headerlink" title="Basic Intuition"></a>Basic Intuition</h1><h2 id="密文的基本格式"><a href="#密文的基本格式" class="headerlink" title="密文的基本格式"></a>密文的基本格式</h2><p>最基本的GSW同态加密方案的私钥($sk$)是一个向量$\mathbf v\in\mathbb Z_q^N$[^sk], 而所有的明文$\mu_i\in\{0,1\}$都被加密一个矩阵$C_i\in\mathbb Z_q^{N\times N}$中, 其中$C_i$是以$v$为近似特征向量并以$\mu_i$为近似特征值的矩阵, 即我们要求<br>$$<br>C_i\mathbf v\approx \mu_i \mathbf v<br>$$</p>
+<p>这里可以看出， 我们只需要挑选$\mathbf v$中非$0$的位(最好是选较大的位), 如第$j$位$v_j$, 并比较$v_j$与$\mu_iv_j$的值就可以解出$\mu_i$的值.</p>
+<p>一个需要注意的地方就是, 虽然$\mu_i$取自$\{0,1\}$, 但被视作是$\mathbb Z_q$中的元素, 因此具体的运算也是按照$\mathbb Z_q$的运算方式来进行.</p>
+<p>我们也可以将噪声(error)显式地写出来, 记作<br>$$<br>C_i\mathbf v=\mu_i\mathbf v+\mathbf e<br>$$<br>其中$\mathbf e$是非常小的向量. 因此可以看出, 如果$\mathbf e$确实是一个较小的噪声, 那么我们就可以正确地解出$\mu_i$.</p>
+<h2 id="乘法同态性质"><a href="#乘法同态性质" class="headerlink" title="乘法同态性质"></a>乘法同态性质</h2><p>现在我们来验证该加密方案具有同态性质. 现在假设有两个密文$C_1, C_2$, 对对应的明文分别是$\mu_1,\mu_2$, 即<br>$$<br>C_1\mathbf v=\mu_1\mathbf v+\mathbf e_1\\<br>C_2\mathbf v=\mu_2\mathbf v+\mathbf e_2\\<br>$$<br>其中$\mathbf e_1,\mathbf e_2$均为较小的噪声, 那么令$C^\times=C_1\cdot C_2$, 我们检验$C^+$的解密结果<br>$$<br>\begin{aligned}<br>C^\times\mathbf v &amp;=(C_1\cdot C_2)\mathbf v=C_1(\mu_2\mathbf v+\mathbf e_2)=\mu_2(\mu_1\mathbf v+\mathbf e_1)+C_1\mathbf e_2\\<br>&amp;= \mu_1\mu_2\mathbf v+\mu_2\mathbf e_1+C_1\mathbf e_2<br>\end{aligned}<br>$$<br>这里可以看出, $\mu_2\mathbf e_1$确实是一个比较小的噪声项, 但是要让$C^\times$的噪声比较小, 那么就需要让$C_1$是一个较小的矩阵(即其最大的元素较小), 我们稍后会解释如何做到这一点. </p>
+<p>虽然说是乘法同态性质, 但是由于$\mu_i\in\{0,1\}$, 我们也可以将$C^\times$视作是做了同态的与(AND)运算. 与运算相对来说是比较简单的, 但是仅有与运算是不够的, 因为与运算是单调的, 单调的电路不可能是完备的, 我们需要实现一个超强的逻辑门—-与非门的同态运算.</p>
+<h2 id="与非门的同态性质"><a href="#与非门的同态性质" class="headerlink" title="与非门的同态性质"></a>与非门的同态性质</h2><p>设$C^\mathsf{NAND}=I_N-C_1C_2$, 其中$I_N$为$N$阶单位矩阵, 则<br>$$<br>C^\mathsf{NAND}\mathbf v=(I_N-C_1C_2)\mathbf v=(1-\mu_1\mu_2)\mathbf v-\mu_2\mathbf e_1-C_1\mathbf e_2<br>$$<br>根据之前的讨论, 如果$C_1$是一个较小的项, 我们有把握能从$C^\mathsf{NAND}$中解出$\mathsf{NAND}(\mu_1,\mu_2)$.</p>
+<p>到这里有没有一种心情舒畅的感觉? 与非门生万物, 我们确实可以通过不断地叠加与非门来实现相当复杂的函数运算, 并且由于与非门是完备的, 仅用与非门可以实现任何一个布尔函数.</p>
+<h2 id="别高兴得太早"><a href="#别高兴得太早" class="headerlink" title="别高兴得太早!"></a>别高兴得太早!</h2><p>虽然与非门非常强大, 但是每一次进行与非门运算, 都会导致新密文得噪声变得更大, 因此较多层的运算后, 噪声可能大得导致解密错误! 因此我们必须评估我们究竟能进行多少次的运算, 以及在快要达到极限的时候使用Bootstrapping技术. 这一点我们将在详细介绍方案的时候来说明.</p>
+<h2 id="Lattice-Gadget"><a href="#Lattice-Gadget" class="headerlink" title="Lattice Gadget"></a>Lattice Gadget</h2><p>这里我们要首先介绍一种工具, 我们称其为Lattice Gadget, 它的本质是一些代数运算, 能够辅助我们从标准的LWE加密方案生成满足同态性质的密文.</p>
+<p>第一个运算是$\mathsf{BitDecomp}$, 它的作用是将一个$\mathbf a=(a_1,\cdots,a_n)\in\mathbb Z_q^n$[^vec]向量的每一位按照二进制展开, 即每一个元素$a_i$表示成二进制的形式$a_0,a_1,\cdots,a_\ell$, 其中$\ell=\lfloor\log q\rfloor+1$[^log]. 即<br>$$<br>\mathsf{BitDecomp}(\mathbf a)=(a_{1,0},\cdots,a_{1,\ell-1},\cdots,a_{n,0},\cdots,a_{n,\ell-1})<br>$$<br>即将$\mathbf a$的每一位都展开成了二进制, 变成$\ell$位, 整个结果一共是$n\cdot \ell$位. 显然, $a_i=\sum_{j=0}^{\ell-1} 2^j\cdot a_{i,j}$.</p>
+<p>类似的, 我们可以定义$\mathsf{BitDecomp}$的反函数$\mathsf{BitDecomp}^{-1}$, 令$\mathbf a’=(a_{1,0},\cdots,a_{1,\ell},\cdots,a_{n,0},\cdots,a_{n,\ell})\in\mathbb Z_q^{n\cdot \ell}$<br>$$<br>\mathsf{BitDecomp}^{-1}(\mathbf a’)=(\sum_{j=0}^{\ell-1} 2^j\cdot a_{1,j},\cdots, \sum_{j=0}^{\ell-1} 2^j\cdot a_{n,j})<br>$$<br>即将每一位的二进制表示重新组合成了$\mathbb Z_q$表示. 但是要注意的是, $\mathsf{BitDecomp}$并没有要求参数一定要是只由$\{0,1\}$构成的向量, 我们可以定义一个全新的函数<br>$$<br>\mathsf{Flatten}(\mathbf a’)=\mathsf{BitDecomp}(\mathsf{BitDecomp}^{-1}(\mathbf a’)<br>$$<br>这个操作有什么意义? 它将那些不是全由$\{0,1\}$构成的$\mathbf a’\in\mathbb Z^{n\cdot \ell}$重新”抹平”成了由$\{0,1\}$中的元素构成, 并且能够保持其一定的性质.</p>
+<p>下面介绍另一个不是那么好看, 但是却非常简单的操作$\mathsf{Powerof2}$. $\mathsf{Powerof2}$的功能也是将一个$\mathbf b\in\mathbb Z_q^n$向量转换为$\mathbf b’\in\mathbb Z_q^{n\cdot \ell}$向量, 但是却使用的是完全不一样的方式.<br>$$<br>\mathsf{Powerof2}(\mathbf b)=(b_1,2b_1,\cdots,2^{\ell-1}b_1,\cdots, b_n,2b_n,\cdots,2^{\ell-1}b_n)<br>$$<br>即将$\mathbf b$的每一位, 展开为$\ell$位, 并且后一位是前一位的两倍. 使得整个向量变成$\mathbf b’$. 这样做的好处是, 如果$a_i,b_i$分别是$\mathbf a,\mathbf b\in\mathbb Z_q^n$中的一位, 那么<br>$$<br>a_i\cdot b_i=\sum_{j=1}^{\ell -1}2^j \cdot a_{i,j}\cdot b_i=\sum_{j=1}^{\ell-1}(a_{i,j})\cdot (2^{j}\cdot b_j)<br>$$<br>前面一部分就是$\mathbf a’$中第$i$组的第$j$位, 而后一部分就是$\mathbf b’$中第$i$组的第$j$位, 那么显然有<br>$$<br>\langle \mathbf a,\mathbf b\rangle=\langle\mathsf{BitDecomp}(\mathbf a),\mathsf{Powerof2}(\mathbf b)\ranglet<br>$$<br>如果将$\mathsf{BitDecomp}(\mathbf a)$直接写成$\mathbf a’$的形式, 我们还有<br>$$<br>\langle\mathbf a’,\mathsf{Powerof2}(\mathbf b)\rangle=\langle\mathsf{BitDecomp}^{-1}(\mathbf a’),\mathbf b\rangle=\langle \mathsf{Flatten}(\mathbf a’),\mathsf{Powerof2}(\mathbf b)\rangle<br>$$</p>
+<ul>
+<li>第一个等号左边, 可以通过对第一个等号右边的两项分别做$\mathsf{BitDecomp}$和$\mathsf{Powerof2}$操作得到</li>
+<li>第二个等号右边可以对第二个等号左边两项分别做$\mathsf{BitDecomp}$和$\mathsf{Powerof2}$操作得到</li>
+</ul>
+<p>实际上左右两边的两项都是由中间得到的, 这样就可以将左右两边连接在一起. 这样我们发现一个惊人的事实: 如果内积的第二项是标准的$\mathsf{Powerof2}$结果的形式, 那么对第一项做$\mathsf{Flatten}$操作不会改变内积的结果! 实际上这也不难理解, 因为Flatten操作就是把数值过高的位分到权重更高的位而已. 但是这样做有一个好处就是, 使得$\mathbf a’$变成每一位都是$\{0,1\}$的$\mathsf{Flatten}({\mathbf  a’})$.</p>
+<p>我们将以上几种记号都推广到对矩阵可用, 例如对于$C=[\mathbf c_1,\cdots,\mathbf c_N]$, 令<br>$$<br>\mathsf{Flatten}(C)=[\mathsf{Flatten}(\mathbf c_1),\cdots,\mathsf{Flatten}(\mathbf c_N)]<br>$$<br>其余几种记号也做类似的推广, 总之就是, 对矩阵的每一列的列向量做相应的操作. 这时我们发现, 如果密钥$\mathbf v$确实是某个向量$\mathbf s$进行$\mathsf{Powerof2}$的结果, 即$\mathbf v=\mathsf{Powerof2}(s)$, 那么就有<br>$$<br>C_i\mathbf v=\mathsf{Flatten}(C_i)\mathbf v<br>$$<br>这可以使得$C_i’=\mathsf{Flatten}(C_i)$变成一个较小的矩阵, 而不改变最后与$\mathbf v$的相乘的结果! 这样使得$C’_i$可以代替$C_i$进行下一层的同态运算使得我们要求的$C_2$项较小! 我们直接将$\mathsf{NAND}$的结果记作<br>$$<br>C^{\mathsf{NAND}}=\mathsf{Flatten}(I_N-C_1C_2)<br>$$</p>
+<h1 id="GSW方案"><a href="#GSW方案" class="headerlink" title="GSW方案"></a>GSW方案</h1><p>现在我们开始具体介绍方案. 我们要说的是, GSW方案根据解密算法的选区不同, 实际上有构造两套方案. 第一种是选择$\mathsf{Dec}$作为解密算法, 该算法仅能解出$\mu_i\in\{0,1\}$, 因此整个同态运算中主要用与非门构建逻辑电路进行计算. 另一个解密算法$\mathsf{MPDec}$可以解出$\mu_i\in\mathbb Z_q$, 这样就可以自然地使用加法与乘法进行运算.</p>
+<p>首先我们要说的是, GSW并不是一个标准假设下的全同态加密方案. GSW如果要做到全同态加密, 需要用到Bootstrapping, 进而需要用到LWE加密方案的Circular Security假设(即用一对公私钥中的公钥来加密私钥相关信息的加密结果是安全的). 我们这里不介绍Bootstrapping的具体过程, 仅介绍Somewhat HE.</p>
+<ul>
+<li>$\mathsf{Setup}(1^\lambda,1^L)$: 我们用$\lambda$表示安全参数, $L$表示同态运算的层数, 则$|q|=\kappa(\lambda,L)$表示模数$q$的位数. 选择$n=n(\lambda,L)$和LWE的错误分布$\chi=\chi(\lambda,L)$, 选择$m=m(\lambda,L)=O(n\log n)$. 设$\ell=\lfloor\log q\rfloor+1$和$N=(n+1)\cdot \ell$, 参数集$params=(n,q,\chi,m)$.</li>
+</ul>
+<p>这里的参数较多, 需要逐一解释一下. 首先$\lambda$是安全参数, 表示密码方案中基于的困难的问题的复杂程度, 所有的参数都应该(直接或间接)基于这个参数选择. 参数$L$表示同态运算的层数, 由于同态运算的层数由噪声的占比决定, 因此想要做更多的同态运算次数, 那么噪声就不应该太快掩盖$q$, $q$就应该相应地选择大一些. 而LWE问题的错误分布$\chi$还有维数$n$按理来说是应该根据$\lambda$来选择, 但是这两个参数是可以根据$q$来进行权衡(tradeoff)的, 这里直接用基础参数$L$来代替$q$. 而参数$\ell,N$则是为了方便我们进行表示而引入的记号, 并且他们在前面也出现过.</p>
+<ul>
+<li>$\mathsf{SecretKeyGen}(params)$: 选择$\mathbf t\overset{\$}\leftarrow \mathbb Z_q^n$. 输出$sk=\mathbf s\leftarrow (1,-\mathbf t)=(1,-t_1,\cdots,-t_n)\in\mathbb Z_q^{n+1}$. 令$\mathbf v=\mathsf{Powerof2}(\mathbf s)$.</li>
+<li>$\mathsf{PublicKeyGen}(params,sk)$: 生成矩阵$B\overset{\$}\leftarrow\mathbb Z_q^{m\times n}$和$\mathbf e\leftarrow\chi^m$. 令$\mathbf b=B\mathbf t+\mathbf e$. 令$A=[\mathbf b|B]$, 输出公钥$pk=A$.</li>
+</ul>
+<p>实际上这里就是变相生成了一组LWE问题的实例, 如果对这里不熟悉, 可以跟进我的Blog学习知识. 相关博文更新后会在这里补充地址.</p>
+<ul>
+<li>$\mathsf{Enc}(params,sk,\mu)$: 生成矩阵$R\overset{\$}\leftarrow \{0,1\}^{N\times m}$, 输出密文<br>$$<br>C=\mathsf{Flatten}(\mu\cdot I_N+\mathsf{BitDecomp}(R\cdot A))\in\mathbb Z_q^{N\times N}<br>$$</li>
+</ul>
+<p>这就是整个加密的过程, 其中$\mathsf{Flatten}$操作是为了保证$C$是一个较小的矩阵, 我们知道$\mathbf v$是一个$\mathsf{Powerof2}$向量, 那么<br>$$<br>C\mathbf v=(\mu\cdot I_N+\mathsf{BitDecomp}(R\cdot A))\mathbf v = \mu\cdot I_N\cdot \mathbf v + R\cdot A\cdot \mathbf s = \mu\cdot \mathbf v+R\cdot \mathbf e<br>$$<br>$R\cdot \mathbf e$也是一个小噪声, 因此密文符合我们的要求.</p>
+<ul>
+<li>$\mathsf{Dec}(params, pk,C)$: 选择一个$\mathbf v$的系数$v_i=2^i\in (q/4,2/q]$. 设$C_{i}$是$C$的第$i$列, 则计算$x_i=\langle C_i,v_i\rangle$, 输出解密结果$\mu’=\lfloor x_i/v_i\rceil$.</li>
+</ul>
+<p>实际上这里的解密过程就是比较$C\mathbf v$与$\mathbf v$的值. 而为了使得解密出错的概率最低, 所以选择$v_i$较大的一项, 这样使得错误最多可以积累到$q/4$而解密不出错.</p>
+<ul>
+<li>$\mathsf{MPDec}(params,sk,C)$: 参考[MP12] [^mp12].</li>
+</ul>
+<h1 id="噪声分析"><a href="#噪声分析" class="headerlink" title="噪声分析"></a>噪声分析</h1><p>接下来我们看一下进行$L$层同态运算后, 噪声的增长. 我们知道, 两个噪声为$E$的密文行一次加法运算, 噪声增长到$2E$. (这里$E=\max_{i\in [N]}\mathbf e$, 表示解密中的噪声项), 而两个噪声为$E$的密文乘法结果的的噪声项为$\mu_2\mathbf e_1+C_1\mathbf e_2$, 最多为$(N+1)B^2$. 如果初始噪声为$E$的密文进行$L$层运算, 则噪声最多增长为$(N+1)^LB^{2^L}$, 由这一点可以看出, 我们最多可以进行对数次数的同态运算. 但是对数次的运算已经足够用于解密运算, 因此我们可以基于Circular Security假设, 使用Bootstrapping技术实现全同态.</p>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><ol>
+<li>证明$\mathsf{Enc}$算法的CPA安全性.</li>
+</ol>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>[^Gentry]:Craig Gentry是构造出第一个全同态加密方案的人, 可以说是同态加密方案的鼻祖.  现在的大多数同态加密方案都是在Gentry最初的方案的基础上改造而来的.<br>[^GSW13]: Craig Gentry, Amit Sahai and Brent Waters. Homomorphic Encryption from Learning with Errors: Conceptually-Simpler, Asymptotically-Faster, Atribute-Based. <em>Annual Cryptology Conference</em>. Springer, Berlin, Heidelberg, 2013.<br>[^sk]: 实际上这里$\mathbf v$并不是最终方案中的密钥<br>[^vec]:所有的向量都是列向量, 即$\mathbf a=(a_1,\cdots,a_n)=[a_1,\cdots,a_n]^T$<br>[^log]: 如果没有标明底数, $\log$的底数都是2.<br>[^mp12]: Daniele Micciancio and Chris Peikert. Trapdoors for lattices: Simpler, tighter, faster, smaller. In <em>EUROCRYPT</em>, pages 700-718, 2012.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/密码学/" rel="tag"># 密码学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/初等数论1-素数/" rel="next" title="初等数论(1) 素数">
+                <i class="fa fa-chevron-left"></i> 初等数论(1) 素数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Lingeros">
+            
+              <p class="site-author-name" itemprop="name">Lingeros</p>
+              <p class="site-description motion-element" itemprop="description">Everyone's the same, our single tape to our states.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Intuition"><span class="nav-number">1.</span> <span class="nav-text">Basic Intuition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#密文的基本格式"><span class="nav-number">1.1.</span> <span class="nav-text">密文的基本格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘法同态性质"><span class="nav-number">1.2.</span> <span class="nav-text">乘法同态性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与非门的同态性质"><span class="nav-number">1.3.</span> <span class="nav-text">与非门的同态性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别高兴得太早"><span class="nav-number">1.4.</span> <span class="nav-text">别高兴得太早!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lattice-Gadget"><span class="nav-number">1.5.</span> <span class="nav-text">Lattice Gadget</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GSW方案"><span class="nav-number">2.</span> <span class="nav-text">GSW方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#噪声分析"><span class="nav-number">3.</span> <span class="nav-text">噪声分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#习题"><span class="nav-number">4.</span> <span class="nav-text">习题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">5.</span> <span class="nav-text">注释</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lingeros</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'c0e4d9df1587fcd5308e',
+          clientSecret: '4fa6c6de54c7f12a2de39bb2ca545d8c4ec0866b',
+          repo: 'lingeros-tot-gitalk',
+          owner: 'lingeros-tot',
+          admin: ['lingeros-tot'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

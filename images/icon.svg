@@ -1,0 +1,34 @@
+<svg width="360" height="360" xmlns="http://www.w3.org/2000/svg">
+ <metadata id="metadata8">image/svg+xml</metadata>
+ <defs>
+  <clipPath id="clipPath22" clipPathUnits="userSpaceOnUse">
+   <path id="path20" d="m-380.699087,759.132027l595.28,0l0,-595.28l-595.28,0l0,595.28z"/>
+  </clipPath>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="362" height="362" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect fill="#fff" stroke-width="9.5" stroke-opacity="null" fill-opacity="null" x="65.855577" y="66.024494" width="230" height="230" id="svg_1" transform="rotate(-34 180.85559082031241,181.0244750976562) " stroke="#000"/>
+  <rect fill="#fff" stroke="#000" stroke-width="1.5" stroke-opacity="null" fill-opacity="null" x="1065" y="236.290835" width="1" height="1" id="svg_2"/>
+  <rect fill="#fff" stroke-width="9.5" stroke-opacity="null" fill-opacity="null" x="84.855577" y="87.024494" width="190" height="190" id="svg_8" transform="rotate(-34 179.85559082031256,182.02450561523443) " stroke="#000"/>
+  <text x="0" id="text14" transform="matrix(1.1001087465842287,0,0,1.015179063395077,137.56811814677187,234.57639062819987) " fill-rule="nonzero" fill="#000000" font-family="'Times New Roman'" font-size="185.775696px" font-weight="bold" font-style="italic" y="-0.985048">
+   <tspan id="tspan12" y="0" x="0">L</tspan>
+  </text>
+  <g transform="matrix(1.1001087465842287,0,0,-1.0151790633950772,50.59207966130117,663.4096675676437) " id="g16">
+   <g clip-path="url(#clipPath22)" id="g18">
+    <g id="g24">
+     <path id="path26" d="m110.103713,423.405367l-58.167,0m60.797,0l-60.797,0l0.998,3.356c5.865,0 10.143,1.134 12.836,3.402c2.69,2.268 5.185,7.362 7.483,15.285l22.859,79.01c1.27,4.354 1.905,7.77 1.905,10.25c0,2.418 -0.907,4.354 -2.721,5.805c-1.814,1.452 -5.383,2.298 -10.704,2.54l0.998,3.357l59.053,0l-0.998,-3.357c-5.686,-0.121 -4.087,-7.975 -6.899,-10.393" fill-rule="nonzero" fill="#000000"/>
+    </g>
+    <g id="g28">
+     <path id="path30" d="m90.070313,431.164067l0,0c-1.298,0.403 -2.047,1.855 -1.665,3.226l29.03,104.32c0.382,1.372 1.756,2.164 3.054,1.761c1.297,-0.403 2.047,-1.855 1.665,-3.226l-29.031,-104.321c-0.382,-1.371 -1.755,-2.163 -3.053,-1.76" fill-rule="nonzero" fill="#ffffff"/>
+    </g>
+    <g id="g32">
+     <path id="path34" d="m81.960223,431.556057l0,0c-0.584,0.18101 -0.919,0.826 -0.748,1.441l29.66,106.606c0.171,0.614 0.783,0.965 1.367,0.784c0.584,-0.18099 0.918,-0.826 0.747,-1.44099l-29.659,-106.606c-0.171,-0.614 -0.783,-0.965 -1.367,-0.784" fill-rule="nonzero" fill="#ffffff"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

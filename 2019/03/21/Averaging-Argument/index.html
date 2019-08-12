@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/safari_pinned_tab.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算复杂性,密码学,概率论,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="In computational complexity theory and cryptography, averaging argument is a standard argument for proving theorems. It usually allows us to convert probabilistic polynomial-timealgorithms into non-un">
+<meta name="keywords" content="计算复杂性,密码学,概率论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Averaging Argument">
+<meta property="og:url" content="http://yoursite.com/2019/03/21/Averaging-Argument/index.html">
+<meta property="og:site_name" content="Lingeros">
+<meta property="og:description" content="In computational complexity theory and cryptography, averaging argument is a standard argument for proving theorems. It usually allows us to convert probabilistic polynomial-timealgorithms into non-un">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/21/Averaging-Argument/220px-TooManyPigeons.jpg">
+<meta property="og:updated_time" content="2019-04-03T07:45:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Averaging Argument">
+<meta name="twitter:description" content="In computational complexity theory and cryptography, averaging argument is a standard argument for proving theorems. It usually allows us to convert probabilistic polynomial-timealgorithms into non-un">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/21/Averaging-Argument/220px-TooManyPigeons.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/21/Averaging-Argument/">
+
+
+
+
+
+  <title>Averaging Argument | Lingeros</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lingeros</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">the Theory Of Things</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-introduction">
+          <a href="/introduction/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info-circle"></i> <br>
+            
+            介绍
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-update">
+          <a href="/update/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br>
+            
+            更新
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br>
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/21/Averaging-Argument/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lingeros">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lingeros">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Averaging Argument</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T23:45:57+08:00">
+                2019-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机科学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/随手笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">随手笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/现代密码学/" itemprop="url" rel="index">
+                    <span itemprop="name">现代密码学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/随手笔记/密码学/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机科学/现代密码学/密码学基础/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In <a href="https://en.wikipedia.org/wiki/Computational_complexity_theory" target="_blank" rel="noopener">computational complexity theory</a> and <a href="https://en.wikipedia.org/wiki/Cryptography" target="_blank" rel="noopener">cryptography</a>, <strong>averaging argument</strong> is a standard argument for proving theorems. It usually allows us to convert <a href="https://en.wikipedia.org/wiki/Randomized_algorithm" target="_blank" rel="noopener">probabilistic</a> <a href="https://en.wikipedia.org/wiki/Polynomial-time" target="_blank" rel="noopener">polynomial-time</a>algorithms into <a href="https://en.wikipedia.org/wiki/Circuit_complexity" target="_blank" rel="noopener">non-uniform polynomial-size circuits</a>. (Wikipedia)</p>
+<a id="more"></a>
+<hr>
+<p>The following example can be regarded as something like Pigeonhole Principle.</p>
+<img src="/2019/03/21/Averaging-Argument/220px-TooManyPigeons.jpg" title="Pigeons: Please do not GuGu when you are going on a date.">
+<blockquote>
+<p><strong>Example 1</strong> </p>
+<p>If every person likes at least $1/3​$ of the books in a library, then the library has a book, which at least $1/3​$ of people like.</p>
+</blockquote>
+<p><strong>Proof</strong>: Suppose there are $N​$ people in total and $B​$ books in the library. Let make people leave a mark on the book they like, then there are at least $NB/3​$ marks. Presume there are no such book that has at least $M/3​$ books on it, then the total number of marks would be less than $NB/3​$, contradicted.</p>
+<hr>
+<p>When we deal with problems solved by the pigeonhole principle, we see the total number of pigeons and pigeonholes. As for the problems solved by averaging argument, we usually don’t see the number of pigeonholes or the number of pigeons or both of them. In this kind of case, we should keep the number of these things in mind, or we say we presume them.</p>
+<p>As you can see, you case dealing with probability is always the latter case, like the example.</p>
+<hr>
+<p>Let’s introduce the first formal discription of averaging argument.</p>
+<blockquote>
+<p><span style="color:blue"><strong>Averaging Argument</strong></span></p>
+<p>Let $X​$ and $Y​$ be sets, and $p​$ be a prediction on $X\times Y​$. Let $\alpha​$ be a real number in the interval $[0,1]​$. If for each $x​$ in $X​$, there exists at least $\alpha|Y|​$ in $Y​$ that satisfy $p(x,y)​$. Then, there exists a $y​$ in $Y​$ such that there exist at least $\alpha|X|​$ elements $x​$ in $X​$ that satisfy $p(x,y)​$.</p>
+</blockquote>
+<p><strong>Proof</strong>: We can construct a proof of the same style as the proof of <strong>Example 1</strong>. </p>
+<p>Keep in mind that this argument can be generalized to continuous groups as well as probabilistic situations.</p>
+<blockquote>
+<p><span style="color:red"><strong>Averaging Argument</strong> </span></p>
+<p>Let $f​$ be a function. If we have a circuit $C​$ such that $C(x,y)=f(x)​$ with probability at least $\rho​$ where $x​$ is chosen at random and $y​$ is chosen independently from some distribution $\mathcal Y​$ over $\{0,1\}^m​$. Then there exists a single string $y_0\in\{0,1\}^m​$ such that $\Pr[C(x,y_0)]&gt;\rho​$.</p>
+</blockquote>
+<p><strong>Proof</strong>: Keep the invisible pigeonholes in mind, the proof might get simple. But we can also prove it in probabilistic style.</p>
+<p><u>… We need a probabilistic proof here.</u></p>
+<p>Have you seen that if there is a problem which is in $\mathbf{RP}​$, then we can use a circuit to solve it and $C(\cdot, y_0)​$ is the circuit we need. Of course, for different length of input, different circuit is needed. So we have $\mathbf{RP}\in \mathbf P_{/\text{poly}}​$.</p>
+<p>The proof of $\mathbf{BPP}\in\mathbf{P}_{/\text{poly}}$ is a little more complicate than this, but still bases on the same idea. The proof will be given in the computational complexity.</p>
+<hr>
+<p>The basic idea of <span style="color:red"><strong>Averaging Argument</strong></span> can be used somewhere else, like in the situation about a collection of some $x​$ in the theorem <span style="color:red"><strong>Averaging Argument</strong></span>. Where the set size can be get by solving inequality.</p>
+<p>The next exam is quite important, which will be used in the proof of Goldreich-Levin Theorem.</p>
+<blockquote>
+<p><strong>Example 2</strong></p>
+<p>Let $f$ be a function $f:\{0,1\}^n\to \{0,1\}^{l(n)}$ and $f^\prime :\{0,1\}^n \times\{0,1\}^n\to  \times\{0,1\}^{l(n)}\times \times\{0,1\}^n$ defines as<br>$$<br>f^\prime(x,r)=(f(x),r)<br>$$<br>where $|x|=|r|$. Let $\mathsf{gl}(x,r)=\bigoplus_{i=1}^n x_i\cdot r_i$.</p>
+<p> Suppose there exists a $\mathsf{PPT}​$ algorithm $\mathcal A​$ that running time $t​$ and satisfy<br>$$<br>\Pr\limits_{<br>x\overset $\leftarrow\{0,1\}^n \\<br>r\overset $\leftarrow\{0,1\}^n<br>} [\mathcal A(f(x),r)=\mathsf{gl}(x,r)]\geq\frac 1 2+\varepsilon(n)<br>$$<br>Then there exists a set $\mathcal S_n\in\{0,1\}^n​$ of size at least $\frac{\varepsilon(n)}2\cdot 2^n​$ such that for every $x\in \mathcal S_n​$ it holds that<br>$$<br>\Pr\limits_{x\overset $\leftarrow \mathcal S_n\ r\overset $ \leftarrow \{0,1\}^n}[\mathcal A(f(x),r)=\mathsf{gl}(x,r)]\geq \frac 1 2+\frac{\varepsilon (n)} 2<br>$$</p>
+</blockquote>
+<p><strong>Proof</strong>: Still we keep in mind the inversible pigeonholes. We have “1” pigeonholes. “1” means if we choose a pigeonhole uniformly at random from all the pigeonholes then we have probability “1” that we chosen from the set of all pigeonholes… This is the verbose, since there are cases that the probability is less than “1”.</p>
+<p>We assume we have probability $p​$ to choose from $\mathcal S_n​$ and then we have probability $(1-p)​$ to choose from $\overline{\mathcal S_n}=\{0,1\}^n-\mathcal S_n​$. We want to evaluate the least size of $\mathcal S_n​$, so we make the things we wish($\Pr[\mathcal A(f(x),r)=\mathsf{gl}(x,r)]​$) to happen as frequent as posible, that is the probability $1​$. As for cases in $\overline{\mathcal S_n}​$, by the assumption made it has to happen with probability as least $\frac 1 2+\frac{\varepsilon (n)} 2​$, then we have<br>$$<br>\frac 1 2 \leq \Pr\limits_{r\overset $ \leftarrow \{0,1\}^n}[\mathcal A(f(x),r)=\mathsf{gl}(x,r)] \leq p\times 1+(1-p)\times (\frac 1 2+\frac{\varepsilon (n)} 2)\leq p+\frac 1 2+\frac{\varepsilon(n)}{2}<br>$$<br>By solving the inequality<br>$$<br>p\geq \frac{\varepsilon (n)}2<br>$$<br>Then we have<br>$$<br>|\mathcal S_n|\geq \frac{\varepsilon(n)}2\cdot 2^n<br>$$</p>
+<hr>
+<p><strong>Exercise</strong></p>
+<ol>
+<li>Prove <strong>Example 2</strong> by using Markov Inequality.</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算复杂性/" rel="tag"># 计算复杂性</a>
+          
+            <a href="/tags/密码学/" rel="tag"># 密码学</a>
+          
+            <a href="/tags/概率论/" rel="tag"># 概率论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/计算意义下的安全性/" rel="next" title="计算意义下的安全性">
+                <i class="fa fa-chevron-left"></i> 计算意义下的安全性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/25/One-Way-Function/" rel="prev" title="One-Way Function">
+                One-Way Function <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Lingeros">
+            
+              <p class="site-author-name" itemprop="name">Lingeros</p>
+              <p class="site-description motion-element" itemprop="description">Everyone's the same, our single tape to our states.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lingeros</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'c0e4d9df1587fcd5308e',
+          clientSecret: '4fa6c6de54c7f12a2de39bb2ca545d8c4ec0866b',
+          repo: 'lingeros-tot-gitalk',
+          owner: 'lingeros-tot',
+          admin: ['lingeros-tot'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
