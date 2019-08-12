@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lingeros">
 <meta property="og:description" content="GSW同态加密方案确实如论文标题一样, 概念清晰明了, 其Intuition简单到一个刚学完线性代数的大一新生也能理解. GSW还支持基于属性的加密, 但本文中我们将不介绍这一部分内容. 当然, 完全理解GSW方案仍然需要用到一些比较进阶的知识, 如LWE问题的困难性等. 我们在本文中不会对这些知识做过多的介绍, 这些知识将在今后其他的博文中介绍. 关于同态加密的基础知识可以参阅博文同态加密(0)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T07:45:36.828Z">
+<meta property="og:updated_time" content="2019-08-12T08:00:04.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="同态加密(1) GSW加密方案">
 <meta name="twitter:description" content="GSW同态加密方案确实如论文标题一样, 概念清晰明了, 其Intuition简单到一个刚学完线性代数的大一新生也能理解. GSW还支持基于属性的加密, 但本文中我们将不介绍这一部分内容. 当然, 完全理解GSW方案仍然需要用到一些比较进阶的知识, 如LWE问题的困难性等. 我们在本文中不会对这些知识做过多的介绍, 这些知识将在今后其他的博文中介绍. 关于同态加密的基础知识可以参阅博文同态加密(0)">
@@ -385,7 +385,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>GSW同态加密方案确实如论文标题一样, 概念清晰明了, 其Intuition简单到一个刚学完线性代数的大一新生也能理解. GSW还支持基于属性的加密, 但本文中我们将不介绍这一部分内容.</p>
 <p>当然, 完全理解GSW方案仍然需要用到一些比较进阶的知识, 如LWE问题的困难性等. 我们在本文中不会对这些知识做过多的介绍, 这些知识将在今后其他的博文中介绍. 关于同态加密的基础知识可以参阅博文<em>同态加密(0) 基础概念</em>, 这篇博文完成后, 地址将被更新到这里.</p>
 <a id="more"></a>
-<p>GSW方案是由Craig Gentry[^Gentry], Amit Sahai与Brent Waters于2013年提出的方案, 发表于论文[GSW13] [^GSW13]中.</p>
+<p>GSW方案是由Craig Gentry[^Gentry], Amit Sahai与Brent Waters于2013年提出的方案, 发表于论文[GSW13] [^GSW13]中. </p>
 <h1 id="Basic-Intuition"><a href="#Basic-Intuition" class="headerlink" title="Basic Intuition"></a>Basic Intuition</h1><h2 id="密文的基本格式"><a href="#密文的基本格式" class="headerlink" title="密文的基本格式"></a>密文的基本格式</h2><p>最基本的GSW同态加密方案的私钥($sk$)是一个向量$\mathbf v\in\mathbb Z_q^N$[^sk], 而所有的明文$\mu_i\in\{0,1\}$都被加密一个矩阵$C_i\in\mathbb Z_q^{N\times N}$中, 其中$C_i$是以$v$为近似特征向量并以$\mu_i$为近似特征值的矩阵, 即我们要求<br>$$<br>C_i\mathbf v\approx \mu_i \mathbf v<br>$$</p>
 <p>这里可以看出， 我们只需要挑选$\mathbf v$中非$0$的位(最好是选较大的位), 如第$j$位$v_j$, 并比较$v_j$与$\mu_iv_j$的值就可以解出$\mu_i$的值.</p>
 <p>一个需要注意的地方就是, 虽然$\mu_i$取自$\{0,1\}$, 但被视作是$\mathbb Z_q$中的元素, 因此具体的运算也是按照$\mathbb Z_q$的运算方式来进行.</p>
