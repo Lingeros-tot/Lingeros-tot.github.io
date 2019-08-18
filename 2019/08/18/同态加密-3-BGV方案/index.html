@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="现代密码学, 是研究密码算法在计算意义上的安全性的学科. 计算意义上的安全性, 即研究在有限计算能力的攻击者在破坏下密码体制的安全性. 在现如今计算复杂性的一些问题尚未解决的情况下, 现代密码学是基于困难问题假设的密码学.">
+<meta name="description" content="BGV同态加密方案是由Zvika Brakerski, Graig Gentry, Vindo Vaikuntanathan提出于[BGV12] [3]. 该方案是BV11b方案基础上一个较大的改进. 该方案挖掘出BV11b方案中模数切换可以降低密文的绝对噪声这一特点, 将其发扬广大, 使得在加密在无需Bootstrapping的情况下可以做到较多层数的同态乘法运算. 如果需要实现全同态加密, 该">
 <meta name="keywords" content="密码学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="现代密码学 目录">
-<meta property="og:url" content="http://yoursite.com/2019/03/11/现代密码学-目录/index.html">
+<meta property="og:title" content="同态加密(2) BV11b方案">
+<meta property="og:url" content="http://yoursite.com/2019/08/18/同态加密-3-BGV方案/index.html">
 <meta property="og:site_name" content="Lingeros">
-<meta property="og:description" content="现代密码学, 是研究密码算法在计算意义上的安全性的学科. 计算意义上的安全性, 即研究在有限计算能力的攻击者在破坏下密码体制的安全性. 在现如今计算复杂性的一些问题尚未解决的情况下, 现代密码学是基于困难问题假设的密码学.">
+<meta property="og:description" content="BGV同态加密方案是由Zvika Brakerski, Graig Gentry, Vindo Vaikuntanathan提出于[BGV12] [3]. 该方案是BV11b方案基础上一个较大的改进. 该方案挖掘出BV11b方案中模数切换可以降低密文的绝对噪声这一特点, 将其发扬广大, 使得在加密在无需Bootstrapping的情况下可以做到较多层数的同态乘法运算. 如果需要实现全同态加密, 该">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-11T13:32:48.792Z">
+<meta property="og:updated_time" content="2019-08-18T16:01:40.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="现代密码学 目录">
-<meta name="twitter:description" content="现代密码学, 是研究密码算法在计算意义上的安全性的学科. 计算意义上的安全性, 即研究在有限计算能力的攻击者在破坏下密码体制的安全性. 在现如今计算复杂性的一些问题尚未解决的情况下, 现代密码学是基于困难问题假设的密码学.">
+<meta name="twitter:title" content="同态加密(2) BV11b方案">
+<meta name="twitter:description" content="BGV同态加密方案是由Zvika Brakerski, Graig Gentry, Vindo Vaikuntanathan提出于[BGV12] [3]. 该方案是BV11b方案基础上一个较大的改进. 该方案挖掘出BV11b方案中模数切换可以降低密文的绝对噪声这一特点, 将其发扬广大, 使得在加密在无需Bootstrapping的情况下可以做到较多层数的同态乘法运算. 如果需要实现全同态加密, 该">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/11/现代密码学-目录/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/18/同态加密-3-BGV方案/">
 
 
 
 
 
-  <title>现代密码学 目录 | Lingeros</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>同态加密(2) BV11b方案 | Lingeros</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/现代密码学-目录/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/18/同态加密-3-BGV方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lingeros">
@@ -288,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">现代密码学 目录</h1>
+          <h1 class="post-title" itemprop="name headline">同态加密(2) BV11b方案</h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T20:28:52+08:00">
-                2019-03-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-18T15:40:01+08:00">
+                2019-08-18
               </time>
             
 
@@ -345,8 +345,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机科学/现代密码学/密码学基础/" itemprop="url" rel="index">
-                    <span itemprop="name">密码学基础</span>
+                  <a href="/categories/计算机科学/现代密码学/同态加密/" itemprop="url" rel="index">
+                    <span itemprop="name">同态加密</span>
                   </a>
                 </span>
 
@@ -382,28 +382,29 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>现代密码学, 是研究密码算法在计算意义上的安全性的学科. 计算意义上的安全性, 即研究在有限计算能力的攻击者在破坏下密码体制的安全性. 在现如今计算复杂性的一些问题尚未解决的情况下, 现代密码学是基于困难问题假设的密码学.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>BGV同态加密方案是由Zvika Brakerski, Graig Gentry, Vindo Vaikuntanathan提出于[BGV12] <sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Zvika Brakerski, Graig Gentry and Vindo Vaikuntanathan. Fully homomorphic encryption without bootstrapping. In *Innovations in Theoretical Computer Science (ITCS'12)*, 2012.">[3]</span></a></sup>. 该方案是BV11b方案基础上一个较大的改进. 该方案挖掘出BV11b方案中模数切换可以降低密文的绝对噪声这一特点, 将其发扬广大, 使得在加密在无需Bootstrapping的情况下可以做到较多层数的同态乘法运算.</p>
+<p>如果需要实现全同态加密, 该方案仍需要引入Circular Security假设和Boostrapping. 但是由于模数切换使得我们可以在不进行Bootstrapping的情况下做较多次数的同态运算, 并且使得Bootstrapping之前的密文模数变得非常小, 因此Bootstrapping是非常容易的. 因此该方法能够显著降低Bootstrapping的次数和难度.</p>
 <a id="more"></a>
-<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>现代密码学, 是研究密码算法在计算意义上的安全性的学科. 计算意义上的安全性, 即研究在有限计算能力的攻击者在破坏下密码体制的安全性. 在现如今计算复杂性的一些问题尚未解决的情况下, 现代密码学是基于困难问题假设的密码学.</p>
-<p>该笔记是我阅读相关书籍和上课所听内容的笔记整理, 连同老师的直观解释和我的个人理解, 整理而成的笔记. 整个学习过程中, 我将总共学习包括计算复杂性(两学期)在内的总共4门课程, 阅读至少3本教材综合而成的笔记.</p>
-<h1 id="如何学习"><a href="#如何学习" class="headerlink" title="如何学习?"></a>如何学习?</h1><p>精确地定义每个概念, 严格地推证每一个定理, 不要马虎地放过任何一个细节—-对可证明安全性的要求要像对待数学一样, 这样得到的才是”可证明安全性”.</p>
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
-<li>计算复杂性基础: 参考计算复杂性笔记</li>
-<li>密码学基础: 包括计算复杂性基础</li>
-<li>伪随机性: 同时也属于计算复杂性的范畴</li>
-<li>安全多方计算和同态加密</li>
-<li>证明系统</li>
-<li>量子密码学</li>
-<li>具体的密码体系</li>
+<p>关于LWE和RLWE (Ring-LWE)的介绍将会在其他文章中介绍, 文章发布后, 地址将被更新到这里.</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我们在介绍BV11b方案的时候, 介绍过密文的格式为$(\mathbf v,w)$, 此处我们忽略了密文的同态层数. 密钥的解密可以表示为</p>
+<ul>
+<li><p>$\mathsf{Dec}(sk=\mathbf s’,(\mathbf v,w))$: 计算并输出</p>
+<p>$$<br>(w-\langle\mathbf v,\mathbf s’\rangle\mod q)\mod 2<br>$$</p>
+</li>
 </ul>
-<h1 id="主要参考书目"><a href="#主要参考书目" class="headerlink" title="主要参考书目"></a>主要参考书目</h1><ol>
-<li>Foundations of Cryptography, Oded Goldreich</li>
-<li>Introduction to Modern Cryptography, Jonathan Katz &amp; Yehuda Lindell</li>
-<li>Tutorials on the Foundations of Cryptography, Edit by Yehuda Lindell</li>
-<li>Pseudorandomness, Salil P. Vadhan</li>
-<li>Computational Complexity: A Modern Approach, Sanjeev Arora and Boaz Barak</li>
-</ol>
-<h1 id="密码学巨匠"><a href="#密码学巨匠" class="headerlink" title="密码学巨匠"></a>密码学巨匠</h1><h1 id="密码学相关师生谱系图"><a href="#密码学相关师生谱系图" class="headerlink" title="密码学相关师生谱系图"></a>密码学相关师生谱系图</h1>
+<p>我们将采用另一种形式的LWE加密来表示上述问题(在LWE介绍性文章(写成后地址将被更新到这里)以及本文之后的内容会有介绍), 用$\mathbf c$表示密文, 用$\mathbf s$表述明文, 上述解密过程可以被简化为$[[\langle\mathbf c,\mathbf s\rangle]_q]_2$, 其中$[\cdot]_k$表示模$k$运算. 这种形式的密文噪声体现在哪里呢? 其实本身就是大$[\langle\mathbf c,\mathbf s\rangle]_q$概的噪声.</p>
+<p>BV11b的核心思想之一是在最后同态计算结束后, 需要将大密文(即维数和模数较大的密文)转换为小密文(即模数和维数较小的密文). 其中, 维数切换的操作是平凡, 而模数切换的操作需要一定的技巧性, 且其安全性依赖于<strong>稀疏子集和假设</strong>. 一个不太让人感觉到的惊奇的现象是, 在进行模数切换的时, 噪声也成比例减小了. 即我们有如下引理:</p>
+<blockquote>
+<p><strong>引理1</strong> 设$p$和$q$是两个奇数模数, $\mathbf c$是一个整数向量. 令$\mathbf c’$为一个距离$(p/q)\cdot\mathbf c$最近的一个整数向量满足$\mathbf c’=\mathbf c\mod 2$. 则对于任意的$\mathbf s$使得$|[\langle\mathbf c,\mathbf s\rangle]_q|&lt;q/2-(q/p)\cdot \ell_1(\mathbf s)$有<br>$$<br>[\langle \mathbf c’,\mathbf s\rangle]_p=[\langle\mathbf c,\mathbf s\rangle]_q \mod 2<br>$$<br>且<br>$$<br>|[\langle \mathbf c’,\mathbf s\rangle]_p|&lt;(p/q)\cdot |[\langle\mathbf c,\mathbf s\rangle]|+\ell_1(\mathbf s)<br>$$<br>其中$\ell_1(\mathbf s)$是$\mathbf s$的第一范数.</p>
+</blockquote>
+<p>第一个结果能够保持我们在输入正确密钥时解密结果的正确性, 而第二个结果则表明我们确实几乎在模数切换的同时几乎时等比例缩小了噪声, 这是由于从噪声分布中选择$\mathbf s$的LWE具有从均匀分布中选择$\mathbf{s}$的LWE具有几乎相当的平均意义下的困难性, 这使得我们的加密方案中$\mathbf s$可以选自噪声分布$\chi^n$使得$\ell_1(\mathbf s)$较小. 下面我们来证明上述引理.</p>
+<p><strong>证明</strong>: 根据假设, 对于某个整数$k$有$[\langle\mathbf c,\mathbf s\rangle]_q=\langle\mathbf c,\mathbf s\rangle-kq$. 假设$e_p=\langle\mathbf c’,\mathbf s\rangle-kp$, 我们现在证明$e_p$大概就是$\mathbf c’$的噪声, 即$e_p=[\langle\mathbf c’,\mathbf s\rangle]_p$. 由于$\mathbf c’=\mathbf c \mod 2$且$p=q\mod 2$, 因此$e_p=[\langle\mathbf c,\mathbf s\rangle]_q\mod 2$. 由于<br>$$<br>\begin{aligned}<br>e_p&amp;=\langle \mathbf c’,\mathbf s\rangle-kp=\langle \mathbf c’,\mathbf s\rangle-kq\cdot \frac pq \\<br>&amp;= \langle \mathbf c’,\mathbf s\rangle+\frac pq\cdot ([\langle\mathbf c,\mathbf s\rangle]_q-\langle\mathbf c,\mathbf s\rangle)\\<br>&amp;=\frac pq\cdot [\langle\mathbf c,\mathbf s\rangle]_q+\langle\mathbf c’-(p/q)\mathbf c,\mathbf s\rangle<br>\end{aligned}<br>$$<br>即$|e_p|\leq (p/q)[\langle \mathbf c,\mathbf s \rangle]_q+\ell_1(\mathbf s)&lt;p/2$. 从第二个不等式中, 我们得出, $e_p$大概就是$\mathbf c’$的噪声, 因此有$|[\langle \mathbf c’,\mathbf s\rangle]_p|&lt;(p/q)\cdot |[\langle\mathbf c,\mathbf s\rangle]|+\ell_1(\mathbf s)$.</p>
+<p>从上式的证明中, 我们也可以看出额外的噪声是如何引入的, 即从$\langle\mathbf c’-(p/q)\mathbf c,\mathbf s\rangle$中产生.</p>
+<p>到了这里你也许就明白这个方案的工作原理了: 虽然噪声是和模数等比例缩小的, 但是如果噪声本身就比较小, 那么通过模数切换, 它将变得非常小, 使得一次乘法同态运算后噪声也不会变得太大. 例如两个模$q$噪声为$B$的密文进行同态乘法运算, 其结果噪声将会达到约$B^2$, 而将其模数切换为$p$后噪声为约$pB/q$. 再做乘法同态运算, 则噪声是$(pB/q)^2$. 我们发现, 虽然$B/q\approx (pB/q)/p$, 但是做同态乘法运算后, 小密文产生的结果噪声占比约为$(pB/q)^2/q=p^2B/q^3$, 而原先的大密文噪声扎占比约为$B^2/q$, 显然小密文更占优势.</p>
+<p>基于如上的思想, 我们可以从一开始就选择非常大的模数$q_0$, 使得模数可以接受多次模数切换操作, 这样每次对噪声上界为$B$得密文做乘法后我们就进行一次模数切换, 将模数变成$q_i\approx q_{i-1}/B$, 即模数变为原来的大概$1/B$, 来使得噪声不变得更大, 我们就可以在做到多次同态后, 使得噪声上界始终维持在一个较为稳定的范围内. 这个过程可以一直持续到我们将模数下降得太小(使得$B&gt;q_L/2$)之前.</p>
+<p>如果不进行模数切换, 噪声是双指数倍数增长的, $B$噪声的密文经过$L$次同态变成$B^{2^L}$很快就能接近$q_0/2$, 而做模切换噪声则是指数下降的, 使得$q_i\approx q_0/B^i$满足$B&gt;q_i/2$显然要比原来的方案慢得多, 因此我们就可以进行更多次的同态乘法运算.</p>
+<h1 id="GLWE介绍"><a href="#GLWE介绍" class="headerlink" title="GLWE介绍"></a>GLWE介绍</h1><p>在本文中, 作者将LWE与RLWE统一为了GLWE, 使得在介绍方案的时候不用重复劳动. 我们按照作者的思路, 对GLWE一些介绍.</p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Zvika Brakerski, Graig Gentry and Vindo Vaikuntanathan. Fully homomorphic encryption without bootstrapping. In <em>Innovations in Theoretical Computer Science (ITCS’12)</em>, 2012.<a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
     
@@ -433,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/09/科学研究中的常用词汇/" rel="next" title="科学研究中常用的词汇">
-                <i class="fa fa-chevron-left"></i> 科学研究中常用的词汇
+              <a href="/2019/08/14/同态加密-2-BV11b方案/" rel="next" title="同态加密(2) BV11b方案">
+                <i class="fa fa-chevron-left"></i> 同态加密(2) BV11b方案
               </a>
             
           </div>
@@ -442,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/11/计算意义下的安全性/" rel="prev" title="计算意义下的安全性">
-                计算意义下的安全性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -583,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何学习"><span class="nav-number">2.</span> <span class="nav-text">如何学习?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录"><span class="nav-number">3.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主要参考书目"><span class="nav-number">4.</span> <span class="nav-text">主要参考书目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学巨匠"><span class="nav-number">5.</span> <span class="nav-text">密码学巨匠</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学相关师生谱系图"><span class="nav-number">6.</span> <span class="nav-text">密码学相关师生谱系图</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GLWE介绍"><span class="nav-number">2.</span> <span class="nav-text">GLWE介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">3.</span> <span class="nav-text">注释</span></a></li></ol></div>
             
 
           </div>

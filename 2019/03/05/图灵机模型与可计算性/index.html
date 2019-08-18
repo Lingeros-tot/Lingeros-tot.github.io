@@ -5,7 +5,7 @@
 
 <html class="theme-next mist" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
@@ -77,13 +77,13 @@
 
 
 
-<meta name="description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善1而被广泛采用, 贯穿整个计算复杂性研究的始终.">
+<meta name="description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善而被广泛采用, 贯穿整个计算复杂性研究的始终.">
 <meta name="keywords" content="计算复杂性,计算理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图灵机计算模型">
 <meta property="og:url" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/index.html">
 <meta property="og:site_name" content="Lingeros">
-<meta property="og:description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善1而被广泛采用, 贯穿整个计算复杂性研究的始终.">
+<meta property="og:description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善而被广泛采用, 贯穿整个计算复杂性研究的始终.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/1552199043657.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/turingFull560.jpg">
@@ -93,7 +93,7 @@
 <meta property="og:updated_time" content="2019-06-04T08:30:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图灵机计算模型">
-<meta name="twitter:description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善1而被广泛采用, 贯穿整个计算复杂性研究的始终.">
+<meta name="twitter:description" content="本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解. 图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且功能完善而被广泛采用, 贯穿整个计算复杂性研究的始终.">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/05/图灵机模型与可计算性/1552199043657.png">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>图灵机计算模型 | Lingeros</title>
+  <title>图灵机计算模型 | Lingeros</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -149,7 +149,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -400,7 +400,7 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解.</p>
-<p>图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且<strong>功能完善</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>而被广泛采用, 贯穿整个计算复杂性研究的始终.</p>
+<p>图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且<strong>功能完善</strong>而被广泛采用, 贯穿整个计算复杂性研究的始终.</p>
 <a id="more"></a>
 <blockquote>
 <p>这将是非常长的一个章节. 本节开始, 我们正式开始讲解现代复杂性理论. 当你看到一套科学理论中有”现代”这两个字的时候, 你应该做好心里准备, 因为这意味着它并不是那么容易懂. 这些理论是现当代著名科学家的重要研究成果, 需要花上一些时间去理解.</p>
@@ -456,7 +456,7 @@
 <p>设$f,g$是定义在$\mathbb R$上的实值函数, 其定义域和值域都限制在$\mathbb R^\ast$上, 记$f(n)=\omega(g(n))$, 如果存在正实数$c$和$N$, 使得对于任意$n&gt;N$有$0\leq g(n)&lt; cf(n)$.</p>
 </blockquote>
 <p>应该注意到, 我们在更关注的函数之间的比较, 而常数常常被我们忽略, 因为我们分析的是”渐进”, 如果相比较的两个函数添加了一个常数, 我们仍然可以通过选择另一个$N$来保持相同的渐进关系.</p>
-<h1 id="图灵机计算模型"><a href="#图灵机计算模型" class="headerlink" title="图灵机计算模型"></a>图灵机计算模型</h1><p>图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且<strong>功能完善</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>而被广泛采用, 贯穿整个计算复杂性研究的始终.</p>
+<h1 id="图灵机计算模型"><a href="#图灵机计算模型" class="headerlink" title="图灵机计算模型"></a>图灵机计算模型</h1><p>图灵机是一种计算复杂性常用的一种计算模型, 图灵机由于结构简单并且<strong>功能完善</strong>而被广泛采用, 贯穿整个计算复杂性研究的始终.</p>
 <h2 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h2><p>我们前面已经看到, 自动机确实能解决一些判定问题, 即正则语言的判定问题. 那么, 正则语言到底有多少? 实际上我们会发现, 正则语言真的非常少. 判定一个语言是不是正则语言, 可以根据著名的泵引理(pumping lemma)来完成, 我们这里不对其进行正式介绍, 但是我们直接说明, 通过泵引理, 下面这一的简单的语言都不是正则语言:<br>$$<br>L=\{x|x中的0和1个数相同 \}<br>$$<br>如果要直观地理解, 我们的自动机中并没有结构来记录串中的$0$和$1$到底有多少个, 也就无法完成判定工作, 因为我们可以猜测这个语言不是正则语言. 为了加强自动机的计算能力, 我们引入一种新的强大的计算模型, 并且出人意料的是, 它的结果相当简单. 为什么它很强大, 我们可以通过比较它和现代冯·诺伊曼机来初步认识.</p>
 <p>图灵机(turing machine)是在自动机的基础上, 和用于记录数据(即符号)的纸带(tape)组成. 图灵机的纸带是无限长的, 并且一般来说是有起点的. 另外, 纸带是离散的, 就像是有一个一个的小格子. 纸带通过读写头(head)来进行操作, 且自动机可以控制读写头的移动, 且一般来说, 我们只允许每一步计算中, 读写头位置保持不变或移动一格. 与自动机不同, 图灵机中的转移函数要根据读写头下纸带上的符号来决定, 同时, 转移的结果也应当包含纸带的移动方向.</p>
 <p>标准的图灵机只有一条纸带, 但是为了方便起见, 我们使用的是具有$k$条纸带的图灵机. 其中, 第一条纸带是输入带, 只记录问题的输入, 余下的$k-1$条纸带是工作带, 图灵机将在整个计算过程中对它进行读写. 图灵机如果完成计算(称为”停机”), 则最后一条纸带上的结果就是问题的答案. 我们约定, 以后说”<strong>标准图灵机</strong>“就是指单带且无额外功能的图灵机.</p>
@@ -681,7 +681,7 @@
 <li>时间谱系定理: (未完成)</li>
 </ul>
 <h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><ol>
-<li>注释<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>中的功能完善是什么意思?</li>
+<li>注释中的功能完善是什么意思?</li>
 <li>尝试构造带计时器的通用图灵机</li>
 <li>证明以下两个命题:<ol>
 <li>任何一个能被一台双带随机访问图灵机在$T(n)$步骤求解的问题, 都属于$\mathbf{DTIME}(T(n)^2)$.</li>
@@ -817,7 +817,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -1090,12 +1090,9 @@
   
   
     <script type="text/x-mathjax-config">
+      
       MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
       });
     </script>
 
@@ -1107,7 +1104,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

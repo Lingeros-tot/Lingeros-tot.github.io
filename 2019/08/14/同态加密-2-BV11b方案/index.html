@@ -5,7 +5,7 @@
 
 <html class="theme-next mist" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
@@ -77,18 +77,21 @@
 
 
 
-<meta name="description" content="[BV11b] [^bv11b]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算. 符号说明本文中, 我们采用方括号+下标的方式来表示向量中的具体某一位. 例如向量$\mathbf s$的第$i$位用$\mathbf s[i]$来表示. 我们有时候会用下标0来表示不存在的下标, 例如$h_i$可以用$h_{i,0}$来表">
+<meta name="description" content="[BV11b] [1]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算.">
 <meta name="keywords" content="密码学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="同态加密(2) BV11b方案">
 <meta property="og:url" content="http://yoursite.com/2019/08/14/同态加密-2-BV11b方案/index.html">
 <meta property="og:site_name" content="Lingeros">
-<meta property="og:description" content="[BV11b] [^bv11b]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算. 符号说明本文中, 我们采用方括号+下标的方式来表示向量中的具体某一位. 例如向量$\mathbf s$的第$i$位用$\mathbf s[i]$来表示. 我们有时候会用下标0来表示不存在的下标, 例如$h_i$可以用$h_{i,0}$来表">
+<meta property="og:description" content="[BV11b] [1]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T14:52:17.857Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/同态加密-2-BV11b方案/brakerski.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/同态加密-2-BV11b方案/vaikuntanathan.jpg">
+<meta property="og:updated_time" content="2019-08-18T16:11:29.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="同态加密(2) BV11b方案">
-<meta name="twitter:description" content="[BV11b] [^bv11b]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算. 符号说明本文中, 我们采用方括号+下标的方式来表示向量中的具体某一位. 例如向量$\mathbf s$的第$i$位用$\mathbf s[i]$来表示. 我们有时候会用下标0来表示不存在的下标, 例如$h_i$可以用$h_{i,0}$来表">
+<meta name="twitter:description" content="[BV11b] [1]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算.">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/14/同态加密-2-BV11b方案/brakerski.jpg">
 
 
 
@@ -124,7 +127,7 @@
 
 
 
-  <title>同态加密(2) BV11b方案 | Lingeros</title>
+  <title>同态加密(2) BV11b方案 | Lingeros</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -143,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -382,10 +385,16 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>[BV11b] [^bv11b]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>[BV11b] <sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Zvika Brakersi and Vinod Vaikuntanathan. Efficient fully homomorphic encryption from (standard) LWE. In *FOCS*, pages 97-106, 2011.
+">[1]</span></a></sup>方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算.</p>
+<a id="more"></a>
+<img src="/2019/08/14/同态加密-2-BV11b方案/brakerski.jpg" title="原文作者之一Zvika Brakerski在2018 CIS冬令营上为学员讲解全同态加密">
+<img src="/2019/08/14/同态加密-2-BV11b方案/vaikuntanathan.jpg" title="原文作者之一Vinod Vaikuntanathan在2018 CIS冬令营上为学员讲解全同态加密">
+<p>两位作者在CIS 2018冬令营中的讲课.</p>
+<p><a href="https://crypto.sjtu.edu.cn/2018/12/08/cis2018/" target="_blank" rel="noopener">CIS 2018回顾</a></p>
 <h1 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h1><p>本文中, 我们采用方括号+下标的方式来表示向量中的具体某一位. 例如向量$\mathbf s$的第$i$位用$\mathbf s[i]$来表示. 我们有时候会用下标0来表示不存在的下标, 例如$h_i$可以用$h_{i,0}$来表示, 这样做的好处是, 我们不用显式地提及$h_i$, 而是用$h_{i,j}$就可以表示所有的$h_{i,j\neq 0}$和$h_i$来避免描述地冗长.</p>
 <p>原文中的安全参数采用的是$\kappa$, 由于这个字母容易和$k$混淆, 且为了与我其他博文统一, 我修改为了$\lambda$.</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>假设我们采用的LWE的噪声为偶数, 即具有$2\mathbf e$的形式, 则最终我们得到的加密密文具有$(\mathbf a,b=\langle\mathbf a,\mathbf s\rangle+2e+m)\in\mathbb Z_q^n\times \mathbb Z_q^n$的形式, 其中$m\in\{0,1\}$是我们加密的密文. 在有了这种形式的密文后, 通过$b-\langle\mathbf a,\mathbf s\rangle=2e+m$, 再模上2方可解除$m$. </p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>假设我们采用的LWE的噪声为偶数, 即具有$2\mathbf e$的形式, 则最终我们得到的加密密文具有$(\mathbf a,b=\langle\mathbf a,\mathbf s\rangle+2e+m)\in\mathbb Z_q^n\times \mathbb Z_q$的形式, 其中$m\in\{0,1\}$是我们加密的密文. 在有了这种形式的密文后, 通过$b-\langle\mathbf a,\mathbf s\rangle=2e+m$, 再模上2方可解除$m$. </p>
 <p>如果我们将解密的过程看作是一个函数, 即对于$\bf a$来说, $f_{\mathbf a,b}(\mathbf x)=b-\langle\mathbf a,\mathbf x\rangle \mod q$, 那么当我们输入正确的密钥$\mathbf s$时, 最终计算出的结果再模上2就是解密的结果. 如果$\mathbf a$具有$n$维, 我们有<br>$$<br>f_{\mathbf a,b}(\mathbf x)=b-\sum_{i=1}^n \mathbf a[i]\cdot \mathbf s[i]<br>$$<br>先假设另一个明文$m’\in\{0,1\}$采用$(\mathbf a’,b’=\langle\mathbf a’,s\rangle+2e’+m’)$进行加密, 那么很显然的, $f_{\mathbf a’,b’}(\mathbf x)$可以用来描述其解密过程. 我们发现, 如果将两个函数加或乘在一起, 传入正确的密文后, 我们将会得到原先密文的加或乘的加密. 当然, 这里的加是指比特异或或者$GF(2)$上的加法. 观察<br>$$<br>\begin{aligned}<br>f_{\mathbf a,b}(\mathbf x)\cdot f_{\mathbf a’,b’}(\mathbf x) &amp;= (b-\sum \mathbf a[i]\cdot\mathbf x[i])\cdot (b’-\sum \mathbf a’[i]\cdot \mathbf x[i])\\<br>&amp;= h_0+\sum h_i\cdot \mathbf x[i]+\sum h_{i,j}\cdot \mathbf x[i]\mathbf x[j]<br>\end{aligned}<br>$$<br>这里传入参数$\mathbf s$后, 就有<br>$$<br>\begin{aligned}<br>f_{\mathbf a,b}(\mathbf s)\cdot f_{\mathbf a’,b’}(\mathbf s) &amp;= (2e+m)\cdot (2e’+m<br>‘)\ <br>&amp;= 4ee’+2e’m+2em’+mm’ \\<br>&amp;= 2(2ee’+e’m+em’)+mm’<br>\end{aligned}<br>$$<br>最终模上2后确实可以得到$mm’$. 类似的加法我们也可以具体验证.</p>
 <p>但是这里的乘法也就带来了一个问题, 描述我们多项式的系数个数, 由原先的$O(n)$个变成了$O(n^2)$个—-多了那些二次项的系数. 如果我们反复的进行乘法, 那么进行$L$次乘法, 描述多项式的系数个数就会变成$O(n^{2^L})$, 这显然不是我们想要的.</p>
 <p>解决这一问题的办法是, 让我们同态加密的加密方, 用一个新的密钥$\mathbf t$将原先密钥$\mathbf s$的所有一次项$\mathbf s[i]$二次项$\mathbf s[i]\mathbf s[j]$都加密起来, 即生成密文$(\mathbf a_{i,j},b_{i,j})$满足<br>$$<br>b_{i,j}=\langle\mathbf a_{i,j},\mathbf t\rangle+2e_{i,j}+\mathbf s[i]\mathbf s[j]\approx \langle a_{i,j},\mathbf t\rangle+\mathbf s[i]\mathbf s[j]<br>$$<br>如果我们将以上密文改写成解密多项式并带入到$f_{\mathbf a,b}(\mathbf x)\cdot f_{\mathbf a’,b’}(\mathbf x)$中, 我们将会得到一个全新的多项式函数<br>$$<br>g(\mathbf x)=h_0+\sum h_i(b_i-\langle\mathbf a_i,\mathbf x))+\sum h_{i,j}(b_{i,j}-\langle\mathbf a_{i,j},\mathbf x\rangle)<br>$$<br>这个多项式满足<br>$$<br>\begin{aligned}<br>g(\mathbf t)&amp;=h_0+\sum h_i(b_i-\langle\mathbf a_i,\mathbf t))+\sum h_{i,j}(b_{i,j}-\langle\mathbf a_{i,j},\mathbf t\rangle) \\<br>&amp;= h_0+\sum h_i\cdot \mathbf s[i]+\sum h_{i,j}\cdot \mathbf s[i]\mathbf s[j]<br>\end{aligned}<br>$$<br>其最终模2的结果也就是$mm’$.</p>
@@ -394,13 +403,14 @@
 <h2 id="潜在的问题"><a href="#潜在的问题" class="headerlink" title="潜在的问题"></a>潜在的问题</h2><p>上面的方案由一个潜在的问题. $h_{i,j}$不是标准的LWE生成的项, 我们也没有理由假设它是一个较小的值, 而实际上它们确实可以很大. 当这些项很大的时候, 极有可能导致$h_{i,j}\cdot (b_{i,j}-\langle\mathbf a_{i,j},\mathbf t\rangle)\not\approx h_{i,j}\cdot \mathbf s[i]\mathbf s[j]$.<span style="color:red">[<strong>习题1</strong>]</span> 为了避免这一情况的发生, 我们需要让$h_{i,j}$都不要太大. 我们采用的办法就是我们用过的”BitDecomp”大法, 即用二进制来表示$h_{i,j}$, 将其表示为$h_{i,j}=\sum\limits_{i=0}^{\lfloor\log q\rfloor}2^\tau\cdot h_{i,j,\tau}$. 到这里看起来也许就不那么美好了, 因此每项参数的意思需要你牢记, 这样你才能继续读下去.</p>
 <p>接下来更令人费解的是, 我们要构造一个是密文的形式, 但是又不是对任何东西的加密的一种”密文”, 令<br>$$<br>b_{i,j,\tau}=\langle\mathbf a_{i,j,\tau},\mathbf t\rangle+2e_{i,j,\tau}+2^\tau \mathbf s[i]\mathbf s[j]\approx\langle\mathbf a_{i,j,\tau},\mathbf t\rangle+2^\tau \mathbf s[i]\mathbf s[j]<br>$$<br>这里像是将$\mathbf a_{i,j},b_{i,j}$按照$h_{i,j}$的方式拆开, 但是实际上是我们为每一个$2^\tau\mathbf s[i]\mathbf s[j]$单独准备的”密文”, 但是他们并不是对$2^\tau\mathbf s[i]\mathbf s[j]$的加密, 因为我们的加密方案只会加密1 bit, 在$\tau \geq 1$的时候, 整个$2^\tau\mathbf s[i]\mathbf s[j]$会在模2的时候被一同模掉. 不过好在是$b_{i,j,\tau}-\langle\mathbf a_{i,j,\tau},\mathbf t\rangle\approx 2^\tau\cdot \mathbf s[i]\mathbf s[j]$还是成立的.</p>
 <p>但是这样做也有一个好处, 就是我们可以利用对$h_{i,j}$的拆分, 用以上的这组”密文”来表示$h_{i,j}$, 我们有<br>$$<br>h_{i,j}\cdot \mathbf s[i]\mathbf s[j]=\sum_{\tau=0}^{\lfloor\log q\rfloor}h_{i,j,\tau} 2^\tau \mathbf s[i]\mathbf s[j] \approx \sum_{\tau=0}^{\lfloor\log q\rfloor}h_{i,j,\tau}(b_{i,j,\tau}-\langle\mathbf a_{i,j,\tau},\mathbf t\rangle)<br>$$<br>这个时候$h_{i,j,\tau}$较小, $h_{i,j,\tau}\cdot (b_{i,j,\tau}-\langle\mathbf a_{i,j,\tau},\mathbf t\rangle)\not\approx h_{i,j,\tau}\cdot \mathbf s[i]\mathbf s[j]$的情况就不会出现了, 因此整个等式的$\approx$也就能得到保持.</p>
-<h2 id="Bootstrapping准备工作"><a href="#Bootstrapping准备工作" class="headerlink" title="Bootstrapping准备工作"></a>Bootstrapping准备工作</h2><p>回想一下每进行一次乘法的噪声增长.<br>$$<br>\begin{aligned}f_{\mathbf a,b}(\mathbf s)\cdot f_{\mathbf a’,b’}(\mathbf s) &amp;= (2e+m)\cdot (2e’+m’)\ &amp;= 4ee’+2e’m+2em’+mm’ \\&amp;= 2(2ee’+e’m+em’)+mm’\end{aligned}<br>$$<br>从$ee’$项可以看出, 每进行一次乘法运算, 噪声都从$E$变成了$E^2$, 同GSW方案一样, 我们的噪声是按双对数的方式进行增长的. 即在进行$L$层乘法之后, 噪声至少变成了$E^{2^L}$. 我们的模数$q$的选择只能是$n$的不能达到双指数而只能达到$2^{n^\epsilon}$(其中$\epsilon$为常数), 要使得噪声不超过$O(q)=O(2^n)$, 我们的$L$只能选择在$O(\log n)$. 但是, LWE解密电路的深度是$\max(n,\log q)$, 也就是说, 我们的的方案不能支持我们的解密电路! 也就无法实现Bootstrapping来达到Leveled FHE!</p>
-<p>此时我们的办法是, 用大的模数和维数来进行Bootstrapping, 而用小的模数和维数来进行同态运算. 这样, 我们同态运算过程中解密电路的深度就不会太深, 能够被模数和维数大的Bootstrapping过程所支持. 现在我们来介绍如何从参数$(n,\log q)$转换到$(k,\log p)$[^params]. 其中, $n=k^c, p=\text{poly}(k)$, 由于$q=2^{n^\epsilon}$, 我们就可以用大参数做约$D=n^\epsilon=k^{c\cdot \epsilon}$层同态运算, 成功地将小参数下地解密电路包括进来.</p>
+<h2 id="Bootstrapping准备工作"><a href="#Bootstrapping准备工作" class="headerlink" title="Bootstrapping准备工作"></a>Bootstrapping准备工作</h2><p>回想一下每进行一次乘法的噪声增长.<br>$$<br>\begin{aligned}f_{\mathbf a,b}(\mathbf s)\cdot f_{\mathbf a’,b’}(\mathbf s) &amp;= (2e+m)\cdot (2e’+m’)\ &amp;= 4ee’+2e’m+2em’+mm’ \\&amp;= 2(2ee’+e’m+em’)+mm’\end{aligned}<br>$$<br>从$ee’$项可以看出, 每进行一次乘法运算, 噪声都从$E$变成了$E^2$, 同GSW方案一样, 我们的噪声是按双对数的方式进行增长的. 即在进行$L$层乘法之后, 噪声至少变成了$E^{2^L}$. 我们的模数<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="我一般将modulus翻译成模数, 以同代数结构中的模(module)区分开来. 注意modulus的复数是moduli.
+">[2]</span></a></sup>$q$的选择只能是$n$的不能达到双指数而只能达到$2^{n^\epsilon}$(其中$\epsilon$为常数), 要使得噪声不超过$O(q)=O(2^{n^\epsilon})$, 我们的$L$只能选择在$\text{polylog } n$. 但是, LWE解密电路的深度是$\max(n,\log q)$, 也就是说, 我们的的方案不能支持我们的解密电路! 也就无法实现Bootstrapping来达到FHE!</p>
+<p>此时我们的办法是, 用大的模数和维数来进行Bootstrapping, 而用小的模数和维数来进行同态运算. 这样, 我们同态运算过程中解密电路的深度就不会太深, 能够被模数和维数大的Bootstrapping过程所支持. 现在我们来介绍如何从参数$(n,\log q)$转换到$(k,\log p)$<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="此处参数的格式是(维数, 模数)">[3]</span></a></sup>. 其中, $n=k^c, p=\text{poly}(k)$, 由于$q=2^{n^\epsilon}$, 我们就可以用大参数做约$D=n^\epsilon=k^{c\cdot \epsilon}$层同态运算, 成功地将小参数下地解密电路包括进来.</p>
 <p>我们首先可以发现, 在我们进行一次乘法, 将密钥从$\mathbf s$切换到$\mathbf t$时, 我们并不以一定需要$\mathbf t$与$\mathbf s$的维数相同, 通过选择维数更小的$\mathbf t$我们就可以降低维数. 降低模数时, 采用的思想是近似逼近. 假设在模$p$时我们用如下的方式来生成”密文”<br>$$<br>\hat b_{i,j,\tau}=\langle\hat {\mathbf a}_{i,j,\tau},\mathbf t\rangle+e+\left\lfloor\frac pq\cdot 2^\tau\cdot \mathbf s[i]\right\rceil<br>$$<br>其中$(\hat {\mathbf a}_{i,j,\tau},\hat b_{i,j,\tau})\in \mathbb Z^k_p\times \mathbb Z_p$是按照LWE加密生成的, 则<br>$$<br>2^\tau\cdot \mathbf s[i]\mathbf s[j]\approx \frac qp\cdot (b_{i,j,\tau}-\langle\mathbf a_{i,j,\tau},\mathbf t\rangle)<br>$$<br>即可大致还原出$2^\tau\cdot \mathbf s[i]\mathbf s[j]$. 我们用$\frac qp\cdot (\hat b_{i,j,\tau}-\langle\hat {\mathbf a}_{i,j,\tau},\mathbf t\rangle)$来代替之前的$b_{i,j,\tau}-\langle\mathbf a_{i,j,\tau},\mathbf t\rangle$用于构造新的一次多项式函数, 使得新的多项式模数变得更小了. 也许你看到这里又迷糊了, 还原出$2^\tau\cdot \mathbf s[i]\mathbf s[j]$又说明意义呢? 单独来看是没有什么意义, 但它的噪声是偶数的, 所有的这样的东西拼凑在一起最终可以帮助我们解密出同态运算的结果. </p>
 <p>到此为止, 我们就可以将切换到$\mathbf t$进行计算时的模数和维数都变小了.</p>
-<h1 id="BV11b同态加密方案"><a href="#BV11b同态加密方案" class="headerlink" title="BV11b同态加密方案"></a>BV11b同态加密方案</h1><p>这一部分将分为两个小部分介绍, 第一步就是不做模数切换和维数切换的基础同态方案$\mathsf{SH}$. 第二部分就是采用模数切换和维数切换的技术, 将$\mathsf{SH}$转换成一个可以加入Bootstrapping的方案$\mathsf{BTS}$, 在$\mathsf{BTS}$的基础上加上Bootstrapping技术就可以得到一个Level FHE方案.</p>
+<h1 id="BV11b中的SWHE同态加密方案"><a href="#BV11b中的SWHE同态加密方案" class="headerlink" title="BV11b中的SWHE同态加密方案"></a>BV11b中的SWHE同态加密方案</h1><p>这一部分将分为两个小部分介绍, 第一步就是不做模数切换和维数切换的基础同态方案$\mathsf{SH}$. 第二部分就是采用模数切换和维数切换的技术, 将$\mathsf{SH}$转换成一个可以加入Bootstrapping的方案$\mathsf{BTS}$, 在$\mathsf{BTS}$的基础上加上Bootstrapping技术就可以得到一个FHE方案.</p>
 <p>即使是本节内容大多已经在前面介绍过了, 这里只是将其形式化, 并对整个方案的流程做一定的解读.</p>
-<p>第一步和GSW一样, 都要有一个Setup, 之所以需要这个过程是因为我们要选择需要做同态的层数. 注意, 这一步在原文中是没有显式地写出来地, 但是它确实也这一做了.</p>
+<h2 id="密钥生成、加密、解密"><a href="#密钥生成、加密、解密" class="headerlink" title="密钥生成、加密、解密"></a>密钥生成、加密、解密</h2><p>第一步和GSW一样, 都要有一个Setup, 之所以需要这个过程是因为我们要选择需要做同态的层数. 注意, 这一步在原文中是没有显式地写出来地, 但是它确实也这一做了.</p>
 <ul>
 <li>$\mathsf{SH.Setup}(1^L, 1^\lambda)$: 用$\lambda$表示安全参数, $L$表示同态运算的层数, 选择参数$m,n,q$满足$n=\text{poly}(\lambda)$, $m\geq n\log q+2\lambda$, $L\approx \epsilon\log n$和$q$为奇数且$q\in [2^{n^\epsilon},2\cdot 2^{n^\epsilon})$, 其中$\epsilon\in(0,1)$为常数. 选择$\mathbb Z_q$上的噪声分布$\chi$.</li>
 </ul>
@@ -416,12 +426,57 @@
 <li>$\mathsf{SH.Enc(pk,m)}$: 选择$\mathbf r\overset{\$}\leftarrow \{0,1\}^m$, 计算$\mathbf v:=\mathbf A^T\mathbf r$和$w:=\mathbf b^T\mathbf r+m$, 输出密文$c:=((\mathbf v,w),0)$.</li>
 </ul>
 <p>注意这里最后的$0$代表当前同态(乘法)运算的层数. 同时由于噪声始终是偶数累计的, 因此模2仍然可以消除噪声.</p>
-<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><ol start="2">
+<p>在做完同态运算后, 我们得到的是第$L$层的密文, 即密文的格式是$c=((\mathbf v,w),L)$.</p>
+<ul>
+<li>$\mathsf{SH.Dec(sk, c)}$: 输出$((w-\langle\mathbf v,\mathbf s_L\rangle)\mod q)\mod 2$</li>
+</ul>
+<p>这里注意$\mathbf v$连同$w$就构成了最终解密多项式函数的描述, $(w-\langle\mathbf v,\mathbf s_L\rangle)\mod q$就相当于是求解密多项式在$\mathbf s_L$点的值.</p>
+<h2 id="同态运算"><a href="#同态运算" class="headerlink" title="同态运算"></a>同态运算</h2><p>加法的同态比较简单, 将多个同一层的密文相加即可.</p>
+<ul>
+<li>加法门: 对于n个密文$\{c_i=((\mathbf v_i,w_i),\ell)\}_{i\in [n]}$做加法同态, 计算和输出<br>$$<br>c_{+}=((\mathbf v_+,w_+),\ell)=\left(\left(\sum_i\mathbf v_i,\sum_i w_i\right),\ell\right).<br>$$</li>
+</ul>
+<p>解密的正确性留给读者作为<span style="color:red">[<strong>习题3</strong>]</span>. 可以看出, 加法同态不消耗同态层数, 因此我们的同态层数$L$是指乘法层数.</p>
+<p>对于乘法来说, 我们需要用到前面介绍的技术.</p>
+<ul>
+<li>乘法门: 对于两个同层的乘法密文$c=((\mathbf v,w),\ell)$和$c’=((\mathbf v’,w’),\ell)$, 计算<br>$$<br>\phi(\mathbf x)=(w-\langle \mathbf v,\mathbf x\rangle)(w’-\langle\mathbf v’,\mathbf x\rangle)=\sum_{0\leq i\leq j\leq n} h_{i,j}\cdot\mathbf x[i]\mathbf x[j]<br>$$<br>令$h_{i,j}=\sum\limits_{\tau=0}^{\lfloor\log q\rfloor}h_{i,j,\tau}\cdot 2^\tau$, 并带入$evk=\Psi$, 得到<br>$$<br>\mathbf v_\times=\sum_{\begin{aligned}0\leq i\leq &amp;j\leq n\\\tau\in\{0,\cdots&amp;,\lfloor\log q\rfloor\}\end{aligned}} h_{i,j,\tau}\cdot \mathbf a_{\ell+1,i,j,\tau}<br>$$<br>和<br>$$<br>w_{\times}=\sum_{\begin{aligned}0\leq i\leq &amp;j\leq n\\\tau\in\{0,\cdots&amp;,\lfloor\log q\rfloor\}\end{aligned}} h_{i,j,\tau}\cdot b_{\ell+1,i,j,\tau}<br>$$<br>最终输出$((\mathbf v_\times,w_\times),\ell+1)$.</li>
+</ul>
+<p>注意$\sum$记号处发扬了我们在符号说明处的关于下标的说明, 实际上其内容包括常数项$h_0=ww’$, 一次项(系数为$h_{i\neq 0,j=0}$)和二次项(系数为$h_{i\neq0,j\neq 0}$). 同样这里的同态计算验证留作<span style="color:red">[<strong>习题4</strong>]</span>. </p>
+<p>将加法门和乘法门的Eval方式结合起来, 我们就可以得到</p>
+<ul>
+<li>$\mathsf{SH.Eval}(evk,f,c_1,\cdots, c_t)$: 采用加法门和乘法门Eval的方式输出最终运算结果.</li>
+</ul>
+<p>要使得结果正确, $f$点电路必须是我们支持的电路, 必须是一个加法乘法交替的电路, 第$\ell$层的乘法密文的输出只能通向$\ell+1$层的乘法. 如果不考虑深度限制, 实际上所有的布尔电路都可以转化为这一的电路, 但是考虑到深度限制, 我们还有工作要做. 到这里, SWHE方案就算介绍完了, 采用该方案可以做到$n$的对数多项式(polylog)层的同态运算.</p>
+<h1 id="BV11b中的FHE方案"><a href="#BV11b中的FHE方案" class="headerlink" title="BV11b中的FHE方案"></a>BV11b中的FHE方案</h1><p>我们用$\mathsf{BTS}$来表示我们的可以加入Bootstrapping的方案, 该方案需要用到$\mathsf{SH}$方案的内容, 阅读这一部分, 请确保对前面知识的熟悉. 为了使我们的方案支持Bootstrapping, 我们必须降低解密电路的深度, 我们使用的方法是用维数切换和模数切换, 将密文的模数和维数变得更小.</p>
+<ul>
+<li>$\mathsf{BTS.Setup}(1^L, 1^\lambda)$: 用$\lambda$表示安全参数, $L$表示同态运算的层数, 选择参数$m,n,q$满足$n=\text{poly}(\lambda)$, $m\geq n\log q+2\lambda$, $L\approx \epsilon\log n$和$q$为奇数且$q\in [2^{n^\epsilon},2\cdot 2^{n^\epsilon})$, 其中$\epsilon\in(0,1)$为常数. 选择$\mathbb Z_q$上的噪声分布$\chi$. 选择$\mathbb Z_p$上的噪声分布$\hat\chi$.</li>
+</ul>
+<p>$\mathsf{Setup}$是和$\mathsf{SH}$方案是一样的, 实际上我们$\mathsf{SH}$中参数的设定就是为了方便$\mathsf{BTS}$中的方案描述. 来自[BV11b]作者的建议: 在阅读时可以带入参数$k=\lambda,n=k^4,q\approx \sqrt n, L=1/3\log n=4/3\log k,p=(n^2\log n)\cdot\text{poly}(k),m=O(n\log q)$以及$n$-bounded的$\chi$和$k$-bounded的$\hat\chi$进行理解.</p>
+<ul>
+<li><p>$\mathsf{BTS.KeyGen(1^\lambda)}$: 调用$\mathsf{SH.KeyGen}(1^\lambda)$得到$\mathbf s_L,\Psi,(\mathbf A,\mathbf b)$. 生成短的私钥$\hat{\mathbf s}\overset{\$}\leftarrow \mathbb Z_p^k$并计算对应于这个短私钥的计算密钥, 即对于所有的$i\in[n],\tau\in \{0,\cdots,\lfloor\log q\rfloor\}$, 生成$\hat{\mathbf a}_{i,\tau}\overset{\$}\leftarrow \mathbb Z_p^k,\hat e\overset{\$}\leftarrow \hat \chi$ 并计算<br>$$<br>\hat b_{i,\tau}:=\langle\hat{\mathbf a}_{i,\tau},\hat{\mathbf s}\rangle+\hat e_{i,\tau}+\left\lfloor\frac pq\cdot(2^\tau\cdot\mathbf s_L[i])\right\rceil \mod p<br>$$<br>记$\hat\psi_{i,\tau}:=(\hat{\mathbf a}_{i,\tau},\hat b_{i,\tau})\in \mathbb Z_p^k\times \mathbb Z_p$和$\hat\Psi=\{\hat\psi_{i,\tau}\}_{i\in[n],\tau\in\{0,\cdots,\lfloor\log q\rfloor\}}$.</p>
+<p>最终输出公钥$pk=(\mathbf A,\mathbf b)$, 私钥$sk = \hat {\mathbf s}$, 计算密钥$evk=\{\Psi, \hat \Psi\}$.</p>
+</li>
+</ul>
+<p>实际上可以看出, 我们仍然需要借用原先方案的密钥. 原因是我们在做同态运算的时候, 接收到的输入是大密文, 而最后输出必须是小密文. 我们要求大密文和小密文的解密结果是一样的, 但是小密文的解密电路却更浅. 因此, 我们首先需要调用原先的$\mathsf{SH.Eval}$, 得到计算结果后, 再将密文变成小密文. 因此我们的加密算法, 应当和$\mathsf{SH.Enc}$相同:</p>
+<ul>
+<li>$\mathsf{BTS.Enc}(pk,m)$: 输出$\mathsf{SH.Enc}(pk,m)$.</li>
+</ul>
+<p>具体的计算过程:</p>
+<ul>
+<li>$\mathsf{BTS.Eval}(evk, f, c_1,\cdots, c_t)$: 计算$c_f\leftarrow \mathsf{SH.Eval}(\Psi, f, c_1,\cdots, c_t)$. 记$c_f=((\mathbf v,w), L)\in\mathbb Z^{n}_q\times \mathbb Z_q\times \{L\}$. 考虑多项式函数<br>$$<br>\phi(\mathbf x):=\frac pq\cdot \left(\frac{q+1}p\cdot (w-\langle\mathbf v,\mathbf x\rangle)\right) \mod p<br>$$<br>按照之前的方式将其系数整理为$h_0,\cdots, h_n\in\mathbb Z_q$的形式, 即<br>$$<br>\phi(\mathbf x)=\sum^n_{i=0}h_i\cdot(\frac pq \cdot \mathbf x[i])<br>$$<br>再将$h_i$按照二进制展开, 得到<br>$$<br>\phi(\mathbf x)=\sum^n_{i=0}\sum_{\tau=0}^{\lfloor\log q\rfloor}h_{i,\tau}\cdot (\frac pq\cdot 2^\tau\cdot\mathbf x[i])<br>$$<br>采用$\hat\Psi$中的密钥来替换上式中的$\frac pq\cdot(2^\tau\cdot\mathbf s_L[i])$可以得到一个新的一次多项式函数, 记常数项为$\hat w$, 一次项系数向量为$\hat{\mathbf v}$则<br>$$<br>\begin{aligned}<br>\hat{\mathbf v}:=2\cdot \sum^n_{i=0}\sum^{\lfloor\log q\rfloor}_{\tau=0}h_{i,\tau}\cdot\hat{\mathbf a}_{i,\tau} \mod p\in \mathbb Z_p^k\\<br>\hat w:=2\cdot \sum^n_{i=0}\sum^{\lfloor\log q\rfloor}_{\tau=0}h_{i,\tau}\cdot\hat b_{i,\tau}\mod q\in\mathbb Z_q<br>\end{aligned}<br>$$<br>最后输出密文$\hat c=(\hat{\mathbf v},\hat w)$.</li>
+</ul>
+<p>最后密文确实是小密文的格式, 因此我们的解密需要按照小密文的格式进行解密:</p>
+<ul>
+<li>$\mathsf{BTS.Dec}(sk=\hat{\mathbf s},\hat c)$: 计算并输出<br>$$<br>m^\ast:=((\hat w-\langle\hat{\mathbf v},\hat{\mathbf s}\rangle) \mod q)\mod 2<br>$$</li>
+</ul>
+<p>这里仍然有一个问题, 就是要验证经过大密钥转换后的小密钥用$\mathsf{BTS.Dec}$解密的结果与大密钥用$\mathsf{SH.Dec}$解密出的结果相同, 其基本思想已经在本文中有所体现, 具体的验证过程也可以参考[BV11b]论文.</p>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><ol>
 <li>解释<span style="color:red">[<strong>习题1</strong>]</span>处的原因.</li>
 <li>证明<span style="color:red">[<strong>习题2</strong>]</span>处的加密方案是CPA安全的. 这里可以假设如果$\mathbf b’:=\mathbf A\mathbf s_0+\mathbf e$作为公钥一部分, 则得到的标准LWE加密方案是CPA安全的, 现在证明选择$\mathbf b:=\mathbf A\mathbf s_0+2\mathbf e$作为公钥一部分加密方案仍然是CPA安全的.</li>
+<li>验证<span style="color:red">[<strong>习题3</strong>]</span>处加法同态的正确性.</li>
+<li>验证<span style="color:red">[<strong>习题4</strong>]</span>处乘法同态的正确性. 即验证两个$\ell$层分别对应明文$m,m’$的密文$c=((\mathbf v,w),\ell)$和$c’=((\mathbf v’,w’),\ell)$经过乘法同态运算的得到$c_\times=((\mathbf v_\times,w_\times),\ell+1)$密文, 能够用密钥$\mathbf s_{\ell+1}$解出$mm’$. 答案见[BV11b]的第4.1节.</li>
+<li>如何在$\mathsf{BTS}$的基础上实现全同态加密? 你的方案需要引入哪些额外的假设?</li>
 </ol>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>[^BV11b]: Zvika Brakersi and Vinod Vaikuntanathan. Efficient fully homomorphic encryption from (standard) LWE. In <em>FOCS</em>, pages 97-106, 2011.<br>[^params]: 此处参数的格式是(维数, 模数)</p>
-
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Zvika Brakersi and Vinod Vaikuntanathan. Efficient fully homomorphic encryption from (standard) LWE. In <em>FOCS</em>, pages 97-106, 2011.<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">我一般将modulus翻译成模数, 以同代数结构中的模(module)区分开来. 注意modulus的复数是moduli.<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">此处参数的格式是(维数, 模数)<a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
     
@@ -460,6 +515,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/18/同态加密-3-BGV方案/" rel="prev" title="同态加密(2) BV11b方案">
+                同态加密(2) BV11b方案 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -542,7 +601,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -597,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#符号说明"><span class="nav-number">1.</span> <span class="nav-text">符号说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#潜在的问题"><span class="nav-number">2.1.</span> <span class="nav-text">潜在的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bootstrapping准备工作"><span class="nav-number">2.2.</span> <span class="nav-text">Bootstrapping准备工作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BV11b同态加密方案"><span class="nav-number">3.</span> <span class="nav-text">BV11b同态加密方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#习题"><span class="nav-number">4.</span> <span class="nav-text">习题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">5.</span> <span class="nav-text">注释</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#符号说明"><span class="nav-number">1.</span> <span class="nav-text">符号说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#潜在的问题"><span class="nav-number">2.1.</span> <span class="nav-text">潜在的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bootstrapping准备工作"><span class="nav-number">2.2.</span> <span class="nav-text">Bootstrapping准备工作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BV11b中的SWHE同态加密方案"><span class="nav-number">3.</span> <span class="nav-text">BV11b中的SWHE同态加密方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#密钥生成、加密、解密"><span class="nav-number">3.1.</span> <span class="nav-text">密钥生成、加密、解密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同态运算"><span class="nav-number">3.2.</span> <span class="nav-text">同态运算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BV11b中的FHE方案"><span class="nav-number">4.</span> <span class="nav-text">BV11b中的FHE方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#习题"><span class="nav-number">5.</span> <span class="nav-text">习题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">6.</span> <span class="nav-text">注释</span></a></li></ol></div>
             
 
           </div>
@@ -815,12 +874,9 @@
   
   
     <script type="text/x-mathjax-config">
+      
       MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
       });
     </script>
 
@@ -832,7 +888,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
