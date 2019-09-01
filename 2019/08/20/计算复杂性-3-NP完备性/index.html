@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lingeros">
 <meta property="og:description" content="If $\mathbf{P}=\mathbf{NP}$, then $\mathbf N=1$ or $\mathbf{P}=0$. —-Turing Machine$\mathbf{NP}$完备性的是计算复杂性上一个至关重要的问题. 简而言之, $\mathbf{NP}$问题就是那些能够在确定多项式时间内被验证答案的判定问题, 即那些很容易就被检验的问题. $\mathbf{NP}$问题中, 有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-20T15:16:50.838Z">
+<meta property="og:updated_time" content="2019-09-01T14:48:19.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算复杂性(3) NP完备性">
 <meta name="twitter:description" content="If $\mathbf{P}=\mathbf{NP}$, then $\mathbf N=1$ or $\mathbf{P}=0$. —-Turing Machine$\mathbf{NP}$完备性的是计算复杂性上一个至关重要的问题. 简而言之, $\mathbf{NP}$问题就是那些能够在确定多项式时间内被验证答案的判定问题, 即那些很容易就被检验的问题. $\mathbf{NP}$问题中, 有">
@@ -386,6 +386,52 @@
 <h2 id="—-Turing-Machine"><a href="#—-Turing-Machine" class="headerlink" title="—-Turing Machine"></a><p style="text-align:right">—-Turing <span style="color:lightgray">Machine</span></p></h2><p>$\mathbf{NP}$完备性的是计算复杂性上一个至关重要的问题. 简而言之, $\mathbf{NP}$问题就是那些能够在确定多项式时间内被验证答案的判定问题, 即那些很容易就被检验的问题. $\mathbf{NP}$问题中, 有大量非常有现实意义但到现目前为止都没有好的解决办法的问题. 有关$\mathbf{NP}$完备性的讨论热度也从来没有衰减过.</p>
 <p>2000年, 美国克雷数学研究所将$\mathbf{P}\overset{?}=\mathbf{NP}$列为七个千禧年大奖难题之一.</p>
 <a id="more"></a>
+<h1 id="非确定计算模型"><a href="#非确定计算模型" class="headerlink" title="非确定计算模型"></a>非确定计算模型</h1><p>现在我们介绍一个计算模型. 该计算模型机的功能非常强大, 能够在多项式时间内求解很多我们尚未发现高效算法的问题.</p>
+<h2 id="非确定图灵机"><a href="#非确定图灵机" class="headerlink" title="非确定图灵机"></a>非确定图灵机</h2><p>非确定图灵机(nondeterministic Turing machine, NDTM)与图灵机的定义大致相同. 不同的是, 非确定图灵机有两个转移函数, 每一步计算可以选择两个转移函数中的任何一个. 非确定图灵机物理上是不能实现的.</p>
+<blockquote>
+<p><strong>定义</strong> 非确定图灵机</p>
+<p>一个非确定图灵机$N$是一个三元组$(\Gamma, Q, \delta=(\delta_1,\delta_2))$.</p>
+<ul>
+<li>有限集$\Gamma$是字母表, 表示纸带可以记录的符号集.</li>
+<li>有限集$Q$是状态集, 表示状态机的状态, 其中一个特殊的状态$q_\text{start}$为起始状态, $q_\text{accept}$为表示接受的停机状态, $q_\text{reject}$为表示拒绝的停机状态.</li>
+<li>$\delta_1,\delta_2: Q\times \Gamma^k\to Q\times \Gamma^{k-1}\times \{\text L,\text S,\text R\}^k$是两个转移函数</li>
+</ul>
+</blockquote>
+<p>至于如何选择转移函数, 不是我们关心的问题, 因为我们非确定图灵机对问题的判定只关心计算路径.</p>
+<p>非确定图灵机的中还有一点需要说的是, 非确定图灵机对一个语言的判定结果, 是从最终的停机状态进行输出的. 实际上我们也可以这样来定义图灵机, 但是没有必要. 非确定图灵机之所以要这样定义, 是因为其判定一个语言的定义与图灵机有所不同. 在定义非确定图灵机判定一个语言之前, 我们首先定义计算分支.</p>
+<p>非形式化地讲, 一台非确定图灵机$N$在特定输入$x$下, 计算过程中一条计算分支定义为从起始状态开始, 随机选择$\delta_1,\delta_2$进行计算, 直到$q_\text{accept}$或$q_\text{reject}$而<strong>停机</strong>. 这样一来, 每一种直到停机状态地$\delta_1,\delta_2$选择序列, 就对应一条计算分支. 这里地分支的描述已经很接近非确定自动机中的计算分支.</p>
+<p>真正让非确定图灵机无法实现的是, 非确定图灵机停机和接受一个串的定义. 我们定义, </p>
+<blockquote>
+<p>非确定图灵机$N$在$T(n)$时间内停机, 当且仅当对于任意的输入串$x\in\{0,1\}^\ast$, 无论$N$如何选择转移函数, 在$T(|x|)$时间内停机.</p>
+</blockquote>
+<p>这里重申一下, 非确定图灵机的停机就是进入两个停机状态: $q_\text{accept}$或$q_\text{reject}$中的任意一个. 此外, 我们也可以将图灵机的输出也转换成用状态表示.</p>
+<blockquote>
+<p>非确定图灵机$N$接受一个串$x$定义为, 输入$x$, 存在一个转移函数的选择方式, 使得$N$最终到达$q_\text{accept}$状态, 记作$N(x)=1$.</p>
+</blockquote>
+<p>可以看出, 就这点来说, 物理上实现非确定图灵机就不太容易了. 非确定图灵机每一步计算, 就相当于是将一个线程分成了两个, 两个不同的转移函数选择各自对应一个子线程. 最终, 所有的线程中, 只要任何一个达到了$q_\text{accept}$就宣告图灵机接受该串. 还有一点需要注意的是, 我们这里并不要求图灵机每一条计算分支最终都会停机, 同时基于这一点, 我们可以通过如下方式定义非确定图灵机拒绝一个串.</p>
+<blockquote>
+<p>非确定图灵机$N$拒绝一个串$x$定义为, 输入$x$, 至少存在一个转移函数选择方式使得$N$停机, 且当$N$停机时, $N$最终均将到达$q_\text{reject}$状态, 记作$N(x)=0$.</p>
+</blockquote>
+<p>现在我们加上时间的限定, 给出非确定图灵机在$T(n)$时间内停机的定义.</p>
+<blockquote>
+<p>非确定图灵机$N$在$T(n)$时间内停机, 如果对于任意输入$x\in\{0,1\}^\ast$, 无论$N$如何选择转移函数, 都会在$T(|x|)$时间内到达$q_\text{accept}$或$q_\text{reject}$状态.</p>
+</blockquote>
+<p>也就是说, 我们要求$N$的每一条计算分支都在$T(|x|)$步就算内停机.</p>
+<h2 id="非确定图灵机的计算能力"><a href="#非确定图灵机的计算能力" class="headerlink" title="非确定图灵机的计算能力"></a>非确定图灵机的计算能力</h2><p>首先我们说非确定图灵机$N$判定一个语言$L$可以被定义为$x\in L\iff N(x)=1$.</p>
+<p>可以证明, 非确定图灵机和图灵机具有同样的<strong>计算能力</strong><span style="color:red">[<strong>习题1</strong>]</span>, 我们不做过多的证明, 但是我们对非确定图灵机拒绝一个串的定义做一些讨论.</p>
+<p>假设我们将非确定图灵机$N$拒绝一个串$x$定义为<em>非确定图灵机$N$拒绝一个串$x$定义为, 输入$x$, 当$N$停机时, $N$最终均将到达$q_\text{reject}$状态</em>. 假设有一台图灵机, 它的两个转移函数是一样的, 那么它就是一台图灵机, 那么对于一个判定$\mathbf{RE}$语言的图灵机$M$, 将它转换为一个两个转移函数均为$M$的转移函数的图灵机$N$, 那么$N$收到那些使得$M$不能停机的串$x$, 根据上述定义, 都应该有$N(x)=0$. 如果图灵机和非确定图灵机的计算能力相同, 也就有$\mathbf R=\mathbf{RE}$, 这显然是不正确的, 上述定义不是我们想要的.</p>
+<h2 id="非确定时间"><a href="#非确定时间" class="headerlink" title="非确定时间"></a>非确定时间</h2><blockquote>
+<p>$\mathbf{NTIME}$</p>
+<p>设$T:\mathbb N\to \mathbb N$, 如果存在一台非确定图灵机$N$和一个常数$c$, 使得对于任意$x\in\{0,1\}^\ast$, $N(x)$在$cT(|x|)$时间内停机, 且对于任意$x\in L$, 有$N(x)=1$且, 则$L\in\mathbf{NTIME}(T(n))$.</p>
+</blockquote>
+<p>实际上我们就是结合了图灵机在指定时间内停机的定义和图灵机判定一个语言$L$的定义, 我们要求</p>
+<ul>
+<li>非确定图灵机所有分支均在指定时间内停机</li>
+<li>非确定图灵机判定指定语言</li>
+</ul>
+<h2 id="非确定通用图灵机"><a href="#非确定通用图灵机" class="headerlink" title="非确定通用图灵机"></a>非确定通用图灵机</h2><h2 id="非确定时间谱系定理"><a href="#非确定时间谱系定理" class="headerlink" title="非确定时间谱系定理"></a>非确定时间谱系定理</h2><h1 id="mathbf-NP-完备性"><a href="#mathbf-NP-完备性" class="headerlink" title="$\mathbf{NP}$完备性"></a>$\mathbf{NP}$完备性</h1><h2 id="mathbf-NP"><a href="#mathbf-NP" class="headerlink" title="$\mathbf{NP}$"></a>$\mathbf{NP}$</h2><h2 id="mathbf-NP-完备问题"><a href="#mathbf-NP-完备问题" class="headerlink" title="$\mathbf{NP}$完备问题"></a>$\mathbf{NP}$完备问题</h2><h1 id="Cook-Levin定理"><a href="#Cook-Levin定理" class="headerlink" title="Cook-Levin定理"></a>Cook-Levin定理</h1><h2 id="mathsf-SAT-问题"><a href="#mathsf-SAT-问题" class="headerlink" title="$\mathsf{SAT}$问题"></a>$\mathsf{SAT}$问题</h2><h2 id="Cook-Levin归约"><a href="#Cook-Levin归约" class="headerlink" title="Cook-Levin归约"></a>Cook-Levin归约</h2><h1 id="mathbf-NP-完备问题归约"><a href="#mathbf-NP-完备问题归约" class="headerlink" title="$\mathbf{NP}$完备问题归约"></a>$\mathbf{NP}$完备问题归约</h1><h1 id="其他复杂度类"><a href="#其他复杂度类" class="headerlink" title="其他复杂度类"></a>其他复杂度类</h1><h1 id="高级论题"><a href="#高级论题" class="headerlink" title="高级论题"></a>高级论题</h1><h2 id="Ladner定理"><a href="#Ladner定理" class="headerlink" title="Ladner定理"></a>Ladner定理</h2><h2 id="Baker-Gill-Solovay定理"><a href="#Baker-Gill-Solovay定理" class="headerlink" title="Baker-Gill-Solovay定理"></a>Baker-Gill-Solovay定理</h2><h2 id="相对化"><a href="#相对化" class="headerlink" title="相对化"></a>相对化</h2><h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><ol>
+<li>解释<span style="color:red">[<strong>习题1</strong>]</span>处<strong>计算能力</strong>的意思.</li>
+</ol>
 
       
     </div>
@@ -511,7 +557,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -522,7 +568,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -566,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#—-Turing-Machine"><span class="nav-number">1.</span> <span class="nav-text">—-Turing Machine</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#—-Turing-Machine"><span class="nav-number">1.</span> <span class="nav-text">—-Turing Machine</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#非确定计算模型"><span class="nav-number"></span> <span class="nav-text">非确定计算模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非确定图灵机"><span class="nav-number">1.</span> <span class="nav-text">非确定图灵机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非确定图灵机的计算能力"><span class="nav-number">2.</span> <span class="nav-text">非确定图灵机的计算能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非确定时间"><span class="nav-number">3.</span> <span class="nav-text">非确定时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非确定通用图灵机"><span class="nav-number">4.</span> <span class="nav-text">非确定通用图灵机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非确定时间谱系定理"><span class="nav-number">5.</span> <span class="nav-text">非确定时间谱系定理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mathbf-NP-完备性"><span class="nav-number"></span> <span class="nav-text">$\mathbf{NP}$完备性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mathbf-NP"><span class="nav-number">1.</span> <span class="nav-text">$\mathbf{NP}$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mathbf-NP-完备问题"><span class="nav-number">2.</span> <span class="nav-text">$\mathbf{NP}$完备问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cook-Levin定理"><span class="nav-number"></span> <span class="nav-text">Cook-Levin定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mathsf-SAT-问题"><span class="nav-number">1.</span> <span class="nav-text">$\mathsf{SAT}$问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cook-Levin归约"><span class="nav-number">2.</span> <span class="nav-text">Cook-Levin归约</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mathbf-NP-完备问题归约"><span class="nav-number"></span> <span class="nav-text">$\mathbf{NP}$完备问题归约</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他复杂度类"><span class="nav-number"></span> <span class="nav-text">其他复杂度类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级论题"><span class="nav-number"></span> <span class="nav-text">高级论题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ladner定理"><span class="nav-number">1.</span> <span class="nav-text">Ladner定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Baker-Gill-Solovay定理"><span class="nav-number">2.</span> <span class="nav-text">Baker-Gill-Solovay定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相对化"><span class="nav-number">3.</span> <span class="nav-text">相对化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#习题"><span class="nav-number"></span> <span class="nav-text">习题</span></a></li></div>
             
 
           </div>

@@ -87,7 +87,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/08/14/同态加密-2-BV11b方案/brakerski.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/14/同态加密-2-BV11b方案/vaikuntanathan.jpg">
-<meta property="og:updated_time" content="2019-08-18T17:33:04.190Z">
+<meta property="og:updated_time" content="2019-09-01T14:52:06.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="同态加密(2) BV11b方案">
 <meta name="twitter:description" content="[BV11b] [1]方案是最早的基于标准LWE假设的加密方案, 该方案基于一个优化版本的LWE公钥加密, 采用类似于多项式插值的方式来实现同态运算.">
@@ -475,6 +475,7 @@
 <li>验证<span style="color:red">[<strong>习题3</strong>]</span>处加法同态的正确性.</li>
 <li>验证<span style="color:red">[<strong>习题4</strong>]</span>处乘法同态的正确性. 即验证两个$\ell$层分别对应明文$m,m’$的密文$c=((\mathbf v,w),\ell)$和$c’=((\mathbf v’,w’),\ell)$经过乘法同态运算的得到$c_\times=((\mathbf v_\times,w_\times),\ell+1)$密文, 能够用密钥$\mathbf s_{\ell+1}$解出$mm’$. 答案见[BV11b]的第4.1节.</li>
 <li>如何在$\mathsf{BTS}$的基础上实现全同态加密? 你的方案需要引入哪些额外的假设?</li>
+<li>根据Lattice Gadget的思想, 构造一个求解LWE问题的算法. 提示: 直接求LWE问题中$\mathbf x$的值是困难的, 即使一位一位进行求值也是比较困难的, 但是对于一个只可能是$0$或$1$的位呢? 是否有办法区分呢? 如果还是没有思路的话, 可以参考LPN问题的求解算法获得一定的启发.</li>
 </ol>
 <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Zvika Brakersi and Vinod Vaikuntanathan. Efficient fully homomorphic encryption from (standard) LWE. In <em>FOCS</em>, pages 97-106, 2011.<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">我一般将modulus翻译成模数, 以同代数结构中的模(module)区分开来. 注意modulus的复数是moduli.<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">此处参数的格式是(维数, 模数)<a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div>
       
@@ -601,7 +602,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -612,7 +613,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
