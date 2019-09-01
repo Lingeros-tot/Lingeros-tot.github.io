@@ -87,7 +87,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/1567245476092.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/1567246237266.png">
-<meta property="og:updated_time" content="2019-09-01T14:58:40.985Z">
+<meta property="og:updated_time" content="2019-09-01T15:06:44.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="格密码基础(1) LWE问题简介">
 <meta name="twitter:description" content="LWE问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. 终于到了介绍LWE的时间. LWE几乎是每个当代密码学学者\学生必须要有所了解的工具, 基于LWE, 我们能够构造一大批功能强大且安全的加密方案, 如选择密钥攻击安全的公钥加密方案(IND-CCA2 P">
@@ -391,7 +391,7 @@
 <p>本文中, 我们将介绍LWE相关知识, 包括Basic Idea, 两种基本问题和他们之间的规约, 变体问题及其困难性规约, LWE算法的复杂性结论.</p>
 <h1 id="解线性方程组问题"><a href="#解线性方程组问题" class="headerlink" title="解线性方程组问题"></a>解线性方程组问题</h1><p>没有什么可以说的呀, 求<strong>兼容</strong>的线性方程组的特解或者通解都是$\mathbf P$问题. 我们说的方程之间不兼容, 实际上是就是以下一种情况:</p>
 <ul>
-<li>没有几个相互毛盾的方程, 比如一会儿又让$x_1+x_2=1$, 一会儿又让$x_1+x_2=2$.</li>
+<li>没有几个相互矛盾的方程, 比如一会儿又让$x_1+x_2=1$, 一会儿又让$x_1+x_2=2$.</li>
 </ul>
 <p>但是产生这种情况的情形, 可能是多种的:</p>
 <ul>
