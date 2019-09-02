@@ -77,20 +77,20 @@
 
 
 
-<meta name="description" content="LWE问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. 终于到了介绍LWE的时间. LWE几乎是每个当代密码学学者\学生必须要有所了解的工具, 基于LWE, 我们能够构造一大批功能强大且安全的加密方案, 如选择密钥攻击安全的公钥加密方案(IND-CCA2 P">
+<meta name="description" content="容错学习(learning with errors, LWE)问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. LWE问题(earning with errors)就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强">
 <meta name="keywords" content="密码学,计算复杂性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="格密码基础(1) LWE问题简介">
 <meta property="og:url" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/index.html">
 <meta property="og:site_name" content="Lingeros">
-<meta property="og:description" content="LWE问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. 终于到了介绍LWE的时间. LWE几乎是每个当代密码学学者\学生必须要有所了解的工具, 基于LWE, 我们能够构造一大批功能强大且安全的加密方案, 如选择密钥攻击安全的公钥加密方案(IND-CCA2 P">
+<meta property="og:description" content="容错学习(learning with errors, LWE)问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. LWE问题(earning with errors)就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/1567245476092.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/1567246237266.png">
-<meta property="og:updated_time" content="2019-09-01T15:06:44.349Z">
+<meta property="og:updated_time" content="2019-09-02T11:47:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="格密码基础(1) LWE问题简介">
-<meta name="twitter:description" content="LWE问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. 终于到了介绍LWE的时间. LWE几乎是每个当代密码学学者\学生必须要有所了解的工具, 基于LWE, 我们能够构造一大批功能强大且安全的加密方案, 如选择密钥攻击安全的公钥加密方案(IND-CCA2 P">
+<meta name="twitter:description" content="容错学习(learning with errors, LWE)问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. LWE问题(earning with errors)就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强">
 <meta name="twitter:image" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/1567245476092.png">
 
 
@@ -385,7 +385,8 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>LWE问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>容错学习(learning with errors, LWE)问题就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的.</p>
+<p>LWE问题(earning with errors)就是求解带噪声的线性方程组问题. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的.</p>
 <p>终于到了介绍LWE的时间. LWE几乎是每个当代密码学学者\学生必须要有所了解的工具, 基于LWE, 我们能够构造一大批功能强大且安全的加密方案, 如选择密钥攻击安全的公钥加密方案(IND-CCA2 PKE), 有损加密方案(Lossy PKE), 基于属性加密(ABE), 全同态加密(FHE), 密钥交换(Key Exchange), 非交互零知识证明(NIZK), 程序混淆(Obfuscation)….</p>
 <a id="more"></a>
 <p>本文中, 我们将介绍LWE相关知识, 包括Basic Idea, 两种基本问题和他们之间的规约, 变体问题及其困难性规约, LWE算法的复杂性结论.</p>
@@ -400,17 +401,46 @@
 </ul>
 <p>不过, 大体上对于一个随机的$m$元$n$个方程组成的模$q$方程组, 只要参数得当(比如不要作死选$m&lt;n$), 得到的方程几乎是可以解的. 一种比较好的方式的, 首先编造出来方程的解, 再来随机生成系数得到方程, 这样生成的方程组始终是有解的. 无论是哪种方式, 我们要解决的问题都是求线性方程组的解. 求解下列方程是容易的:</p>
 <img src="/2019/09/01/格密码基础-1-LWE问题简介/1567245476092.png">
-<p>这个问题是这样的, 首先, 挑战者(challenger)会均匀随机地选择一个$n$维的$\mathbf x$作为解. 我们作为攻击者(adversary)可以不断地向挑战者索要方程地组中的一个方程. 实际上, 此时挑战者在先前并没有准备方程, 此时挑战者会均匀随机的选择行向量$\mathbf a_i$作为方程的系数, 然后计算$b_i=\mathbf a_i\cdot \mathbf x$, 并将$(\mathbf a_i,b_i)$返回给攻击者. 攻击者在拿到一定数量($m$个)的方程后可以构建方程组$\mathbf A\mathbf x=\mathbf b$, 可以很有把握地输出方程地解$\mathbf x$. 这里的$\mathbf A$就是方程的系数矩阵即$\mathbf A$的每一行就是由$\mathbf a_1,\cdots, \mathbf a_m$构成. 实际上, 我们知道我们只要拿到$n$个线性无关$\mathbf a_i$构成的方程就可以成功解出$\mathbf x$.</p>
-<p>如果我们将问题变得复杂一些呢? 此时攻击者不会直接给我们$(\mathbf a_i,b_i=\mathbf a_i\cdot \mathbf x)$, 而是会在此基础上加一些料, 给$b_i$一些扰动$(\mathbf a_i,b_i=\mathbf a_i\cdot \mathbf x+e_i)$, 其中$e_i$服从一个均值为0, 方程较小的错误分布. 此时求解问题变成了求解这样的方程的解$\mathbf x$.</p>
+<p>为了保持LWE问题研究的传统, 我们用$\mathbf s$来表示方程的解. 这个问题是这样的, 首先, 挑战者(challenger)会均匀随机地选择一个$n$维的$\mathbf s$作为解. 我们作为攻击者(adversary)可以不断地向挑战者索要方程地组中的一个方程. 实际上, 此时挑战者在先前并没有准备方程, 此时挑战者会均匀随机的选择行向量$\mathbf a_i$作为方程的系数, 然后计算$b_i=\mathbf a_i\cdot \mathbf s$, 并将$(\mathbf a_i,b_i)$返回给攻击者. 攻击者在拿到一定数量($m$个)的方程后可以构建方程组$\mathbf A\mathbf s=\mathbf b$, 可以很有把握地输出方程地解$\mathbf x$. 这里的$\mathbf A$就是方程的系数矩阵即$\mathbf A$的每一行就是由$\mathbf a_1,\cdots, \mathbf a_m$构成. 实际上, 我们知道我们只要拿到$n$个线性无关$\mathbf a_i$构成的方程就可以成功解出$\mathbf x$.</p>
+<p>如果我们将问题变得复杂一些呢? 此时攻击者不会直接给我们$(\mathbf a_i,b_i=\mathbf a_i\cdot \mathbf s)$, 而是会在此基础上加一些料, 给$b_i$一些扰动$(\mathbf a_i,b_i=\mathbf a_i\cdot \mathbf s+e_i)$, 其中$e_i$服从一个均值为0, 方程较小的错误分布. 此时求解问题变成了求解这样的方程的解$\mathbf x$.</p>
 <img src="/2019/09/01/格密码基础-1-LWE问题简介/1567246237266.png">
 <p>有两种极端的情况, 这两种情况是神仙也不能处理的:</p>
 <ol>
 <li>方程数量过少, 只有小于或等于$n$个方程.</li>
 <li>错误过大, 例如错误是均与随机的.</li>
 </ol>
-<p>对于第一种情况, 我们如果按照线性方程组进行求解, 最好的情况也就是求出$\mathbf A\mathbf x=\mathbf e+\mathbf b$唯一的特解, 由于我们不知道除了$\mathbf e$的分布外有关它的任何信息, 根据这个信息来猜$\mathbf x$, 结果不会太好. 例如, 如果$\mathbf e$的每一行都是离散高斯分布, 且取到$0$的概率是$C$, 由于$e_i$取$0$的概率最大, 因此我们最佳的策略就是猜所有的$e_i=0$, 在这样最优的策略下, 我们正确解出$\mathbf x$的概率是$C^n$, 这是一个$\mathsf{negl}(n)$的概率.</p>
-<p>对于第二种情况, 另一种情况, 我们相当于拿到的$(\mathbf a_i,b_i)$中的$b_i$永远是均匀的, 与$\mathbf x$一点关系都没有, 又由于$\mathbf a_i$也是挑战者均匀选取的, 因此攻击者拿到的永远是均匀随机的$(\mathbf a_i,b_i)$, 也就与$\mathbf x$无关的信息, 也就不可能能够求解出$\mathbf x$.</p>
-<p>我在这里是不太想要讲解如何来解决这个问题的, 因为这里直接解释这个问题的Naive解法没有任何意义, 它需要用到BitDecomp的原理将方程$\mathbf{a}_i\cdot \mathbf x+e_i=b_i$转化为$\mathsf{Powerof2}(\mathbf a_i)\cdot \mathsf{BitDecomp}(\mathbf x)+e_i=b_i$后再做处理. 在学习完同态加密中BV11b方案后, 希望读者可以自行构造出naive的解法.</p>
+<p>对于第一种情况, 我们如果按照线性方程组进行求解, 最好的情况也就是求出$\mathbf A\mathbf s=\mathbf e+\mathbf b$唯一的特解, 由于我们不知道除了$\mathbf e$的分布外有关它的任何信息, 根据这个信息来猜$\mathbf x$, 结果不会太好. 例如, 如果$\mathbf e$的每一行都是离散高斯分布, 且取到$0$的概率是$C$, 由于$e_i$取$0$的概率最大, 因此我们最佳的策略就是猜所有的$e_i=0$, 在这样最优的策略下, 我们正确解出$\mathbf x$的概率是$C^n$, 这是一个$\mathsf{negl}(n)$的概率.</p>
+<p>对于第二种情况, 另一种情况, 我们相当于拿到的$(\mathbf a_i,b_i)$中的$b_i$永远是均匀的, 与$\mathbf s$一点关系都没有, 又由于$\mathbf a_i$也是挑战者均匀选取的, 因此攻击者拿到的永远是均匀随机的$(\mathbf a_i,b_i)$, 也就与$\mathbf x$无关的信息, 也就不可能能够求解出$\mathbf s$.</p>
+<p>我在这里是不太想要讲解如何来解决这个问题的, 因为这里直接解释这个问题的Naive解法没有任何意义, 它需要用到BitDecomp的原理将方程$\mathbf{a}_i\cdot \mathbf s+e_i=b_i$转化为$\mathsf{Powerof2}(\mathbf a_i)\cdot \mathsf{BitDecomp}(\mathbf s)+e_i=b_i$后再做处理. 在学习完同态加密中BV11b方案后, 希望读者可以自行构造出naive的解法. 因此, 我将上述问题的naive算法作为了习题放在了介绍BV11b方案的文章中.</p>
+<h1 id="LWE问题"><a href="#LWE问题" class="headerlink" title="LWE问题"></a>LWE问题</h1><p>有了上述基础, 现在我们可以介绍LWE问题. 最基本的LWE问题有着两个版本, 这两个版本分别对应计算复杂性中两类最基本的问题, 且两个问题之间存在多项式时间的归约. 我们将分别介绍两个版本的LWE问题, 再介绍它们之间的归约方法.</p>
+<p>在介绍两类问题之前, 我们首先介绍一些基础知识. 首先是LWE分布.</p>
+<blockquote>
+<p><strong>LWE分布</strong></p>
+<p>给定某个$\bf s\in \mathbb Z_q^n$和错误分布$\chi$, 定义LWE分布$A_{\mathbf s,\chi}$为: 均匀选择$\mathbf a\leftarrow \mathbb Z_q^n$并采样$e\leftarrow \chi$ ,计算$b=\mathbf a\cdot \mathbf s+e$并输出$(\mathbf a,b)$.</p>
+</blockquote>
+<p>我们可以理解为, 每次从LWE分布$A_{\mathbf s,\chi}$中采样, 都可以得到一个近似解为$\mathbf s$的线性方程. 如果有一个专门提供这样的分布的Oracle, 那么我们就可以多次来调用该Oracle已积攒足够数量的方程来求解该问题. 应该注意到, $A_{\mathbf s,\chi}$中我们省略了参数$n$, 这是一种常用的写法, 因为这里的$n$可以根据上下文推出. 我们牺牲部分符号上的严谨性来与大多数论文统一符号, 来帮助读者快速熟悉这些记号.</p>
+<h2 id="搜索LWE问题"><a href="#搜索LWE问题" class="headerlink" title="搜索LWE问题"></a>搜索LWE问题</h2><p>搜索LWE问题(search LWE problem, SLWE)就是我们前边提到的解近似线性方程组的问题, 即</p>
+<blockquote>
+<p><strong>搜索LWE问题</strong></p>
+<p>SLWE$_{n,q,\chi,m}$问题定义为: 均匀选择$\mathbf s\leftarrow\mathbb Z_q^n$, 并给出$A_{\mathbf s,\chi}$的Oracle, 在最多进行$m$次Oracle访问的情况下求$\mathbf s$.</p>
+</blockquote>
+<p>该问题的表述可以是多种多样的, 有的表述中, 直接将$m$个Oracle的结果一并给出, 即均匀选择$\mathbf A\in\Z_q^{m\times n}$和采样$\mathbf e\leftarrow\chi^m$, 计算$\mathbf b=\mathbf {As}+\mathbf e$, 根据$(\mathbf A,\mathbf b)$求$\mathbf s$.</p>
+<p>其中$\mathbf s$是均匀选择的这一条件不可忽略, 因为我们一般说的LWE问题, 都指的是这一平均情况(average-case)下的问题. 我们有关LWE问题的复杂性结论如果不是特殊说明, 都指的是平均情况下的LWE问题相关结论.</p>
+<p>一般来说, 我们会要求$m$是一个有关于$n$的多项式, 即$m=m(n)$是一个多项式函数. 毕竟, 对于一个只能在概率多项式时间内运行的攻击者是无法有充足的时间访问超多项式次Oracle的.</p>
+<h2 id="判定LWE问题"><a href="#判定LWE问题" class="headerlink" title="判定LWE问题"></a>判定LWE问题</h2><p>判定LWE问题同其他判定一样, 要求输出的是YES/NO(或1/0).</p>
+<blockquote>
+<p><strong>判定LWE问题</strong></p>
+<p>DLWE$_{n,q,\chi,m}$问题定义为: 均匀选择$\mathbf x\leftarrow\mathbb Z_q^n$, 给出$m$个来自一下两个分布中的任何一个的采样结果:</p>
+<ul>
+<li>$A_{\mathbf s,\chi}$分布</li>
+<li>$\mathbb Z_q^n\times \mathbb Z_q$上的均匀分布</li>
+</ul>
+<p>求采样结果所服从的分布.</p>
+</blockquote>
+<p> 如果两个版本的LWE问题要求$m$均为多项式, 这个问题似乎这个问题看起来更加简单一些? 但是接下来我们将会发现, 这两个问题相互之间是可以概率多项式规约的, 即一台概率图灵机, 如果有求解两个问题中任何一个的Oracle的访问权限, 就可以在多项式时间内以压倒性概率求解另一个问题.</p>
+<h2 id="两个LWE问题之间的规约"><a href="#两个LWE问题之间的规约" class="headerlink" title="两个LWE问题之间的规约"></a>两个LWE问题之间的规约</h2><h3 id="DLWE-leq-mathbf-BPP-SLWE"><a href="#DLWE-leq-mathbf-BPP-SLWE" class="headerlink" title="DLWE $\leq_\mathbf{BPP}$ SLWE"></a>DLWE $\leq_\mathbf{BPP}$ SLWE</h3><h3 id="SLWE-leq-mathbf-BPP-DLWE"><a href="#SLWE-leq-mathbf-BPP-DLWE" class="headerlink" title="SLWE $\leq_\mathbf{BPP}$ DLWE"></a>SLWE $\leq_\mathbf{BPP}$ DLWE</h3><h1 id="LWE问题的复杂性结论"><a href="#LWE问题的复杂性结论" class="headerlink" title="LWE问题的复杂性结论"></a>LWE问题的复杂性结论</h1><h1 id="其他版本的LWE问题"><a href="#其他版本的LWE问题" class="headerlink" title="其他版本的LWE问题"></a>其他版本的LWE问题</h1><h1 id="其他信息"><a href="#其他信息" class="headerlink" title="其他信息"></a>其他信息</h1><ol>
+<li>有关Worst-case Hardness与Average-case Hardness的概念及讨论, 可以参考文章<em>Levin’s Theorem</em>, 当这篇文章写成后, 地址将被更新到这里.</li>
+</ol>
 <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">翻译自英文overwhelming, 一个压倒性的函数即满足$\mathsf{overwhelm}(n)=1-\mathsf{negl}(n)$的函数.<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
@@ -589,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#解线性方程组问题"><span class="nav-number">1.</span> <span class="nav-text">解线性方程组问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">2.</span> <span class="nav-text">注释</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#解线性方程组问题"><span class="nav-number">1.</span> <span class="nav-text">解线性方程组问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LWE问题"><span class="nav-number">2.</span> <span class="nav-text">LWE问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索LWE问题"><span class="nav-number">2.1.</span> <span class="nav-text">搜索LWE问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判定LWE问题"><span class="nav-number">2.2.</span> <span class="nav-text">判定LWE问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两个LWE问题之间的规约"><span class="nav-number">2.3.</span> <span class="nav-text">两个LWE问题之间的规约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DLWE-leq-mathbf-BPP-SLWE"><span class="nav-number">2.3.1.</span> <span class="nav-text">DLWE $\leq_\mathbf{BPP}$ SLWE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SLWE-leq-mathbf-BPP-DLWE"><span class="nav-number">2.3.2.</span> <span class="nav-text">SLWE $\leq_\mathbf{BPP}$ DLWE</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LWE问题的复杂性结论"><span class="nav-number">3.</span> <span class="nav-text">LWE问题的复杂性结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他版本的LWE问题"><span class="nav-number">4.</span> <span class="nav-text">其他版本的LWE问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他信息"><span class="nav-number">5.</span> <span class="nav-text">其他信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">6.</span> <span class="nav-text">注释</span></a></li></ol></div>
             
 
           </div>
