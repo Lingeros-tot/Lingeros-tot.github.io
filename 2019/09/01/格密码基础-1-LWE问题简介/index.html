@@ -87,7 +87,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/1567245476092.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/格密码基础-1-LWE问题简介/1567246237266.png">
-<meta property="og:updated_time" content="2019-09-03T16:39:14.003Z">
+<meta property="og:updated_time" content="2019-09-04T05:16:44.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="格密码基础(1) LWE问题简介">
 <meta name="twitter:description" content="容错学习(learning with errors, LWE)问题就是求解带噪声的线性方程组问题, 由Oded Regev在[Reg05] [1]中提出, 他也因此结果荣获2018年的哥德尔奖. LWE问题的困难性基于的复杂性假设非常弱, 但是功能却异常强大, 由于LWE问题尚无有效的量子求解算法, 因此基于LWE假设的加密方案被认为是抗量子的. LWE问题(earning with errors">
@@ -425,7 +425,7 @@
 <p><strong>搜索LWE问题</strong></p>
 <p>SLWE$_{n,q,\chi,m}$问题定义为: 给出$A_{\mathbf s,\chi}$的Oracle, 在最多进行$m$次Oracle访问的情况下求$\mathbf s$.</p>
 </blockquote>
-<p>该问题的表述可以是多种多样的, 有的表述中, 直接将$m$个Oracle的结果一并给出, 即均匀选择$\mathbf A\in\Z_q^{m\times n}$和采样$\mathbf e\leftarrow\chi^m$, 计算$\mathbf b=\mathbf {As}+\mathbf e$, 根据$(\mathbf A,\mathbf b)$求$\mathbf s$.</p>
+<p>该问题的表述可以是多种多样的, 有的表述中, 直接将$m$个Oracle的结果一并给出, 即均匀选择$\mathbf A\in\mathbb Z_q^{m\times n}$和采样$\mathbf e\leftarrow\chi^m$, 计算$\mathbf b=\mathbf {As}+\mathbf e$, 根据$(\mathbf A,\mathbf b)$求$\mathbf s$.</p>
 <p>一般来说, 我们会要求$m$是一个有关于$n$的多项式, 即$m=m(n)$是一个多项式函数. 毕竟, 对于一个只能在概率多项式时间内运行的攻击者是无法有充足的时间访问超多项式次Oracle的.</p>
 <h2 id="判定LWE问题"><a href="#判定LWE问题" class="headerlink" title="判定LWE问题"></a>判定LWE问题</h2><p>判定LWE问题同其他判定一样, 要求输出的是YES/NO(或1/0).</p>
 <blockquote>

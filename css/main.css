@@ -306,7 +306,7 @@ hr {
 }
 blockquote {
   padding: 0 15px;
-  color: #666;
+  color: #000;
   border-left: 4px solid #ddd;
 }
 blockquote cite::before {
@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #bb5eba;
+  background: #24fe52;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2911,4 +2911,12 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+blockquote.question {
+  color: #000;
+  border-left: 4px solid #b4b4b4;
+  background-color: #dcdcdc;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-bottom: 20px;
 }
