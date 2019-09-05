@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lingeros">
 <meta property="og:description" content="One-way funtion is a funtion which is easy to compute but hard to invert. Here “easy” and “hard” means the lower bound of its computational complexity. The existence of one-way function is the necessa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-21T01:47:41.000Z">
+<meta property="og:updated_time" content="2019-09-05T06:32:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="One-Way Function">
 <meta name="twitter:description" content="One-way funtion is a funtion which is easy to compute but hard to invert. Here “easy” and “hard” means the lower bound of its computational complexity. The existence of one-way function is the necessa">
@@ -387,8 +387,8 @@
 <p><strong>Some Information about the Course</strong></p>
 <p>In this course, we mainly talk about the foundation of Cryptography. The whole course includes the conditions of the existence of cryptography, the provable security of cryptosystems, the general construction method of cryptosystems. Basic knowledge of probability theory, computational complexity is necessary for this course.</p>
 <p>This serie of notes mainly follows Goldreich’s book <em>Foundations of Cryptograph</em>, which usually being regarded sealed. Actually with some basic knowledge about computational complexity and being familiar with those “arguments”, this book is not quite hard to read. </p>
-<p>Furthermore, since Goldreich’s book has been finished for several years, newly researching results are not included in that book, the results being found in resent years has been added by me. Infact, this is not the note of a single course. It is a set of notes for several courses involving cryptography and textbooks. Some of the contents are beyond any of the courses the writer have taken.</p>
-<p>Thanks to Mr. Yu at SJTU for giving us a wonderful course.</p>
+<p>Furthermore, since Goldreich’s book has been finished for several years, newly research results are not included in it. Results being found in resent years has been added by me in the notes. In fact, this is not the note of a single course. It is a set of notes for several cryptographic courses and textbooks. Some of the contents are beyond any of the courses the writer have taken.</p>
+<p>Thanks to Mr. Yu and Mrs. Liu at SJTU for giving us wonderful cryptographic courses.</p>
 <p><strong>Some Information about the Symbols</strong></p>
 <p>Never be confused with the symbol $\to$. Though in math we always use $\to$ between the definitional domain and range, $\to$ here in the series of article often means the output of a algorithm. Algorithms are different with functions if we consider the complexity of it. And algorithms can be probablistic, that is, the outputs can be different even if the inputs are the same. Because of this, $=$ is meaningless. So we took the assignment operator from pseudocode $\to$ and $\leftarrow$ to denote the output of an algorithm.</p>
 <p>We are not going to write too many conditions in a probabilistic formula. We sometimes write conditions by distributions under the simbol $\Pr$.</p>
@@ -440,7 +440,7 @@
 <p>Let $f(\cdot)$ be a one way function defined for lengths of polynomial-time-enumerable set $I$. Let $x=x^\prime x^”$, where $x^\prime$ is the longest prefix of $x$ with length in $I$. Define<br>$$<br>g(x)=f(x^\prime)x^”<br>$$<br>Then $g(x)$ is a one-way function.</p>
 </blockquote>
 <p><strong>Proof</strong>: The proof is simple, which is omitted here. But we review the basic thought of the proof. The technique used here is reduction. Suppose there is a algorithm $\mathcal A$ that invert $g(\cdot)$ efficiently, then we call construct a efficient algorithm $\mathcal A^\prime$ which could invoke $\mathcal A$ polynomial times and invert $f(\cdot)$ efficiently.</p>
-<p><kbd>!</kbd> This is the basic ideal for strong ont-way function. As for weak one-way function, the basic idea is similar.</p>
+<p><kbd>!</kbd> This is the basic ideal for strong one-way function. As for weak one-way function, the basic idea is similar.</p>
 <h2 id="Length-Regular-amp-Length-Preserving-One-Way-Function"><a href="#Length-Regular-amp-Length-Preserving-One-Way-Function" class="headerlink" title="Length-Regular &amp; Length-Preserving One-Way Function"></a>Length-Regular &amp; Length-Preserving One-Way Function</h2><p>The following two definitions can be used to both strong &amp; weak one-way functions. </p>
 <blockquote>
 <p><strong>Length-Regular One-Way function</strong></p>
